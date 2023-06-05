@@ -23,11 +23,6 @@
             </HBox>
         </VBox>
     </top>
-    <left>
-        <VBox>
-            <Label  text="Intensité max :" minHeight="20" minWidth="100" style="-fx-text-fill: red"/>
-        </VBox>
-    </left>
     <center>
         <Label  text="Si tu vois ceci c'est que cette fenêtre fonctionne" minHeight="20" minWidth="150" style="-fx-text-fill: green"/>
     </center>
