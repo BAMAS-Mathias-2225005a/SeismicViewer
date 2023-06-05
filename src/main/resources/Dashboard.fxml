@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import com.gluonhq.maps.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import com.gluonhq.maps.MapPoint ?>
-<?import com.gluonhq.maps.MapView ?>
 
-<?import javafx.geometry.Insets?>
-<BorderPane fx:id="mainBP" xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="700.0" prefWidth="1200.0"
-            fx:controller="fr.amu.iut.sismicviewer.scenes.dashboard.DashboardControl"
-            stylesheets="@styles.css">
+<BorderPane fx:id="mainBP" prefHeight="700.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.sismicviewer.scenes.dashboard.DashboardControl">
     <top>
         <VBox style="-fx-background-color: #040F16">
             <padding>
-                <Insets top="10" bottom="10"/>
+                <Insets bottom="10" top="10" />
             </padding>
-            <HBox  spacing="200" alignment="CENTER">
-                <Button fx:id="carte" text="CARTES" minWidth="150" minHeight="40" styleClass="topButton"/>
-                <Button fx:id="dashboard" text="DASHBOARD" minWidth="150" minHeight="40" styleClass="topButton"/>
-                <Button fx:id="stats" text="STATISTIQUES" minWidth="150" minHeight="40" styleClass="topButton"/>
+            <HBox alignment="CENTER" spacing="200">
+                <Button fx:id="carte" minHeight="40" minWidth="150" styleClass="topButton" text="CARTES" />
+                <Button fx:id="dashboard" minHeight="40" minWidth="150" styleClass="topButton" text="DASHBOARD" />
+                <Button fx:id="stats" minHeight="40" minWidth="150" styleClass="topButton" text="STATISTIQUES" />
             </HBox>
         </VBox>
     </top>
     <center>
-        <MapView fx:id="mapView" maxWidth="400" maxHeight="400"/>
+        <MapView fx:id="mapView" maxHeight="400" maxWidth="400" BorderPane.alignment="TOP_CENTER" />
     </center>
 </BorderPane>
