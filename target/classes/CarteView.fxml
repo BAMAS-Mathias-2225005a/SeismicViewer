@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="400.0" prefWidth="600.0"
+            fx:controller="fr.amu.iut.sismicviewer.scenes.carte.CarteController">
+    <top>
+        <HBox>
+            <Button fx:id="carte" text="CARTES" minWidth="300" minHeight="30" style="-fx-border-color: black"/>
+            <Button fx:id="dashboard" text="DASHBOARD" minWidth="200" minHeight="30" style="-fx-border-color: black"/>
+            <Button fx:id="stats" text="STATISTIQUES" minWidth="300" minHeight="30" style="-fx-border-color: black"/>
+        </HBox>
+    </top>
+    <center>
+        <Label  text="Si tu vois ceci c'est que la fenêtre de carte fonctionne !" minHeight="20" minWidth="150" style="-fx-text-fill: green"/>
+    </center>
+
+</BorderPane>
