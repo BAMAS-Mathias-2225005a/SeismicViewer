@@ -17,6 +17,7 @@ import com.gluonhq.maps.MapView;
 import fr.amu.iut.sismicviewer.CSV.CSVConverter;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class DashboardControl implements Initializable{
@@ -41,16 +42,20 @@ public class DashboardControl implements Initializable{
         System.out.println("Initialisation du controlleur..");
         TopBarController topBarController = new TopBarController();
         topBarController.initTopBar(carte, dashboard, stats);
-        MapPoint mapPoint = new MapPoint(46.227638, 2.213749);
-        mapView.setZoom(4);
-        mapView.flyTo(0, mapPoint, 0.1);
-        MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
-        mapView.addLayer(mapLayer);
+        initMap();
         CSVConverter csvConverter = new CSVConverter();
 
     }
 
-    /* Initialise les event des bouton de la top bar */
+    /* Initialise la map */
+    public void initMap(){
+        MapPoint mapPoint = new MapPoint(46.227638, 2.213749);
+        mapView.setZoom(5);
+        mapView.flyTo(0, mapPoint, 0.1);
+        MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
+        mapView.addLayer(mapLayer);
+    }
+
 
 
 }

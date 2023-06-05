@@ -14,9 +14,9 @@
             fx:controller="fr.amu.iut.sismicviewer.scenes.dashboard.DashboardControl">
     <top>
         <HBox>
-            <Button fx:id="carte" text="CARTES" minWidth="450" minHeight="30" style="-fx-border-color: black"/>
-            <Button fx:id="dashboard" text="DASHBOARD" minWidth="300" minHeight="30" style="-fx-border-color: black"/>
-            <Button fx:id="stats" text="STATISTIQUES" minWidth="450" minHeight="30" style="-fx-border-color: black"/>
+            <Button fx:id="carte" text="CARTES" minWidth="450" minHeight="40" style="-fx-border-color: black; -fx-border-width: 2"/>
+            <Button fx:id="dashboard" text="DASHBOARD" minWidth="300" minHeight="40" style="-fx-border-color: black; -fx-border-width: 2"/>
+            <Button fx:id="stats" text="STATISTIQUES" minWidth="450" minHeight="40" style="-fx-border-color: black; -fx-border-width: 2"/>
         </HBox>
     </top>
     <center>
