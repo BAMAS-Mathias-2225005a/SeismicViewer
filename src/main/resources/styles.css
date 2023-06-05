@@ -1,0 +1,12 @@
+.topButton{
+    -fx-background-color: #040F16;
+    -fx-border-width: 0;
+    -fx-text-fill: white;
+    -fx-font-size: 16;
+}
+
+.topButton:hover{
+    -fx-background-color: #FAC748;
+    -fx-text-fill: #000000;
+    -fx-cursor: hand;
+}

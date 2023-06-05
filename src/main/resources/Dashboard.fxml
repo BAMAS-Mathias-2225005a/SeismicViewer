@@ -8,16 +8,23 @@
 <?import com.gluonhq.maps.MapPoint ?>
 <?import com.gluonhq.maps.MapView ?>
 
+<?import javafx.geometry.Insets?>
 <BorderPane fx:id="mainBP" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             prefHeight="700.0" prefWidth="1200.0"
-            fx:controller="fr.amu.iut.sismicviewer.scenes.dashboard.DashboardControl">
+            fx:controller="fr.amu.iut.sismicviewer.scenes.dashboard.DashboardControl"
+            stylesheets="@styles.css">
     <top>
-        <HBox>
-            <Button fx:id="carte" text="CARTES" minWidth="450" minHeight="40" style="-fx-border-color: black; -fx-border-width: 2"/>
-            <Button fx:id="dashboard" text="DASHBOARD" minWidth="300" minHeight="40" style="-fx-border-color: black; -fx-border-width: 2"/>
-            <Button fx:id="stats" text="STATISTIQUES" minWidth="450" minHeight="40" style="-fx-border-color: black; -fx-border-width: 2"/>
-        </HBox>
+        <VBox style="-fx-background-color: #040F16">
+            <padding>
+                <Insets top="10" bottom="10"/>
+            </padding>
+            <HBox  spacing="200" alignment="CENTER">
+                <Button fx:id="carte" text="CARTES" minWidth="150" minHeight="40" styleClass="topButton"/>
+                <Button fx:id="dashboard" text="DASHBOARD" minWidth="150" minHeight="40" styleClass="topButton"/>
+                <Button fx:id="stats" text="STATISTIQUES" minWidth="150" minHeight="40" styleClass="topButton"/>
+            </HBox>
+        </VBox>
     </top>
     <center>
         <MapView fx:id="mapView" maxWidth="400" maxHeight="400"/>

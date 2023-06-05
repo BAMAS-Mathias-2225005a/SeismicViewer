@@ -20,7 +20,7 @@ public class SismicViewerApp extends Application {
 
     public static void setScene(String sceneName){
         FXMLLoader loader = new FXMLLoader(SismicViewerApp.class.getClassLoader().getResource(sceneName));
-        
+
     }
 
 }

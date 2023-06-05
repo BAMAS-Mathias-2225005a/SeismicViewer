@@ -6,15 +6,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0" fx:controller="fr.amu.iut.sismicviewer.scenes.stats.StatsController">
+            prefHeight="700.0" prefWidth="1200.0" fx:controller="fr.amu.iut.sismicviewer.scenes.stats.StatsController"
+            stylesheets="@styles.css">
     <top>
-        <HBox>
-            <Button fx:id="carte" text="CARTES" minWidth="300" minHeight="30" style="-fx-border-color: black" />
-            <Button fx:id="dashboard" text="DASHBOARD" minWidth="200" minHeight="30" style="-fx-border-color: black"/>
-            <Button fx:id="stats" text="STATISTIQUES" minWidth="300" minHeight="30" style="-fx-border-color: black"/>
-        </HBox>
+        <VBox style="-fx-background-color: #040F16">
+            <padding>
+                <Insets top="10" bottom="10"/>
+            </padding>
+            <HBox  spacing="200" alignment="CENTER">
+                <Button fx:id="carte" text="CARTES" minWidth="150" minHeight="40" styleClass="topButton"/>
+                <Button fx:id="dashboard" text="DASHBOARD" minWidth="150" minHeight="40" styleClass="topButton"/>
+                <Button fx:id="stats" text="STATISTIQUES" minWidth="150" minHeight="40" styleClass="topButton"/>
+            </HBox>
+        </VBox>
     </top>
     <center>
         <Label  text="Si tu vois ceci c'est que cette fenêtre fonctionne" minHeight="20" minWidth="150" style="-fx-text-fill: green"/>
