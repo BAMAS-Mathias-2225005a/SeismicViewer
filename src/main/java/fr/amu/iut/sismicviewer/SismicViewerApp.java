@@ -13,7 +13,10 @@ public class SismicViewerApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Dashboard.fxml"));
+        System.setProperty("http.agent", "Gluon Mobile/1.0.3");
         scene = new Scene(loader.load());
+
+        stage.setTitle("Sismic Viewer");
         stage.setScene(scene);
         stage.show();
     }

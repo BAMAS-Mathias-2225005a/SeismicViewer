@@ -17,7 +17,6 @@ import com.gluonhq.maps.MapView;
 import fr.amu.iut.sismicviewer.CSV.CSVConverter;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class DashboardControl implements Initializable{
