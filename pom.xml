@@ -47,7 +47,9 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-</dependencies>
+
+
+    </dependencies>
 
 <build>
     <resources>
@@ -102,6 +104,15 @@
             <version>3.0.0-M4</version>
             <configuration>
                 <argLine>--add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED</argLine>
+            </configuration>
+        </plugin>
+
+        <plugin>
+            <groupId>com.gluonhq</groupId>
+            <artifactId>gluonfx-maven-plugin</artifactId>
+            <version>1.0.18</version>
+            <configuration>
+                <mainClass>your.mainClass</mainClass>
             </configuration>
         </plugin>
 
