@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="mainBP" prefHeight="700.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.sismicviewer.scenes.dashboard.DashboardControl"
-            style="-fx-background-color: #040F16">
+<BorderPane fx:id="mainBP" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #040F16" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.sismicviewer.scenes.dashboard.DashboardControl">
     <top>
         <VBox>
             <padding>
@@ -41,4 +40,43 @@
             </VBox>
         </HBox>
     </left>
+   <bottom>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <right>
+      <BorderPane prefHeight="413.0" prefWidth="331.0" BorderPane.alignment="CENTER">
+         <top>
+            <VBox alignment="TOP_CENTER" prefHeight="36.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Top des séismes" textFill="#f8f408" />
+                  <Separator prefWidth="200.0" />
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <ScrollPane prefHeight="200.0" prefWidth="225.0" BorderPane.alignment="CENTER">
+               <content>
+                  <VBox fx:id="listeTopSeisme" prefHeight="338.0" prefWidth="328.0" />
+               </content>
+            </ScrollPane>
+         </center>
+         <bottom>
+            <VBox prefHeight="32.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Separator prefWidth="200.0" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="1 An" />
+                        <Button mnemonicParsing="false" text="10 Ans" />
+                        <Button mnemonicParsing="false" text="100 Ans" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </bottom>
+      </BorderPane>
+   </right>
 </BorderPane>

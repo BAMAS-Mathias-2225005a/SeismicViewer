@@ -10,6 +10,7 @@ import com.gluonhq.maps.MapLayer;
 import fr.amu.iut.sismicviewer.CSV.CSVManager;
 import fr.amu.iut.sismicviewer.Gluon.CustomCircleMarkerLayer;
 import fr.amu.iut.sismicviewer.controllers.TopBarController;
+import fr.amu.iut.sismicviewer.scenes.dashboard.TopSeismeControl;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -19,6 +20,7 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
 import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
 import java.net.URL;
@@ -47,6 +49,9 @@ public class DashboardControl implements Initializable{
 
     @FXML
     private Label texteErreurCSV;
+
+    @FXML
+    private VBox listeTopSeisme;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -84,6 +89,8 @@ public class DashboardControl implements Initializable{
             texteErreurCSV.setVisible(false);
             CSVManager csvManager = new CSVManager(file);
             csvManager.getData(5,10);
+            TopSeismeControl listeTopSeismeLoader = new TopSeismeControl();
+            listeTopSeismeLoader.loadData(csvManager.getData(),listeTopSeisme);
         }
 
     }
