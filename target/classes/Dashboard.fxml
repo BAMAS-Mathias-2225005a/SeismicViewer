@@ -8,6 +8,7 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import org.controlsfx.control.RangeSlider?>
 <BorderPane fx:id="mainBP" prefHeight="700.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.sismicviewer.scenes.dashboard.DashboardControl"
             style="-fx-background-color: #040F16">
     <top>
@@ -28,8 +29,9 @@
         </VBox>
     </top>
     <center>
-        <VBox alignment="CENTER" style="-fx-background-radius:18">
+        <VBox alignment="CENTER" style="-fx-background-radius:18" spacing="30">
             <MapView fx:id="mapView" maxHeight="350" maxWidth="425" BorderPane.alignment="TOP_CENTER" />
+            <RangeSlider min="1500" max="2023" showTickLabels="true" lowValue="1500" highValue="2023" maxWidth="500" minHeight="50" styleClass="range-slider"/>
         </VBox>
     </center>
     <left>

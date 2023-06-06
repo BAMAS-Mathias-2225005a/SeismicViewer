@@ -5,4 +5,5 @@ open module tp.bindings {
     requires javafx.fxml;
     requires com.gluonhq.maps;
     requires com.opencsv;
+    requires org.controlsfx.controls;
 }

@@ -19,3 +19,12 @@
     -fx-background-color: #FAC748FF;
     -fx-font-size: 18;
 }
+
+.range-slider .range-bar {
+    -fx-background-color: #FAC748FF;
+}
+
+.range-slider .track {
+    -fx-background-color: #C14953;
+}
+
