@@ -1,5 +1,6 @@
 package fr.amu.iut.sismicviewer.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,13 +12,13 @@ import java.io.IOException;
 public class TopBarController {
 
     public void initTopBar(Button carte, Button dashboard, Button stats) {
-        carte.setOnAction(actionEvent -> {
+        carte.setOnMouseClicked(event -> {
             changeScene("CarteView.fxml", carte);
         });
-        dashboard.setOnAction(actionEvent -> {
+        dashboard.setOnMouseClicked(actionEvent -> {
             changeScene("Dashboard.fxml", dashboard);
         });
-        stats.setOnAction(actionEvent -> {
+        stats.setOnMouseClicked(actionEvent -> {
             changeScene("StatsView.fxml", stats);
         });
     }

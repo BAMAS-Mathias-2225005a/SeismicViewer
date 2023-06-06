@@ -21,4 +21,7 @@
     <center>
         <MapView fx:id="mapView" maxHeight="400" maxWidth="400" BorderPane.alignment="TOP_CENTER" />
     </center>
+    <left>
+        <Button fx:id="importCSVButton" text="Choisir fichier CSV"/>
+    </left>
 </BorderPane>

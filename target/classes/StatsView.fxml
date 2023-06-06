@@ -26,5 +26,11 @@
     <center>
         <Label  text="Si tu vois ceci c'est que cette fenêtre fonctionne" minHeight="20" minWidth="150" style="-fx-text-fill: green"/>
     </center>
+    <left>
+        <VBox>
+            <Label  text="Intensité maximale :" minHeight="20" minWidth="150" style="-fx-text-fill: green"/>
+            <Label  text="xx" minHeight="20" minWidth="150" style="-fx-text-fill: yellow"/>
+        </VBox>
+    </left>
 
 </BorderPane>

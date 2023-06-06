@@ -36,14 +36,15 @@ public class DashboardControl implements Initializable{
     @FXML
     private MapView mapView;
 
+    @FXML
+    private Button importCSVButton;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Initialisation du controlleur..");
         TopBarController topBarController = new TopBarController();
         topBarController.initTopBar(carte, dashboard, stats);
         initMap();
-        CSVConverter csvConverter = new CSVConverter();
-
     }
 
     /* Initialise la map */
