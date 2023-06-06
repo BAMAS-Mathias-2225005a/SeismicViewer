@@ -18,7 +18,7 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
 import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
-import fr.amu.iut.sismicviewer.CSV.CSVConverter;
+import fr.amu.iut.sismicviewer.CSV.CSVManager;
 import javafx.stage.FileChooser;
 
 import java.net.URL;
@@ -82,8 +82,8 @@ public class DashboardControl implements Initializable{
             texteErreurCSV.setVisible(true);
         else{
             texteErreurCSV.setVisible(false);
-            CSVConverter csvConverter = new CSVConverter();
-            ArrayList<String[]> data = csvConverter.getCsv(file);
+            CSVManager csvConverter = new CSVManager(file);
+            csvConverter.getData(5, 10);
         }
 
     }
