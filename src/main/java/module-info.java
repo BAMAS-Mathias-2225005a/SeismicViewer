@@ -4,4 +4,5 @@ open module tp.bindings {
     requires javafx.graphics;
     requires javafx.fxml;
     requires com.gluonhq.maps;
+    requires com.opencsv;
 }
