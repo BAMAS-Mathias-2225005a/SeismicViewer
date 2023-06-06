@@ -4,6 +4,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane fx:id="mainBP" prefHeight="700.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.sismicviewer.scenes.dashboard.DashboardControl">
     <top>
@@ -22,6 +23,12 @@
         <MapView fx:id="mapView" maxHeight="400" maxWidth="400" BorderPane.alignment="TOP_CENTER" />
     </center>
     <left>
-        <Button fx:id="importCSVButton" text="Choisir fichier CSV"/>
+        <VBox alignment="CENTER">
+            <Button fx:id="importCSVButton" text="Choisir fichier CSV">
+            <font>
+               <Font name="Amiri" size="13.0" />
+            </font></Button>
+            <Label fx:id="texteErreurCSV" style="-fx-text-fill: red" text="Merci d'ajouter un fichier CSV valide" visible="false" />
+        </VBox>
     </left>
 </BorderPane>

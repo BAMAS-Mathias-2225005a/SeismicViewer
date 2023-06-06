@@ -1,25 +1,28 @@
 package fr.amu.iut.sismicviewer.CSV;
 
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
+
+import com.opencsv.CSVReader;
 
 
 public class CSVConverter {
 
-    public ArrayList<String[]> getCsv(){
-        String csvFile = "dataSeisme.csv";
-        String line = "";
-        String csvDelimiter = ",";
+    public ArrayList<String[]> getCsv(File file) {
         ArrayList<String[]> data = new ArrayList<String[]>();
+        CSVConverter csvConverter = new CSVConverter();
 
+        try {
+            FileReader filereader = new FileReader(file);
+            CSVReader csvReader = new CSVReader(filereader);
+            String[] nextRecord;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            while ((line = br.readLine()) != null) {
-                data.add(line.split(csvDelimiter));
+            while ((nextRecord = csvReader.readNext()) != null) {
+                data.add(nextRecord);
             }
-        } catch (IOException e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return data;

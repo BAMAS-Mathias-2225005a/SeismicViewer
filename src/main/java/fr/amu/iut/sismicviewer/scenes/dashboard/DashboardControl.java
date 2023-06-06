@@ -1,5 +1,6 @@
 package fr.amu.iut.sismicviewer.scenes.dashboard;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -11,12 +12,15 @@ import fr.amu.iut.sismicviewer.controllers.TopBarController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
 import fr.amu.iut.sismicviewer.CSV.CSVConverter;
+import javafx.stage.FileChooser;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class DashboardControl implements Initializable{
@@ -39,12 +43,18 @@ public class DashboardControl implements Initializable{
     @FXML
     private Button importCSVButton;
 
+    @FXML
+    private Label texteErreurCSV;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Initialisation du controlleur..");
         TopBarController topBarController = new TopBarController();
         topBarController.initTopBar(carte, dashboard, stats);
         initMap();
+        initButton();
+
+
     }
 
     /* Initialise la map */
@@ -54,6 +64,24 @@ public class DashboardControl implements Initializable{
         mapView.flyTo(0, mapPoint, 0.1);
         MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
         mapView.addLayer(mapLayer);
+    }
+
+    public void initButton(){
+        importCSVButton.setOnMouseClicked(event -> openCSVFileChooser());
+    }
+
+    public void openCSVFileChooser(){
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(null);
+
+        if(file == null || !file.getName().contains(".csv"))
+            texteErreurCSV.setVisible(true);
+        else{
+            texteErreurCSV.setVisible(false);
+            CSVConverter csvConverter = new CSVConverter();
+            ArrayList<String[]> data = csvConverter.getCsv(file);
+        }
+
     }
 
 

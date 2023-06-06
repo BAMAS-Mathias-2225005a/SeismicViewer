@@ -10,3 +10,12 @@
     -fx-text-fill: #000000;
     -fx-cursor: hand;
 }
+
+#importCSVButton{
+    -fx-background-size: 0;
+    -fx-pref-width: 280;
+    -fx-pref-height: 50;
+    -fx-cursor: hand;
+    -fx-background-color: #FAC748FF;
+    -fx-font-size: 18;
+}
