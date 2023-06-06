@@ -31,12 +31,14 @@
         </VBox>
     </center>
     <left>
-        <VBox alignment="CENTER">
-            <Button fx:id="importCSVButton" text="Choisir fichier CSV">
-            <font>
-               <Font name="Amiri" size="13.0" />
-            </font></Button>
-            <Label fx:id="texteErreurCSV" style="-fx-text-fill: red" text="Merci d'ajouter un fichier CSV valide" visible="false" />
-        </VBox>
+        <HBox alignment="CENTER" minWidth="500">
+            <VBox alignment="CENTER">
+                <Button fx:id="importCSVButton" text="Choisir fichier CSV">
+                <font>
+                   <Font name="Amiri" size="13.0" />
+                </font></Button>
+                <Label fx:id="texteErreurCSV" style="-fx-text-fill: red" text="Merci d'ajouter un fichier CSV valide" visible="false" />
+            </VBox>
+        </HBox>
     </left>
 </BorderPane>

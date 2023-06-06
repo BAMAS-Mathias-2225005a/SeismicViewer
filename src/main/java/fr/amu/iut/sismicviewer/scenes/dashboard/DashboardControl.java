@@ -7,6 +7,7 @@ import java.io.IOException;
 
 
 import com.gluonhq.maps.MapLayer;
+import fr.amu.iut.sismicviewer.CSV.CSVManager;
 import fr.amu.iut.sismicviewer.Gluon.CustomCircleMarkerLayer;
 import fr.amu.iut.sismicviewer.controllers.TopBarController;
 import javafx.fxml.FXML;
@@ -18,7 +19,6 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
 import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
-import fr.amu.iut.sismicviewer.CSV.CSVConverter;
 import javafx.stage.FileChooser;
 
 import java.net.URL;
@@ -82,8 +82,8 @@ public class DashboardControl implements Initializable{
             texteErreurCSV.setVisible(true);
         else{
             texteErreurCSV.setVisible(false);
-            CSVConverter csvConverter = new CSVConverter();
-            ArrayList<String[]> data = csvConverter.getCsv(file);
+            CSVManager csvManager = new CSVManager(file);
+            csvManager.getData(5,10);
         }
 
     }
