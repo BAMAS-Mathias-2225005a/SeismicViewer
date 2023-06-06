@@ -19,3 +19,8 @@
     -fx-background-color: #FAC748FF;
     -fx-font-size: 18;
 }
+
+.square{
+    -fx-fill: rgb(169,169,169, 0.2);
+
+}
