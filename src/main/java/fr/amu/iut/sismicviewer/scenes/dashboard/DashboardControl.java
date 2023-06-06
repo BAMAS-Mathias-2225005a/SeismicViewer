@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
@@ -59,8 +60,9 @@ public class DashboardControl implements Initializable{
 
     /* Initialise la map */
     public void initMap(){
+        mapView.addEventFilter(MouseEvent.ANY, event -> event.consume());
         MapPoint mapPoint = new MapPoint(46.227638, 2.213749);
-        mapView.setZoom(5);
+        mapView.setZoom(5.5);
         mapView.flyTo(0, mapPoint, 0.1);
         MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
         mapView.addLayer(mapLayer);
