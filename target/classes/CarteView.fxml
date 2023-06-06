@@ -10,17 +10,23 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             prefHeight="700.0" prefWidth="1200.0"
-            fx:controller="fr.amu.iut.sismicviewer.scenes.carte.CarteController" stylesheets="@styles.css">
+            fx:controller="fr.amu.iut.sismicviewer.scenes.carte.CarteController" stylesheets="@styles.css"
+            style="-fx-background-color: #040F16">
     <top>
-        <VBox style="-fx-background-color: #040F16">
+        <VBox>
             <padding>
-                <Insets top="10" bottom="10"/>
+                <Insets bottom="20" top="10" />
             </padding>
-            <HBox  spacing="200" alignment="CENTER">
-                <Button fx:id="carte" text="CARTES" minWidth="150" minHeight="40" styleClass="topButton"/>
-                <Button fx:id="dashboard" text="DASHBOARD" minWidth="150" minHeight="40" styleClass="topButton"/>
-                <Button fx:id="stats" text="STATISTIQUES" minWidth="150" minHeight="40" styleClass="topButton"/>
+            <HBox alignment="CENTER" spacing="200">
+                <Button fx:id="carte" minHeight="40" minWidth="225" styleClass="topButton" text="CARTES" />
+                <Button fx:id="dashboard" minHeight="40" minWidth="225" styleClass="topButton" text="DASHBOARD" />
+                <Button fx:id="stats" minHeight="40" minWidth="225" styleClass="topButton" text="STATISTIQUES" />
             </HBox>
+            <Separator>
+                <padding>
+                    <Insets top="10" />
+                </padding>
+            </Separator>
         </VBox>
     </top>
     <center>
