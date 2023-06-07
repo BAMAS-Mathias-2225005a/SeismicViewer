@@ -25,6 +25,7 @@ public class TopSeismeControl {
                 ligne.put("Intensité", "Inconnu");
             }
             listeTopSeismes.getChildren().add(new Label(ligne.get("Date") + " " + ligne.get("Région") + " intensité : " + ligne.get("Intensité")));
+            listeTopSeismes.getChildren().add((new Separator()));
         }
 
     }

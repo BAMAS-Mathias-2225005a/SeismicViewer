@@ -115,7 +115,6 @@ public class DashboardControl implements Initializable{
             CSVErrorBox.setVisible(false);
             SismicViewerApp.setCsvFile(file);
             CSVManager csvManager = new CSVManager();
-            SeismeDataManager seismeDataManager = new SeismeDataManager();
             csvManager.loadCsv(SismicViewerApp.getCsvFile());
             TopSeismeControl topSeismeControl = new TopSeismeControl();
             topSeismeControl.loadData(csvManager.getData(), listeTopSeisme);
