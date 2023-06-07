@@ -24,3 +24,12 @@
     -fx-fill: rgb(169,169,169, 0.2);
 
 }
+
+.titreCarte{
+    -fx-font-size: 30;
+    -fx-text-fill: white;
+}
+
+.paneCarte{
+    -fx-padding: 20px;
+}
