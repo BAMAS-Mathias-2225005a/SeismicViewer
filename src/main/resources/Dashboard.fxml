@@ -3,14 +3,12 @@
 <?import com.gluonhq.maps.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import org.controlsfx.control.*?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import org.controlsfx.control.RangeSlider?>
-<BorderPane fx:id="mainBP" prefHeight="700.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.sismicviewer.scenes.dashboard.DashboardControl"
-            style="-fx-background-color: #040F16">
+<BorderPane fx:id="mainBP" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #141b2d" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.sismicviewer.scenes.dashboard.DashboardControl">
     <top>
         <VBox>
             <padding>
@@ -29,14 +27,21 @@
         </VBox>
     </top>
     <center>
-        <VBox alignment="CENTER" style="-fx-background-radius:18" spacing="30">
+        <VBox alignment="CENTER" style="-fx-background-color: #1f2941" spacing="30" maxHeight="500" maxWidth="550">
+            <HBox alignment="TOP_LEFT">
+                <Label styleClass="textLabel" text="Repartition des séismes" textFill="WHITE">
+                    <padding>
+                        <Insets bottom="0" left="15" />
+                    </padding>
+                </Label>
+            </HBox>
             <MapView fx:id="mapView" maxHeight="350" maxWidth="425" BorderPane.alignment="TOP_CENTER" />
-            <RangeSlider min="1500" max="2023" showTickLabels="true" lowValue="1500" highValue="2023" maxWidth="500" minHeight="50" styleClass="range-slider"/>
+            <RangeSlider fx:id="mainRangeSlider" min="1700" max="2023" lowValue="1700" highValue="2023" maxWidth="500"  showTickLabels="true" styleClass="range-slider" />
         </VBox>
     </center>
     <left>
         <HBox alignment="CENTER" minWidth="500">
-            <VBox spacing="10" alignment="BOTTOM_CENTER">
+            <VBox alignment="BOTTOM_CENTER" spacing="10">
                 <padding>
                     <Insets bottom="30" />
                 </padding>
@@ -45,9 +50,9 @@
                         <Font name="Amiri" size="13.0" />
                     </font>
                 </Button>
-                <HBox fx:id="CSVErrorBox" visible="false" alignment="CENTER" spacing="5">
-                    <ImageView fitWidth="20" fitHeight="20">
-                        <Image url="@csvError.png"/>
+                <HBox fx:id="CSVErrorBox" alignment="CENTER" spacing="5" visible="false">
+                    <ImageView fitHeight="20" fitWidth="20">
+                        <Image url="@csvError.png" />
                     </ImageView>
                     <Label style="-fx-text-fill: red" text="Merci d'ajouter un fichier CSV valide" />
                 </HBox>

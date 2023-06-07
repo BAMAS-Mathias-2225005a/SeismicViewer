@@ -3,50 +3,40 @@ package fr.amu.iut.sismicviewer.CSV;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.opencsv.CSVReader;
 
 
 public class CSVManager {
 
-    private int nombre_de_donnees = 0;
-    private int nombre_attributs = 0;
-    private ArrayList<String[]> data = new ArrayList<String[]>();
-
-    public CSVManager(File file) {
-        try {
-            FileReader filereader = new FileReader(file);
-            CSVReader csvReader = new CSVReader(filereader);
-            String[] nextRecord;
-
-            while ((nextRecord = csvReader.readNext()) != null) {
-                data.add(nextRecord);
-                ++nombre_de_donnees;
-            }
-            nombre_attributs = data.get(0).length;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    private ArrayList<HashMap<String,String>> data = new ArrayList<HashMap<String, String>>();
 
     public void loadCsv(File file) {
-        nombre_de_donnees = 0;
         try {
             FileReader filereader = new FileReader(file);
             CSVReader csvReader = new CSVReader(filereader);
             String[] nextRecord;
+            String[] cles = csvReader.readNext();
 
             while ((nextRecord = csvReader.readNext()) != null) {
-                data.add(nextRecord);
-                ++nombre_de_donnees;
+                HashMap<String, String> cleValeurHashmap = new HashMap<>();
+                for(int i = 0; i < nextRecord.length; i++){
+                    cleValeurHashmap.put(cles[i].split(" ")[0], nextRecord[i]);
+                }
+                data.add(cleValeurHashmap);
             }
-            nombre_attributs = data.get(0).length;
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public ArrayList<HashMap<String, String>> getData() {
+        return data;
+    }
+
+    /*
     public String[] getData(int ligne) {
         if (ligne > nombre_de_donnees) {
             throw new IllegalArgumentException("L'indice spécifié dépasse le nombre d'entrée dans le fichier CSV");
@@ -83,4 +73,6 @@ public class CSVManager {
     public String[] getListeAttributs() {
         return data.get(0);
     }
+
+     */
 }

@@ -1,8 +1,10 @@
 .topButton{
-    -fx-background-color: #040F16;
+    -fx-background-color: #141b2d;
     -fx-border-width: 0;
     -fx-text-fill: white;
     -fx-font-size: 20;
+    -fx-font-family: "cubik";
+    -fx-font-weight: bold;
 }
 
 .topButton:hover{
@@ -27,4 +29,12 @@
 .range-slider .track {
     -fx-background-color: #C14953;
 }
+
+.textLabel {
+    -fx-text-fill: white;
+    -fx-font-size: 18;
+    -fx-font-family: "cubik";
+    -fx-font-weight: 700;
+}
+
 
