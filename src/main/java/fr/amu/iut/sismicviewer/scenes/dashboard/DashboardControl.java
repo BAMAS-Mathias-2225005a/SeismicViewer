@@ -1,28 +1,24 @@
 package fr.amu.iut.sismicviewer.scenes.dashboard;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 
 
 
 import com.gluonhq.maps.MapLayer;
+import fr.amu.iut.sismicviewer.CSV.CSVManager;
 import fr.amu.iut.sismicviewer.Gluon.CustomCircleMarkerLayer;
 import fr.amu.iut.sismicviewer.controllers.TopBarController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
 import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
-import fr.amu.iut.sismicviewer.CSV.CSVConverter;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class DashboardControl implements Initializable{
@@ -46,7 +42,7 @@ public class DashboardControl implements Initializable{
     private Button importCSVButton;
 
     @FXML
-    private Label texteErreurCSV;
+    private HBox CSVErrorBox;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -79,11 +75,11 @@ public class DashboardControl implements Initializable{
         File file = fileChooser.showOpenDialog(null);
 
         if(file == null || !file.getName().contains(".csv"))
-            texteErreurCSV.setVisible(true);
+            CSVErrorBox.setVisible(true);
         else{
-            texteErreurCSV.setVisible(false);
-            CSVConverter csvConverter = new CSVConverter();
-            ArrayList<String[]> data = csvConverter.getCsv(file);
+            CSVErrorBox.setVisible(false);
+            CSVManager csvManager = new CSVManager(file);
+            csvManager.getData(5,10);
         }
 
     }

@@ -17,7 +17,7 @@
                 <Insets bottom="20" top="10" />
             </padding>
             <HBox alignment="CENTER" spacing="200">
-                <Button fx:id="carte" minHeight="40" minWidth="225" styleClass="topButton" text="CARTES" />
+                <Button fx:id="carte" minHeight="40" minWidth="225" styleClass="topButton" text="CARTES"/>
                 <Button fx:id="dashboard" minHeight="40" minWidth="225" styleClass="topButton" text="DASHBOARD" />
                 <Button fx:id="stats" minHeight="40" minWidth="225" styleClass="topButton" text="STATISTIQUES" />
             </HBox>

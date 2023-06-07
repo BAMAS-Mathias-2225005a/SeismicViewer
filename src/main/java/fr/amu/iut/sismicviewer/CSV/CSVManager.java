@@ -29,9 +29,6 @@ public class CSVManager {
         }
     }
 
-    public CSVManager() {
-    }
-
     public void loadCsv(File file) {
         nombre_de_donnees = 0;
         try {
@@ -43,6 +40,7 @@ public class CSVManager {
                 data.add(nextRecord);
                 ++nombre_de_donnees;
             }
+            nombre_attributs = data.get(0).length;
 
         } catch (Exception e) {
             e.printStackTrace();
