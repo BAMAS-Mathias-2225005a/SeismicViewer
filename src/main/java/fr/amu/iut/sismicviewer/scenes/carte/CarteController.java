@@ -45,7 +45,7 @@ public class CarteController implements Initializable {
         mapView.addEventFilter(MouseEvent.ANY, event -> event.consume());
         mapView.addEventFilter(ScrollEvent.ANY, event -> event.consume());
         MapPoint mapPoint = new MapPoint(46.727638, 2.213749);
-        mapView.setZoom(6);
+        mapView.setZoom(5.8);
         mapView.flyTo(0, mapPoint, 0.1);
         MapLayer mapLayer = new CustomCircleMarkerLayer(mapPoint);
         mapView.addLayer(mapLayer);
