@@ -13,10 +13,18 @@ public class TopSeismeControl {
     public void loadData(ArrayList<HashMap<String, String>> data, VBox listeTopSeismes) {
         ArrayList<HashMap<String, String>> dataSorted = data;
         ArrayList<String> dataLabel = new ArrayList<>();
-        Comparator<HashMap<String, String>> comparator = Comparator.comparingInt(map -> Integer.parseInt(map.get("Intensité épicentrale")));
+        for (HashMap<String, String> ligne : dataSorted){
+            if(ligne.get("Intensité").isEmpty()){
+                ligne.put("Intensité", "0");
+            }
+        }
+        Comparator<HashMap<String, String>> comparator = Comparator.comparingDouble(map -> Double.parseDouble(map.get("Intensité")));
         Collections.sort(dataSorted, comparator.reversed());
         for (HashMap<String, String> ligne : dataSorted){
-            listeTopSeismes.getChildren().add(new Label(ligne.get("Date (AAAA/MM/JJ)") + " " + ligne.get("Région épicentrale") + " intensité :" + ligne.get("Intensité épicentrale")));
+            if(ligne.get("Intensité") == "0"){
+                ligne.put("Intensité", "Inconnu");
+            }
+            listeTopSeismes.getChildren().add(new Label(ligne.get("Date") + " " + ligne.get("Région") + " intensité : " + ligne.get("Intensité")));
         }
 
     }

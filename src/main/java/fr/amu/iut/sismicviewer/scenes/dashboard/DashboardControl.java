@@ -18,6 +18,7 @@ import javafx.scene.layout.BorderPane;
 import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import org.controlsfx.control.RangeSlider;
 
@@ -51,6 +52,9 @@ public class DashboardControl implements Initializable{
 
     @FXML
     private RangeSlider mainRangeSlider;
+
+    @FXML
+    private VBox listeTopSeisme;
 
     private ChangeListener<Number> sliderChangeListener;
 
@@ -110,6 +114,12 @@ public class DashboardControl implements Initializable{
         else{
             CSVErrorBox.setVisible(false);
             SismicViewerApp.setCsvFile(file);
+            CSVManager csvManager = new CSVManager();
+            SeismeDataManager seismeDataManager = new SeismeDataManager();
+            csvManager.loadCsv(SismicViewerApp.getCsvFile());
+            TopSeismeControl topSeismeControl = new TopSeismeControl();
+            topSeismeControl.loadData(csvManager.getData(), listeTopSeisme);
+
         }
     }
 
