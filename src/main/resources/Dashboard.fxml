@@ -8,6 +8,7 @@
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.control.*?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <BorderPane fx:id="mainBP" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #141b2d" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.sismicviewer.scenes.dashboard.DashboardControl">
     <top>
         <VBox>
@@ -39,11 +40,11 @@
             <RangeSlider fx:id="mainRangeSlider" min="1700" max="2023" lowValue="1700" highValue="2023" maxWidth="500"  showTickLabels="true" styleClass="range-slider" />
         </VBox>
     </center>
-    <left>
-        <HBox alignment="CENTER" minWidth="500">
+    <bottom>
+        <HBox alignment="CENTER_LEFT" minWidth="500">
             <VBox alignment="BOTTOM_CENTER" spacing="10">
                 <padding>
-                    <Insets bottom="30" />
+                    <Insets left="50" />
                 </padding>
                 <Button fx:id="importCSVButton" text="Choisir fichier CSV">
                     <font>
@@ -58,7 +59,7 @@
                 </HBox>
             </VBox>
         </HBox>
-    </left>
+    </bottom>
     <right>
         <BorderPane prefHeight="413.0" prefWidth="331.0" BorderPane.alignment="CENTER">
             <top>
@@ -70,27 +71,34 @@
                 </VBox>
             </top>
             <center>
-                <ScrollPane prefHeight="200.0" prefWidth="225.0" BorderPane.alignment="CENTER">
-                    <content>
-                        <VBox fx:id="listeTopSeisme" prefHeight="338.0" prefWidth="328.0" />
-                    </content>
-                </ScrollPane>
+                <TableView fx:id="seismeTop">
+                    <columns>
+                        <TableColumn fx:id="topSeismeCol1" prefWidth="75.0" text="Magnitude">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="magnitude"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="topSeismeCol2" prefWidth="75.0" text="Date">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="annee"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="topSeismeCol3" prefWidth="75.0" text="Lieu" minWidth="200">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="region"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
             </center>
             <bottom>
                 <VBox prefHeight="32.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <children>
-                        <Separator prefWidth="200.0" />
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                            <children>
-                                <Button mnemonicParsing="false" text="10 An" onAction="#topSeisme10ans"/>
-                                <Button mnemonicParsing="false" text="40 Ans" onAction="#topSeisme40ans"/>
-                                <Button mnemonicParsing="false" text="100 Ans" onAction="#topSeisme100ans"/>
-                            </children>
-                            <VBox.margin>
-                                <Insets />
-                            </VBox.margin>
-                        </HBox>
-                    </children>
+                    <Separator prefWidth="200.0"/>
+                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                        <Button mnemonicParsing="false" text="10 An" onAction="#topSeisme10ans"/>
+                        <Button mnemonicParsing="false" text="40 Ans" onAction="#topSeisme40ans"/>
+                        <Button mnemonicParsing="false" text="100 Ans" onAction="#topSeisme100ans"/>
+                    </HBox>
                 </VBox>
             </bottom>
         </BorderPane>

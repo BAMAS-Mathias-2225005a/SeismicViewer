@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.opencsv.CSVReader;
+import fr.amu.iut.sismicviewer.Seisme;
 
 
 public class CSVManager {
 
-    private ArrayList<HashMap<String,String>> data = new ArrayList<HashMap<String, String>>();
+    private static ArrayList<Seisme> listeSeisme = new ArrayList<Seisme>();
 
     public void loadCsv(File file) {
         try {
@@ -21,10 +22,7 @@ public class CSVManager {
 
             while ((nextRecord = csvReader.readNext()) != null) {
                 HashMap<String, String> cleValeurHashmap = new HashMap<>();
-                for(int i = 0; i < nextRecord.length; i++){
-                    cleValeurHashmap.put(cles[i].split(" ")[0], nextRecord[i]);
-                }
-                data.add(cleValeurHashmap);
+                listeSeisme.add(new Seisme(nextRecord));
             }
 
         } catch (Exception e) {
@@ -32,8 +30,8 @@ public class CSVManager {
         }
     }
 
-    public ArrayList<HashMap<String, String>> getData() {
-        return data;
+    public static ArrayList<Seisme> getListeSeisme() {
+        return listeSeisme;
     }
 
     /*

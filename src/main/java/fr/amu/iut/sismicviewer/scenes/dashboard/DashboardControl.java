@@ -5,6 +5,7 @@ import java.io.File;
 import fr.amu.iut.sismicviewer.CSV.CSVManager;
 import fr.amu.iut.sismicviewer.CSV.SeismeDataManager;
 import fr.amu.iut.sismicviewer.Gluon.MainMapLayer;
+import fr.amu.iut.sismicviewer.Seisme;
 import fr.amu.iut.sismicviewer.SismicViewerApp;
 import fr.amu.iut.sismicviewer.controllers.TopBarController;
 import javafx.beans.value.ChangeListener;
@@ -12,6 +13,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
@@ -54,7 +56,7 @@ public class DashboardControl implements Initializable{
     private RangeSlider mainRangeSlider;
 
     @FXML
-    private VBox listeTopSeisme;
+    private TableView<Seisme> seismeTop;
 
     private ChangeListener<Number> sliderChangeListener;
 
@@ -85,19 +87,14 @@ public class DashboardControl implements Initializable{
     }
 
     public void initListeners() {
-        sliderChangeListener = new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                CSVManager csvManager = new CSVManager();
-                SeismeDataManager seismeDataManager = new SeismeDataManager();
-                csvManager.loadCsv(SismicViewerApp.getCsvFile());
-                ArrayList<HashMap<String, String>> dataAnnee = seismeDataManager.getAnneeFromTo(csvManager.getData(), mainRangeSlider.getLowValue(), mainRangeSlider.getHighValue());
-                mainMapLayer.updateLayer(dataAnnee);
-            }
-        };
 
-        mainRangeSlider.highValueProperty().addListener(sliderChangeListener);
-        mainRangeSlider.lowValueProperty().addListener(sliderChangeListener);
+        mainRangeSlider.setOnMouseReleased(mouseDragEvent -> {
+            CSVManager csvManager = new CSVManager();
+            SeismeDataManager seismeDataManager = new SeismeDataManager();
+            csvManager.loadCsv(SismicViewerApp.getCsvFile());
+            ArrayList<Seisme> dataAnnee = seismeDataManager.getAnneeFromTo(CSVManager.getListeSeisme(), mainRangeSlider.getLowValue(), mainRangeSlider.getHighValue());
+            mainMapLayer.updateLayer(dataAnnee);
+        });
 
     }
 
@@ -122,19 +119,21 @@ public class DashboardControl implements Initializable{
         CSVManager csvManager = new CSVManager();
         csvManager.loadCsv(SismicViewerApp.getCsvFile());
         TopSeismeControl topSeismeControl = new TopSeismeControl();
-        topSeismeControl.loadData(csvManager.getData(), listeTopSeisme,2013);
+        System.out.println("test");
+        seismeTop.setItems(topSeismeControl.loadData(CSVManager.getListeSeisme(), 2013));
     }
     public void topSeisme40ans(){
         CSVManager csvManager = new CSVManager();
         csvManager.loadCsv(SismicViewerApp.getCsvFile());
         TopSeismeControl topSeismeControl = new TopSeismeControl();
-        topSeismeControl.loadData(csvManager.getData(), listeTopSeisme,1983);
+        seismeTop.setItems(topSeismeControl.loadData(CSVManager.getListeSeisme(), 1983));
+
     }
     public void topSeisme100ans(){
         CSVManager csvManager = new CSVManager();
         csvManager.loadCsv(SismicViewerApp.getCsvFile());
         TopSeismeControl topSeismeControl = new TopSeismeControl();
-        topSeismeControl.loadData(csvManager.getData(), listeTopSeisme, 1923);
+        seismeTop.setItems(topSeismeControl.loadData(CSVManager.getListeSeisme(), 1923));
     }
 
 

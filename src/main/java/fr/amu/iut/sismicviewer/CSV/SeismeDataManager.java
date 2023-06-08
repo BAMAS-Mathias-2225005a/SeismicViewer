@@ -1,18 +1,18 @@
 package fr.amu.iut.sismicviewer.CSV;
 
+import fr.amu.iut.sismicviewer.Seisme;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class SeismeDataManager {
 
-    public ArrayList<HashMap<String,String>> getAnneeFromTo(ArrayList<HashMap<String,String>> data, double from, double to){
-        ArrayList<HashMap<String,String>> dataTriees = new ArrayList<HashMap<String, String>>();
-        for(HashMap<String,String> seisme : data){
-            int date = Integer.parseInt(seisme.get("Date").substring(0,4));
-            if(date >= from && date <= to){
-                dataTriees.add(seisme);
+    public ArrayList<Seisme> getAnneeFromTo(ArrayList<Seisme> data, double from, double to){
+        ArrayList<Seisme> seismeTries = new ArrayList<Seisme>();
+        for(Seisme seisme : data){
+            if(seisme.getAnnee() >= from && seisme.getAnnee() <= to){
+                seismeTries.add(seisme);
             }
         }
-        return dataTriees;
+        return seismeTries;
     }
 }
