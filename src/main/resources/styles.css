@@ -41,12 +41,18 @@
     -fx-background-color: transparent;
 }
 
-#seismeTop .corner {
-    -fx-background-color: transparent;
+#seismeTop .placeholder .label{
+    -fx-text-fill: #F02D3A;
+    -fx-font-family: "cubik";
+    -fx-font-weight: 700;
 }
 
 #seismeTop .column-header {
      -fx-background-color: #FAC748FF;
+}
+
+#seismeTop .column-header-background .label{
+    -fx-text-fill: black;
 }
 
 #seismeTop .scroll-bar:horizontal {

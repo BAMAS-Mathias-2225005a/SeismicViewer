@@ -13,7 +13,7 @@ public class CSVManager {
 
     private static ArrayList<Seisme> listeSeisme = new ArrayList<Seisme>();
 
-    public void loadCsv(File file) {
+    public static void loadCsv(File file) {
         try {
             FileReader filereader = new FileReader(file);
             CSVReader csvReader = new CSVReader(filereader);

@@ -55,7 +55,7 @@
                     <ImageView fitHeight="20" fitWidth="20">
                         <Image url="@csvError.png" />
                     </ImageView>
-                    <Label style="-fx-text-fill: red" text="Merci d'ajouter un fichier CSV valide" />
+                    <Label style="-fx-text-fill: #F02D3A" text="Merci d'ajouter un fichier CSV valide" />
                 </HBox>
             </VBox>
         </HBox>

@@ -9,7 +9,6 @@ import fr.amu.iut.sismicviewer.Seisme;
 import fr.amu.iut.sismicviewer.SismicViewerApp;
 import fr.amu.iut.sismicviewer.controllers.TopBarController;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -20,13 +19,11 @@ import javafx.scene.layout.BorderPane;
 import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import org.controlsfx.control.RangeSlider;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class DashboardControl implements Initializable{
@@ -91,7 +88,6 @@ public class DashboardControl implements Initializable{
         mainRangeSlider.setOnMouseReleased(mouseDragEvent -> {
             CSVManager csvManager = new CSVManager();
             SeismeDataManager seismeDataManager = new SeismeDataManager();
-            csvManager.loadCsv(SismicViewerApp.getCsvFile());
             ArrayList<Seisme> dataAnnee = seismeDataManager.getAnneeFromTo(CSVManager.getListeSeisme(), mainRangeSlider.getLowValue(), mainRangeSlider.getHighValue());
             mainMapLayer.updateLayer(dataAnnee);
         });
@@ -111,27 +107,24 @@ public class DashboardControl implements Initializable{
         else{
             CSVErrorBox.setVisible(false);
             SismicViewerApp.setCsvFile(file);
+            CSVManager.loadCsv(file);
             topSeisme40ans();
         }
     }
 
     public void topSeisme10ans(){
         CSVManager csvManager = new CSVManager();
-        csvManager.loadCsv(SismicViewerApp.getCsvFile());
         TopSeismeControl topSeismeControl = new TopSeismeControl();
-        System.out.println("test");
         seismeTop.setItems(topSeismeControl.loadData(CSVManager.getListeSeisme(), 2013));
     }
     public void topSeisme40ans(){
         CSVManager csvManager = new CSVManager();
-        csvManager.loadCsv(SismicViewerApp.getCsvFile());
         TopSeismeControl topSeismeControl = new TopSeismeControl();
         seismeTop.setItems(topSeismeControl.loadData(CSVManager.getListeSeisme(), 1983));
 
     }
     public void topSeisme100ans(){
         CSVManager csvManager = new CSVManager();
-        csvManager.loadCsv(SismicViewerApp.getCsvFile());
         TopSeismeControl topSeismeControl = new TopSeismeControl();
         seismeTop.setItems(topSeismeControl.loadData(CSVManager.getListeSeisme(), 1923));
     }
