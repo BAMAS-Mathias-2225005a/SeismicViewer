@@ -82,9 +82,9 @@
                         <Separator prefWidth="200.0" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                             <children>
-                                <Button mnemonicParsing="false" text="1 An" />
-                                <Button mnemonicParsing="false" text="10 Ans" />
-                                <Button mnemonicParsing="false" text="100 Ans" />
+                                <Button mnemonicParsing="false" text="10 An" onAction="#topSeisme10ans"/>
+                                <Button mnemonicParsing="false" text="40 Ans" onAction="#topSeisme40ans"/>
+                                <Button mnemonicParsing="false" text="100 Ans" onAction="#topSeisme100ans"/>
                             </children>
                             <VBox.margin>
                                 <Insets />

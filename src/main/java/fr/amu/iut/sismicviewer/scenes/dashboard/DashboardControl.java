@@ -114,12 +114,27 @@ public class DashboardControl implements Initializable{
         else{
             CSVErrorBox.setVisible(false);
             SismicViewerApp.setCsvFile(file);
-            CSVManager csvManager = new CSVManager();
-            csvManager.loadCsv(SismicViewerApp.getCsvFile());
-            TopSeismeControl topSeismeControl = new TopSeismeControl();
-            topSeismeControl.loadData(csvManager.getData(), listeTopSeisme);
-
+            topSeisme40ans();
         }
+    }
+
+    public void topSeisme10ans(){
+        CSVManager csvManager = new CSVManager();
+        csvManager.loadCsv(SismicViewerApp.getCsvFile());
+        TopSeismeControl topSeismeControl = new TopSeismeControl();
+        topSeismeControl.loadData(csvManager.getData(), listeTopSeisme,2013);
+    }
+    public void topSeisme40ans(){
+        CSVManager csvManager = new CSVManager();
+        csvManager.loadCsv(SismicViewerApp.getCsvFile());
+        TopSeismeControl topSeismeControl = new TopSeismeControl();
+        topSeismeControl.loadData(csvManager.getData(), listeTopSeisme,1983);
+    }
+    public void topSeisme100ans(){
+        CSVManager csvManager = new CSVManager();
+        csvManager.loadCsv(SismicViewerApp.getCsvFile());
+        TopSeismeControl topSeismeControl = new TopSeismeControl();
+        topSeismeControl.loadData(csvManager.getData(), listeTopSeisme, 1923);
     }
 
 
