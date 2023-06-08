@@ -61,46 +61,43 @@
         </HBox>
     </bottom>
     <right>
-        <BorderPane prefHeight="413.0" prefWidth="331.0" BorderPane.alignment="CENTER">
-            <top>
-                <VBox alignment="TOP_CENTER" prefHeight="36.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <children>
-                        <Label text="Top des séismes" textFill="#f8f408" />
-                        <Separator prefWidth="200.0" />
-                    </children>
+        <HBox >
+            <padding>
+                <Insets right="75"/>
+            </padding>
+            <VBox prefHeight="413.0" BorderPane.alignment="CENTER" style="-fx-background-color: #1f2941" spacing="10">
+                <padding>
+                    <Insets bottom="20" top="20" right="20" left="20" />
+                </padding>
+                <VBox alignment="TOP_CENTER" prefHeight="36.0" prefWidth="200.0" BorderPane.alignment="CENTER" spacing="5">
+                    <Label text="Top des séismes" textFill="white" styleClass="textLabel" />
+                    <Separator prefWidth="200.0" />
                 </VBox>
-            </top>
-            <center>
-                <TableView fx:id="seismeTop">
+                <TableView fx:id="seismeTop" prefWidth="350" >
                     <columns>
-                        <TableColumn fx:id="topSeismeCol1" prefWidth="75.0" text="Magnitude">
+                        <TableColumn prefWidth="75" text="Magnitude">
                             <cellValueFactory>
                                 <PropertyValueFactory property="magnitude"/>
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="topSeismeCol2" prefWidth="75.0" text="Date">
+                        <TableColumn prefWidth="75" text="Date">
                             <cellValueFactory>
                                 <PropertyValueFactory property="annee"/>
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="topSeismeCol3" prefWidth="75.0" text="Lieu" minWidth="200">
+                        <TableColumn fx:id="topSeismeCol3" prefWidth="200" text="Lieu" minWidth="200">
                             <cellValueFactory>
                                 <PropertyValueFactory property="region"/>
                             </cellValueFactory>
                         </TableColumn>
                     </columns>
                 </TableView>
-            </center>
-            <bottom>
-                <VBox prefHeight="32.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <Separator prefWidth="200.0"/>
-                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                        <Button mnemonicParsing="false" text="10 An" onAction="#topSeisme10ans"/>
-                        <Button mnemonicParsing="false" text="40 Ans" onAction="#topSeisme40ans"/>
-                        <Button mnemonicParsing="false" text="100 Ans" onAction="#topSeisme100ans"/>
-                    </HBox>
-                </VBox>
-            </bottom>
-        </BorderPane>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                    <Button mnemonicParsing="false" text="10 Ans" onAction="#topSeisme10ans" styleClass="tableViewButton"/>
+                    <Button mnemonicParsing="false" text="40 Ans" onAction="#topSeisme40ans" styleClass="tableViewButton"/>
+                    <Button mnemonicParsing="false" text="100 Ans" onAction="#topSeisme100ans" styleClass="tableViewButton"/>
+                </HBox>
+            </VBox>
+        </HBox>
     </right>
 </BorderPane>

@@ -37,4 +37,39 @@
     -fx-font-weight: 700;
 }
 
+#seismeTop{
+    -fx-background-color: transparent;
+}
+
+#seismeTop .corner {
+    -fx-background-color: transparent;
+}
+
+#seismeTop .column-header {
+     -fx-background-color: #FAC748FF;
+}
+
+#seismeTop .scroll-bar:horizontal {
+        -fx-pref-width: 0;
+        -fx-pref-height: 0;
+}
+
+#seismeTop .scroll-bar:vertical .thumb {
+      -fx-background-color: #FAC748FF;
+}
+
+#seismeTop .virtual-flow .scroll-bar .increment-button,
+#seismeTop .virtual-flow .scroll-bar .decrement-button {
+        -fx-opacity: 0;
+        -fx-padding: 2;
+}
+
+.tableViewButton{
+    -fx-background-color: #FAC748FF;
+    -fx-border-width: 0;
+    -fx-font-size: 20;
+    -fx-font-family: "cubik";
+    -fx-font-weight: bold;
+}
+
 
