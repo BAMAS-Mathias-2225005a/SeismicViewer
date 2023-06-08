@@ -3,50 +3,38 @@ package fr.amu.iut.sismicviewer.CSV;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.opencsv.CSVReader;
+import fr.amu.iut.sismicviewer.Seisme;
 
 
 public class CSVManager {
 
-    private int nombre_de_donnees = 0;
-    private int nombre_attributs = 0;
-    private ArrayList<String[]> data = new ArrayList<String[]>();
-
-    public CSVManager(File file) {
-        try {
-            FileReader filereader = new FileReader(file);
-            CSVReader csvReader = new CSVReader(filereader);
-            String[] nextRecord;
-
-            while ((nextRecord = csvReader.readNext()) != null) {
-                data.add(nextRecord);
-                ++nombre_de_donnees;
-            }
-            nombre_attributs = data.get(0).length;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    private static ArrayList<Seisme> listeSeisme = new ArrayList<Seisme>();
 
     public void loadCsv(File file) {
-        nombre_de_donnees = 0;
         try {
             FileReader filereader = new FileReader(file);
             CSVReader csvReader = new CSVReader(filereader);
             String[] nextRecord;
+            String[] cles = csvReader.readNext();
 
             while ((nextRecord = csvReader.readNext()) != null) {
-                data.add(nextRecord);
-                ++nombre_de_donnees;
+                HashMap<String, String> cleValeurHashmap = new HashMap<>();
+                listeSeisme.add(new Seisme(nextRecord));
             }
-            nombre_attributs = data.get(0).length;
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public static ArrayList<Seisme> getListeSeisme() {
+        return listeSeisme;
+    }
+
+    /*
     public String[] getData(int ligne) {
         if (ligne > nombre_de_donnees) {
             throw new IllegalArgumentException("L'indice spécifié dépasse le nombre d'entrée dans le fichier CSV");
@@ -83,4 +71,6 @@ public class CSVManager {
     public String[] getListeAttributs() {
         return data.get(0);
     }
+
+     */
 }

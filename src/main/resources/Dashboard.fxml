@@ -3,13 +3,13 @@
 <?import com.gluonhq.maps.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import org.controlsfx.control.*?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<BorderPane fx:id="mainBP" prefHeight="700.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.sismicviewer.scenes.dashboard.DashboardControl"
-            style="-fx-background-color: #040F16">
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane fx:id="mainBP" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #141b2d" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.sismicviewer.scenes.dashboard.DashboardControl">
     <top>
         <VBox>
             <padding>
@@ -28,28 +28,76 @@
         </VBox>
     </top>
     <center>
-        <VBox alignment="CENTER" style="-fx-background-radius:18">
+        <VBox alignment="CENTER" style="-fx-background-color: #1f2941" spacing="30" maxHeight="500" maxWidth="550">
+            <HBox alignment="TOP_LEFT">
+                <Label styleClass="textLabel" text="Repartition des séismes" textFill="WHITE">
+                    <padding>
+                        <Insets bottom="0" left="15" />
+                    </padding>
+                </Label>
+            </HBox>
             <MapView fx:id="mapView" maxHeight="350" maxWidth="425" BorderPane.alignment="TOP_CENTER" />
+            <RangeSlider fx:id="mainRangeSlider" min="1700" max="2023" lowValue="1700" highValue="2023" maxWidth="500"  showTickLabels="true" styleClass="range-slider" />
         </VBox>
     </center>
-    <left>
-        <HBox alignment="CENTER" minWidth="500">
-            <VBox spacing="10" alignment="BOTTOM_CENTER">
+    <bottom>
+        <HBox alignment="CENTER_LEFT" minWidth="500">
+            <VBox alignment="BOTTOM_CENTER" spacing="10">
                 <padding>
-                    <Insets bottom="30" />
+                    <Insets left="50" />
                 </padding>
                 <Button fx:id="importCSVButton" text="Choisir fichier CSV">
                     <font>
                         <Font name="Amiri" size="13.0" />
                     </font>
                 </Button>
-                <HBox fx:id="CSVErrorBox" visible="false" alignment="CENTER" spacing="5">
-                    <ImageView fitWidth="20" fitHeight="20">
-                        <Image url="@csvError.png"/>
+                <HBox fx:id="CSVErrorBox" alignment="CENTER" spacing="5" visible="false">
+                    <ImageView fitHeight="20" fitWidth="20">
+                        <Image url="@csvError.png" />
                     </ImageView>
                     <Label style="-fx-text-fill: red" text="Merci d'ajouter un fichier CSV valide" />
                 </HBox>
             </VBox>
         </HBox>
-    </left>
+    </bottom>
+    <right>
+        <HBox >
+            <padding>
+                <Insets right="75"/>
+            </padding>
+            <VBox prefHeight="413.0" BorderPane.alignment="CENTER" style="-fx-background-color: #1f2941" spacing="10">
+                <padding>
+                    <Insets bottom="20" top="20" right="20" left="20" />
+                </padding>
+                <VBox alignment="TOP_CENTER" prefHeight="36.0" prefWidth="200.0" BorderPane.alignment="CENTER" spacing="5">
+                    <Label text="Top des séismes" textFill="white" styleClass="textLabel" />
+                    <Separator prefWidth="200.0" />
+                </VBox>
+                <TableView fx:id="seismeTop" prefWidth="350" >
+                    <columns>
+                        <TableColumn prefWidth="75" text="Magnitude">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="magnitude"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="75" text="Date">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="annee"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="topSeismeCol3" prefWidth="200" text="Lieu" minWidth="200">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="region"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                    <Button mnemonicParsing="false" text="10 Ans" onAction="#topSeisme10ans" styleClass="tableViewButton"/>
+                    <Button mnemonicParsing="false" text="40 Ans" onAction="#topSeisme40ans" styleClass="tableViewButton"/>
+                    <Button mnemonicParsing="false" text="100 Ans" onAction="#topSeisme100ans" styleClass="tableViewButton"/>
+                </HBox>
+            </VBox>
+        </HBox>
+    </right>
 </BorderPane>

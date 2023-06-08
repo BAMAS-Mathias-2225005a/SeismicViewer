@@ -5,16 +5,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
+
 public class SismicViewerApp extends Application {
 
     private static Scene scene;
+    private static File csvFile;
 
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Dashboard.fxml"));
         System.setProperty("http.agent", "Gluon Mobile/1.0.3");
         scene = new Scene(loader.load());
-
         stage.setTitle("Sismic Viewer");
         stage.setScene(scene);
         stage.show();
@@ -22,7 +24,13 @@ public class SismicViewerApp extends Application {
 
     public static void setScene(String sceneName){
         FXMLLoader loader = new FXMLLoader(SismicViewerApp.class.getClassLoader().getResource(sceneName));
-
     }
 
+    public static File getCsvFile() {
+        return csvFile;
+    }
+
+    public static void setCsvFile(File csvFile) {
+        SismicViewerApp.csvFile = csvFile;
+    }
 }
