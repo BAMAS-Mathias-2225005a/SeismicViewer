@@ -33,7 +33,7 @@
                 <HBox alignment="CENTER">
                     <Label text="Recherche de séisme" styleClass="titleRecherheCarte"/>
                 </HBox>
-                <HBox>
+                <HBox spacing="10">
                     <padding>
                         <Insets top="20"/>
                     </padding>
@@ -50,7 +50,7 @@
                         <TextField/>
                     </HBox>
                 </HBox>
-                <HBox>
+                <HBox spacing="10">
                     <padding>
                         <Insets top="20"/>
                     </padding>
@@ -61,6 +61,29 @@
                 </HBox>
                 <HBox styleClass="styleChampDate" spacing="25" alignment="CENTER">
                     <TextField/>
+                </HBox>
+                <HBox spacing="10">
+                    <padding>
+                        <Insets top="20"/>
+                    </padding>
+                    <ImageView fitHeight="30" fitWidth="30">
+                        <Image url="iconRayonRecherche.png"/>
+                    </ImageView>
+                    <Label text="RAYON DE RECHERCHE" styleClass="txtCategory"/>
+                </HBox>
+                <HBox styleClass="styleChampDate" spacing="25" alignment="CENTER">
+                    <TextField/>
+                    <TextField/>
+                    <TextField/>
+                </HBox>
+                <HBox spacing="10">
+                    <padding>
+                        <Insets top="20"/>
+                    </padding>
+                    <ImageView fitHeight="30" fitWidth="30">
+                        <Image url="iconMagnitude.png"/>
+                    </ImageView>
+                    <Label text="MAGNITUDE" styleClass="txtCategory"/>
                 </HBox>
             </VBox>
             <MapView fx:id="mapView" prefWidth="600" />
