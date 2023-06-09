@@ -7,6 +7,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #141b2d" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.sismicviewer.scenes.carte.CarteController">
     <top>
         <VBox>
@@ -26,61 +28,26 @@
         </VBox>
     </top>
     <center>
-        <StackPane>
-            <children>
-                <HBox alignment="CENTER" spacing="100">
-                    <StackPane>
-                        <Rectangle height="500" styleClass="square" width="400" />
-                        <TableView fx:id="tableView" maxHeight="490" maxWidth="390">
-                            <columns>
-                                <TableColumn fx:id="lieu" text="Lieu">
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="region" />
-                                    </cellValueFactory>
-                                </TableColumn>
-                                <TableColumn fx:id="annee" text="Année">
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="annee" />
-                                    </cellValueFactory>
-                                </TableColumn>
-                                <TableColumn fx:id="intensite" text="Intensité">
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="magnitude" />
-                                    </cellValueFactory>
-                                </TableColumn>
-                                <TableColumn fx:id="latitude" text="Latitude">
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="latitude" />
-                                    </cellValueFactory>
-                                </TableColumn>
-                                <TableColumn fx:id="longitude" text="Longitude">
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="longitude" />
-                                    </cellValueFactory>
-                                </TableColumn>
-                            </columns>
-
-                        </TableView>
-                    </StackPane>
-                    <MapView fx:id="mapView" maxWidth="600" />
-                    <padding>
-                        <Insets bottom="20" />
-                    </padding>
+        <HBox alignment="TOP_CENTER">
+            <VBox prefWidth="500">
+                <HBox alignment="CENTER">
+                    <Label text="Recherche de séisme" styleClass="titleRecherheCarte"/>
                 </HBox>
-                <VBox styleClass="alignVboxCarte">
+                <HBox>
                     <padding>
-                        <Insets left="175" />
+                        <Insets top="20"/>
                     </padding>
-                    <Label minHeight="20" minWidth="150" styleClass="titreCarte" text="Séismes :" />
-                </VBox>
-            <Label fx:id="msgErreur" alignment="BOTTOM_LEFT" text="Veuillez d'abord importer un fichier csv au dashboard" StackPane.alignment="BOTTOM_CENTER" style="-fx-fill-color: red">
-               <padding>
-                  <Insets bottom="40.0" right="700.0" />
-               </padding>
-            </Label>
-
-            </children>
-        </StackPane>
+                    <ImageView fitHeight="25" fitWidth="25">
+                        <Image url="iconDate.png"/>
+                    </ImageView>
+                    <Label text="DATE" styleClass="txtCategory"/>
+                </HBox>
+                <HBox styleClass="styleChampDate">
+                    <Label text="test"/>
+                </HBox>
+            </VBox>
+            <MapView fx:id="mapView" prefWidth="600" />
+        </HBox>
     </center>
 
 </BorderPane>

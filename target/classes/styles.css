@@ -72,9 +72,20 @@
     -fx-font-weight: bold;
 }
 
-.square{
-    -fx-fill: rgb(169,169,169, 0.2);
+.titleRecherheCarte{
+    -fx-text-fill: white;
+    -fx-font-size: 25px;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
 
+.txtCategory{
+    -fx-text-fill: white;
+    -fx-font-size: 18.5;
+}
+
+.styleChampDate{
+    -fx-background-color: yellow;
 }
 
 .titreCarte{

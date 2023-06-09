@@ -66,7 +66,7 @@ public class CarteController implements Initializable {
         SeismeDataManager seismeDataManager = new SeismeDataManager();
         topBarController.initTopBar(carte, dashboard, stats);
         initMap();
-        initTableView();
+        // initTableView();
 
 
 
