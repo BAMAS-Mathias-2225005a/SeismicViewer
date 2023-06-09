@@ -57,7 +57,7 @@
                         <Image url="@img/total.png"/>
                     </ImageView>
                     <Label styleClass="statsTitle">TOTAL DE SEISMES</Label>
-                    <Label styleClass="statsNumber">0.0</Label>
+                    <Label fx:id="totalSeismeLabel" styleClass="statsNumber">0.0</Label>
                 </VBox>
                 <VBox prefWidth="200" prefHeight="200" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="CENTER" spacing="5">
                     <ImageView fitWidth="65" fitHeight="65">
@@ -74,16 +74,17 @@
                 <RangeSlider fx:id="mainRangeSlider" min="1900" max="2023" lowValue="1700" highValue="2023" maxWidth="500"  showTickLabels="true" styleClass="range-slider" />
             </VBox>
 
-            <HBox GridPane.rowIndex="1" GridPane.columnSpan="4" style="-fx-background-color: #1f2941; -fx-background-radius: 10" prefWidth="1450" prefHeight="300" alignment="CENTER">
+            <VBox GridPane.rowIndex="1" GridPane.columnSpan="4" style="-fx-background-color: #1f2941; -fx-background-radius: 10" prefWidth="1450" prefHeight="300" alignment="CENTER">
+                <Label text="Puissance des séismes récents" styleClass="textLabel"/>
                 <BarChart fx:id="dashboardBarchart" prefWidth="1500" maxHeight="275">
                     <xAxis>
-                        <CategoryAxis label="AAAAAAAAAAAAH"/>
+                        <CategoryAxis label="ANNEE"/>
                     </xAxis>
                     <yAxis>
-                        <NumberAxis label="AAAAAAAAAAAA"/>
+                        <NumberAxis label="MAGNITUDE"/>
                     </yAxis>
                 </BarChart>
-            </HBox>
+            </VBox>
 
         </GridPane>
     </center>

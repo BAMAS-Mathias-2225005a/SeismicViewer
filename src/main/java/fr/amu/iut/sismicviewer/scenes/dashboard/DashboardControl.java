@@ -13,6 +13,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
@@ -60,6 +61,9 @@ public class DashboardControl implements Initializable{
     private ChangeListener<Number> sliderChangeListener;
 
     private MainMapLayer mainMapLayer;
+
+    @FXML
+    private Label totalSeismeLabel;
 
 
     @Override
@@ -118,7 +122,7 @@ public class DashboardControl implements Initializable{
             SismicViewerApp.setCsvFile(file);
             CSVManager.loadCsv(file);
             mainMapLayer.updateLayer(CSVManager.getListeSeisme());
-            topSeisme40ans();
+            totalSeismeLabel.setText(String.valueOf(CSVManager.getListeSeisme().size()));
         }
     }
 
