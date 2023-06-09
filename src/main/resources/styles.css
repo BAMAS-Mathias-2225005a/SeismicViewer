@@ -15,8 +15,8 @@
 
 #importCSVButton{
     -fx-background-size: 0;
-    -fx-pref-width: 280;
-    -fx-pref-height: 50;
+    -fx-pref-width: 300;
+    -fx-pref-height: 65;
     -fx-cursor: hand;
     -fx-background-color: #FAC748FF;
     -fx-font-size: 18;
@@ -45,6 +45,14 @@
     -fx-text-fill: #F02D3A;
     -fx-font-family: "cubik";
     -fx-font-weight: 700;
+}
+
+#mainRangeSlider .axis {
+    -fx-tick-label-fill: white;
+    -fx-tick-label-font-size: 16;
+    -fx-tick-label-font-weight: 700;
+
+
 }
 
 #seismeTop .column-header {
@@ -78,4 +86,41 @@
     -fx-font-weight: bold;
 }
 
+.statsNumber{
+    -fx-text-fill: white;
+    -fx-font-size: 32;
+    -fx-font-family: "cubik";
+    -fx-font-weight: 700;
+}
+
+.statsTitle{
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-font-family: "cubik";
+}
+
+#dashboardBarchart .chart-content .chart-plot-background {
+    -fx-background-color: #1f2941;
+}
+
+#dashboardBarchart{
+    -fx-bar-fill: #A9DEF9;
+}
+
+#dashboardBarchart .axis{
+     -fx-font-size: 23;
+    -fx-tick-label-fill: white;
+    -fx-tick-label-font-size: 14;
+    -fx-tick-label-font-family: 'cubik';
+    -fx-font-family: 'cubik';
+    -fx-font-weight: 700;
+
+}
+
+#dashboardBarchart .axis-label {
+       -fx-text-fill: white;
+       -fx-font-family: 'cubik';
+       -fx-font-weight: 700;
+
+}
 

@@ -9,6 +9,7 @@ import fr.amu.iut.sismicviewer.Seisme;
 import fr.amu.iut.sismicviewer.SismicViewerApp;
 import fr.amu.iut.sismicviewer.controllers.TopBarController;
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -24,6 +25,7 @@ import org.controlsfx.control.RangeSlider;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class DashboardControl implements Initializable{
@@ -85,12 +87,17 @@ public class DashboardControl implements Initializable{
 
     public void initListeners() {
 
-        mainRangeSlider.setOnMouseReleased(mouseDragEvent -> {
-            CSVManager csvManager = new CSVManager();
-            SeismeDataManager seismeDataManager = new SeismeDataManager();
-            ArrayList<Seisme> dataAnnee = seismeDataManager.getAnneeFromTo(CSVManager.getListeSeisme(), mainRangeSlider.getLowValue(), mainRangeSlider.getHighValue());
-            mainMapLayer.updateLayer(dataAnnee);
-        });
+        sliderChangeListener = new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                SeismeDataManager seismeDataManager = new SeismeDataManager();
+                ArrayList<Seisme> dataAnnee = seismeDataManager.getAnneeFromTo(CSVManager.getListeSeisme(), mainRangeSlider.getLowValue(), mainRangeSlider.getHighValue());
+                mainMapLayer.updateLayer(dataAnnee);
+            }
+        };
+
+        mainRangeSlider.lowValueProperty().addListener(sliderChangeListener);
+        mainRangeSlider.highValueProperty().addListener(sliderChangeListener);
 
     }
 
@@ -99,6 +106,8 @@ public class DashboardControl implements Initializable{
     }
 
     public void openCSVFileChooser(){
+
+
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(null);
 
@@ -108,6 +117,7 @@ public class DashboardControl implements Initializable{
             CSVErrorBox.setVisible(false);
             SismicViewerApp.setCsvFile(file);
             CSVManager.loadCsv(file);
+            mainMapLayer.updateLayer(CSVManager.getListeSeisme());
             topSeisme40ans();
         }
     }
