@@ -48,7 +48,7 @@ public class CSVManager {
                         magnitudeMin = plusPetitSeismeValeur;
                     }
                 } catch (NumberFormatException e){
-                    e.printStackTrace();
+                    System.out.println("Le séisme " + nextRecord[0] + " a une magnitude null \n \t Nombre de séisme null : " + String.valueOf(nombreDeSeisme-nombreDeSeismeAvecMagnitudeConnue+1));
                 }
                 ++nombreDeSeisme;
             }
