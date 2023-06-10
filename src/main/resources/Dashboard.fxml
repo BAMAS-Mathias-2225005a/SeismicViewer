@@ -9,7 +9,10 @@
 <?import org.controlsfx.control.*?>
 
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<BorderPane fx:id="mainBP" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #141b2d" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.sismicviewer.scenes.dashboard.DashboardControl">
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<BorderPane fx:id="mainBP" prefHeight="1000" prefWidth="1900" style="-fx-background-color: #141b2d" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.sismicviewer.scenes.dashboard.DashboardControl">
     <top>
         <VBox>
             <padding>
@@ -28,20 +31,65 @@
         </VBox>
     </top>
     <center>
-        <VBox alignment="CENTER" style="-fx-background-color: #1f2941" spacing="30" maxHeight="500" maxWidth="550">
-            <HBox alignment="TOP_LEFT">
-                <Label styleClass="textLabel" text="Repartition des séismes" textFill="WHITE">
-                    <padding>
-                        <Insets bottom="0" left="15" />
-                    </padding>
-                </Label>
-            </HBox>
-            <MapView fx:id="mapView" maxHeight="350" maxWidth="425" BorderPane.alignment="TOP_CENTER" />
-            <RangeSlider fx:id="mainRangeSlider" min="1700" max="2023" lowValue="1700" highValue="2023" maxWidth="500"  showTickLabels="true" styleClass="range-slider" />
-        </VBox>
+        <GridPane alignment="TOP_CENTER" hgap="45" vgap="75">
+            <padding>
+                <Insets top="30" />
+            </padding>
+            <HBox prefHeight="420" prefWidth="420"  style="-fx-background-color: #1f2941; -fx-background-radius: 10"></HBox>
+
+            <GridPane vgap="20" hgap="20" GridPane.columnIndex="2" GridPane.rowSpan="2">
+                <VBox prefWidth="200" prefHeight="200" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="0" GridPane.rowIndex="0" alignment="CENTER" spacing="5">
+                    <ImageView fitWidth="65" fitHeight="65">
+                        <Image url="@img/TopSeisme.png"/>
+                    </ImageView>
+                    <Label fx:id="villePlusGrosSeismeLabel" styleClass="statsTitle">VILLE</Label>
+                    <Label fx:id="magnitudePlusGrosSeismeLabel" styleClass="statsNumber">0.0</Label>
+                </VBox>
+                <VBox prefWidth="200" prefHeight="200" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="CENTER" spacing="5">
+                    <ImageView fitWidth="65" fitHeight="65">
+                        <Image url="@img/bottomSeisme.png"/>
+                    </ImageView>
+                    <Label fx:id="villePlusPetitSeismeLabel" styleClass="statsTitle">VILLE</Label>
+                    <Label fx:id="magnitudePlusPetitSeismeLabel" styleClass="statsNumber">0.0</Label>
+                </VBox>
+                <VBox prefWidth="200" prefHeight="200" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="1" GridPane.rowIndex="0" alignment="CENTER" spacing="5">
+                    <ImageView fitWidth="65" fitHeight="65">
+                        <Image url="@img/total.png"/>
+                    </ImageView>
+                    <Label styleClass="statsTitle">TOTAL DE SEISMES</Label>
+                    <Label fx:id="totalSeismeLabel" styleClass="statsNumber">0.0</Label>
+                </VBox>
+                <VBox prefWidth="200" prefHeight="200" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="CENTER" spacing="5">
+                    <ImageView fitWidth="65" fitHeight="65">
+                        <Image url="@img/moyenne.png"/>
+                    </ImageView>
+                    <Label styleClass="statsTitle">MOYENNE</Label>
+                    <Label fx:id="moyenneMagnitudeLabel" styleClass="statsNumber">0.0</Label>
+                </VBox>
+            </GridPane>
+
+
+            <VBox GridPane.columnIndex="3" GridPane.rowSpan="1" alignment="TOP_CENTER" prefHeight="40" style="-fx-background-color: #1f2941; -fx-background-radius: 10" spacing="20">
+                <MapView fx:id="mapView" prefHeight="350" prefWidth="600" BorderPane.alignment="TOP_CENTER" />
+                <RangeSlider fx:id="mainRangeSlider" min="1900" max="2023" lowValue="1700" highValue="2023" maxWidth="500"  showTickLabels="true" styleClass="range-slider" />
+            </VBox>
+
+            <VBox GridPane.rowIndex="1" GridPane.columnSpan="4" style="-fx-background-color: #1f2941; -fx-background-radius: 10" prefWidth="1450" prefHeight="300" alignment="CENTER">
+                <Label text="Puissance des séismes récents" styleClass="textLabel"/>
+                <BarChart fx:id="dashboardBarchart" prefWidth="1500" maxHeight="275">
+                    <xAxis>
+                        <CategoryAxis label="ANNEE"/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="MAGNITUDE"/>
+                    </yAxis>
+                </BarChart>
+            </VBox>
+
+        </GridPane>
     </center>
     <bottom>
-        <HBox alignment="CENTER_LEFT" minWidth="500">
+        <HBox alignment="CENTER" minWidth="500">
             <VBox alignment="BOTTOM_CENTER" spacing="10">
                 <padding>
                     <Insets left="50" />
@@ -55,49 +103,12 @@
                     <ImageView fitHeight="20" fitWidth="20">
                         <Image url="@csvError.png" />
                     </ImageView>
-                    <Label style="-fx-text-fill: red" text="Merci d'ajouter un fichier CSV valide" />
+                    <Label style="-fx-text-fill: #F02D3A" text="Merci d'ajouter un fichier CSV valide" />
                 </HBox>
             </VBox>
         </HBox>
     </bottom>
     <right>
-        <HBox >
-            <padding>
-                <Insets right="75"/>
-            </padding>
-            <VBox prefHeight="413.0" BorderPane.alignment="CENTER" style="-fx-background-color: #1f2941" spacing="10">
-                <padding>
-                    <Insets bottom="20" top="20" right="20" left="20" />
-                </padding>
-                <VBox alignment="TOP_CENTER" prefHeight="36.0" prefWidth="200.0" BorderPane.alignment="CENTER" spacing="5">
-                    <Label text="Top des séismes" textFill="white" styleClass="textLabel" />
-                    <Separator prefWidth="200.0" />
-                </VBox>
-                <TableView fx:id="seismeTop" prefWidth="350" >
-                    <columns>
-                        <TableColumn prefWidth="75" text="Magnitude">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="magnitude"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn prefWidth="75" text="Date">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="annee"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn fx:id="topSeismeCol3" prefWidth="200" text="Lieu" minWidth="200">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="region"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                    </columns>
-                </TableView>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                    <Button mnemonicParsing="false" text="10 Ans" onAction="#topSeisme10ans" styleClass="tableViewButton"/>
-                    <Button mnemonicParsing="false" text="40 Ans" onAction="#topSeisme40ans" styleClass="tableViewButton"/>
-                    <Button mnemonicParsing="false" text="100 Ans" onAction="#topSeisme100ans" styleClass="tableViewButton"/>
-                </HBox>
-            </VBox>
-        </HBox>
+
     </right>
 </BorderPane>

@@ -15,8 +15,8 @@
 
 #importCSVButton{
     -fx-background-size: 0;
-    -fx-pref-width: 280;
-    -fx-pref-height: 50;
+    -fx-pref-width: 300;
+    -fx-pref-height: 65;
     -fx-cursor: hand;
     -fx-background-color: #FAC748FF;
     -fx-font-size: 18;
@@ -41,12 +41,26 @@
     -fx-background-color: transparent;
 }
 
-#seismeTop .corner {
-    -fx-background-color: transparent;
+#seismeTop .placeholder .label{
+    -fx-text-fill: #F02D3A;
+    -fx-font-family: "cubik";
+    -fx-font-weight: 700;
+}
+
+#mainRangeSlider .axis {
+    -fx-tick-label-fill: white;
+    -fx-tick-label-font-size: 16;
+    -fx-tick-label-font-weight: 700;
+
+
 }
 
 #seismeTop .column-header {
      -fx-background-color: #FAC748FF;
+}
+
+#seismeTop .column-header-background .label{
+    -fx-text-fill: black;
 }
 
 #seismeTop .scroll-bar:horizontal {
@@ -72,38 +86,41 @@
     -fx-font-weight: bold;
 }
 
-.titleRecherheCarte{
+.statsNumber{
     -fx-text-fill: white;
-    -fx-font-size: 25px;
-    -fx-alignment: center;
-    -fx-text-alignment: center;
+    -fx-font-size: 32;
+    -fx-font-family: "cubik";
+    -fx-font-weight: 700;
 }
 
-.txtCategory{
+.statsTitle{
     -fx-text-fill: white;
-    -fx-font-size: 18.5;
+    -fx-font-size: 20;
+    -fx-font-family: "cubik";
 }
 
-.styleChamp{
+#dashboardBarchart .chart-content .chart-plot-background {
     -fx-background-color: #1f2941;
-    -fx-border-radius: 10 10 10 10;
-    -fx-background-radius: 10 10 10 10;
-}
-.styleTextFieldCarte{
-    -fx-border-radius: 10 10 10 10;
-    -fx-background-radius: 10 10 10 10;
-    -fx-text-fill: white;
-    -fx-font-size: 15px;
-    -fx-alignment: center ;
-    -fx-background-color: rgb(31, 41, 65);
-    -fx-prompt-text-fill: white;
 }
 
-.titreCarte{
-    -fx-font-size: 30;
-    -fx-text-fill: white;
+#dashboardBarchart{
+    -fx-bar-fill: #A9DEF9;
 }
 
-.paneCarte{
-    -fx-padding: 20px;
+#dashboardBarchart .axis{
+     -fx-font-size: 23;
+    -fx-tick-label-fill: white;
+    -fx-tick-label-font-size: 14;
+    -fx-tick-label-font-family: 'cubik';
+    -fx-font-family: 'cubik';
+    -fx-font-weight: 700;
+
 }
+
+#dashboardBarchart .axis-label {
+       -fx-text-fill: white;
+       -fx-font-family: 'cubik';
+       -fx-font-weight: 700;
+
+}
+
