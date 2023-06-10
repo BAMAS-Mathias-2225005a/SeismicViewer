@@ -16,7 +16,7 @@ public class MainMapLayer extends MapLayer {
         for(Seisme seisme : listeSeismes){
             MapPoint point = new MapPoint(seisme.getLatitude(), seisme.getLongitude());
             Point2D point2D = getMapPoint(point.getLatitude(),point.getLongitude());
-            Circle circle = new Circle(5, Color.RED);
+            Circle circle = new Circle(3, Color.RED);
             circle.setCenterX(point2D.getX());
             circle.setCenterY(point2D.getY());
             this.getChildren().add(circle);

@@ -42,8 +42,8 @@
                     <ImageView fitWidth="65" fitHeight="65">
                         <Image url="@img/TopSeisme.png"/>
                     </ImageView>
-                    <Label styleClass="statsTitle">VILLE</Label>
-                    <Label styleClass="statsNumber">0.0</Label>
+                    <Label fx:id="villePlusGrosSeismeLabel" styleClass="statsTitle">VILLE</Label>
+                    <Label fx:id="magnitudePlusGrosSeismeLabel" styleClass="statsNumber">0.0</Label>
                 </VBox>
                 <VBox prefWidth="200" prefHeight="200" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="CENTER" spacing="5">
                     <ImageView fitWidth="65" fitHeight="65">
@@ -64,7 +64,7 @@
                         <Image url="@img/moyenne.png"/>
                     </ImageView>
                     <Label styleClass="statsTitle">MOYENNE</Label>
-                    <Label styleClass="statsNumber">0.0</Label>
+                    <Label fx:id="moyenneMagnitudeLabel" styleClass="statsNumber">0.0</Label>
                 </VBox>
             </GridPane>
 

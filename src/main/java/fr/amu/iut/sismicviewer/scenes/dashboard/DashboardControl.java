@@ -65,6 +65,14 @@ public class DashboardControl implements Initializable{
     @FXML
     private Label totalSeismeLabel;
 
+    @FXML
+    private Label moyenneMagnitudeLabel;
+
+    @FXML
+    private Label magnitudePlusGrosSeismeLabel;
+
+    @FXML
+    private Label villePlusGrosSeismeLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -122,7 +130,11 @@ public class DashboardControl implements Initializable{
             SismicViewerApp.setCsvFile(file);
             CSVManager.loadCsv(file);
             mainMapLayer.updateLayer(CSVManager.getListeSeisme());
-            totalSeismeLabel.setText(String.valueOf(CSVManager.getListeSeisme().size()));
+            totalSeismeLabel.setText(String.valueOf(CSVManager.getNombreDeSeisme()));
+            moyenneMagnitudeLabel.setText(String.valueOf((CSVManager.getMagnitudeMoyenne())).substring(0,4));
+            villePlusGrosSeismeLabel.setText(CSVManager.getPlusGrosSeismeVille());
+            magnitudePlusGrosSeismeLabel.setText(String.valueOf(CSVManager.getPlusGrosSeismeValeur()));
+
         }
     }
 
