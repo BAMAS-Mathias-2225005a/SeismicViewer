@@ -74,6 +74,12 @@ public class DashboardControl implements Initializable{
     @FXML
     private Label villePlusGrosSeismeLabel;
 
+    @FXML
+    private Label magnitudePlusPetitSeismeLabel;
+
+    @FXML
+    private Label villePlusPetitSeismeLabel;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Initialisation du controlleur..");
@@ -134,6 +140,8 @@ public class DashboardControl implements Initializable{
             moyenneMagnitudeLabel.setText(String.valueOf((CSVManager.getMagnitudeMoyenne())).substring(0,4));
             villePlusGrosSeismeLabel.setText(CSVManager.getPlusGrosSeismeVille());
             magnitudePlusGrosSeismeLabel.setText(String.valueOf(CSVManager.getPlusGrosSeismeValeur()));
+            villePlusPetitSeismeLabel.setText(CSVManager.getPlusPetitSeismeVille());
+            magnitudePlusPetitSeismeLabel.setText(String.valueOf(CSVManager.getPlusPetitSeismeValeur()));
 
         }
     }

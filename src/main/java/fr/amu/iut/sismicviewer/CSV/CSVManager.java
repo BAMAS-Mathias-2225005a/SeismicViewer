@@ -20,6 +20,8 @@ public class CSVManager {
 
     private static String plusGrosSeismeVille;
     private static double plusGrosSeismeValeur;
+    private static String plusPetitSeismeVille;
+    private static double plusPetitSeismeValeur;
 
     public static void loadCsv(File file) {
         try {
@@ -28,6 +30,7 @@ public class CSVManager {
             String[] nextRecord;
             String[] cles = csvReader.readNext();
             double magnitudeMax = 0;
+            double magnitudeMin = 10;
             while ((nextRecord = csvReader.readNext()) != null) {
                 HashMap<String, String> cleValeurHashmap = new HashMap<>();
                 listeSeisme.add(new Seisme(nextRecord));
@@ -38,7 +41,11 @@ public class CSVManager {
                         plusGrosSeismeVille = nextRecord[4];
                         plusGrosSeismeValeur = Double.parseDouble(nextRecord[10]);
                         magnitudeMax = plusGrosSeismeValeur;
-
+                    }
+                    if(Double.parseDouble(nextRecord[10]) < magnitudeMin){
+                        plusPetitSeismeVille = nextRecord[4];
+                        plusPetitSeismeValeur = Double.parseDouble(nextRecord[10]);
+                        magnitudeMin = plusPetitSeismeValeur;
                     }
                 } catch (NumberFormatException e){
                     e.printStackTrace();
@@ -70,6 +77,14 @@ public class CSVManager {
 
     public static double getPlusGrosSeismeValeur() {
         return plusGrosSeismeValeur;
+    }
+
+    public static String getPlusPetitSeismeVille() {
+        return plusPetitSeismeVille;
+    }
+
+    public static double getPlusPetitSeismeValeur() {
+        return plusPetitSeismeValeur;
     }
     /*
     public String[] getData(int ligne) {
