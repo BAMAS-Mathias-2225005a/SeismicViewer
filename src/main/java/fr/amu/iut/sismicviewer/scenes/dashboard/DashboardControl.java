@@ -109,7 +109,7 @@ public class DashboardControl implements Initializable{
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 SeismeDataManager seismeDataManager = new SeismeDataManager();
-                ArrayList<Seisme> dataAnnee = seismeDataManager.getAnneeFromTo(CSVManager.getListeSeisme(), mainRangeSlider.getLowValue(), mainRangeSlider.getHighValue());
+                ArrayList<Seisme> dataAnnee = seismeDataManager.getAnneeFromTo(CSVManager.getListeSeisme(), (int) mainRangeSlider.getLowValue(), (int) mainRangeSlider.getHighValue());
                 mainMapLayer.updateLayer(dataAnnee);
             }
         };

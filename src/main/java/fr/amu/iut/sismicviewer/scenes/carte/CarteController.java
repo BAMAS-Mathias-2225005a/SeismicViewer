@@ -45,6 +45,12 @@ public class CarteController implements Initializable {
     @FXML
     private ComboBox<Integer> dateA;
     @FXML
+    private TextField latitude;
+    @FXML
+    private TextField longitude;
+    @FXML
+    private TextField rayon;
+    @FXML
     private Slider magnitude;
 
     private MainMapLayer mapLayer;
@@ -66,6 +72,8 @@ public class CarteController implements Initializable {
         dateA.setOnAction((event) -> {
             updateMap();
         });
+
+        initListener();
     }
 
     /* Initialise la map */
@@ -73,6 +81,7 @@ public class CarteController implements Initializable {
         MapPoint mapPoint = new MapPoint(46.727638, 2.213749);
         mapView.setZoom(5.8);
         mapView.flyTo(0, mapPoint, 0.1);
+
     }
 
     public void initComboBox(){
@@ -93,7 +102,14 @@ public class CarteController implements Initializable {
 
 
         mapLayer.updateLayer(listeSeismeTries);
+    }
 
+    public void initListener(){
+        mapView.setOnMouseClicked(mouseEvent -> {
+            MapPoint x = mapView.getMapPosition(mouseEvent.getX(), mouseEvent.getY());
+            latitude.setText(String.format("%.5f",(x.getLatitude())));
+            longitude.setText(String.format("%.5f", (x.getLongitude())));
+        });
     }
 
 }

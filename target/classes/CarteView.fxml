@@ -91,7 +91,7 @@
                     <Slider fx:id="magnitude"/>
                 </VBox>
             </VBox>
-            <MapView fx:id="mapView" HBox.hgrow="ALWAYS" />
+            <MapView fx:id="mapView" HBox.hgrow="ALWAYS" style="cursor: target"/>
         </HBox>
     </center>
 
