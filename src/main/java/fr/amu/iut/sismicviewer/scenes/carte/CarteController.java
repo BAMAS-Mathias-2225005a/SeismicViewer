@@ -24,6 +24,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.shape.Circle;
+import org.controlsfx.control.RangeSlider;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.io.File;
 import java.net.URL;
@@ -51,9 +54,14 @@ public class CarteController implements Initializable {
     @FXML
     private TextField rayon;
     @FXML
-    private Slider magnitude;
+    private RangeSlider magnitude;
+
+    @FXML TextField region;
 
     private MainMapLayer mapLayer;
+
+    private ChangeListener<Number> magnitudeSliderChange;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -72,6 +80,8 @@ public class CarteController implements Initializable {
         dateA.setOnAction((event) -> {
             updateMap();
         });
+
+        TextFields.bindAutoCompletion(region, CSVManager.getAllRegion());
 
         initListener();
     }
@@ -97,9 +107,13 @@ public class CarteController implements Initializable {
 
         if(dateDe.getValue() != null && dateA.getValue() != null) {
             listeSeismeTries = seismeDataManager.getAnneeFromTo(listeSeismeTries, dateDe.getValue(), dateA.getValue());
-            System.out.println(listeSeismeTries.size());
         }
 
+        if(!latitude.getText().isEmpty() && !longitude.getText().isEmpty() && !rayon.getText().isEmpty()){
+            listeSeismeTries = seismeDataManager.getSeismeDansRayon(listeSeismeTries, Double.parseDouble(latitude.getText()), Double.parseDouble(longitude.getText()), Double.parseDouble(rayon.getText()));
+        }
+
+        listeSeismeTries = seismeDataManager.getSeismeParMagnitude(listeSeismeTries, magnitude.getLowValue(), magnitude.getHighValue());
 
         mapLayer.updateLayer(listeSeismeTries);
     }
@@ -107,9 +121,19 @@ public class CarteController implements Initializable {
     public void initListener(){
         mapView.setOnMouseClicked(mouseEvent -> {
             MapPoint x = mapView.getMapPosition(mouseEvent.getX(), mouseEvent.getY());
-            latitude.setText(String.format("%.5f",(x.getLatitude())));
-            longitude.setText(String.format("%.5f", (x.getLongitude())));
+            latitude.setText(String.format("%.5f",(x.getLatitude())).replace(',', '.'));
+            longitude.setText(String.format("%.5f", (x.getLongitude())).replace(',', '.'));
         });
+
+        magnitudeSliderChange = new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                updateMap();
+            }
+        };
+
+        magnitude.lowValueProperty().addListener(magnitudeSliderChange);
+        magnitude.highValueProperty().addListener(magnitudeSliderChange);
     }
 
 }
