@@ -42,12 +42,12 @@
                     </ImageView>
                     <Label text="DATE" styleClass="txtCategory"/>
                 </HBox>
-                <HBox styleClass="styleChampDate" spacing="25" alignment="CENTER">
-                    <Label text="De" style="-fx-text-fill: white"/>
-                    <TextField/>
+                <HBox styleClass="styleChamp" spacing="25" alignment="CENTER" prefHeight="40">
+                    <Label text="De" style="-fx-text-fill: white; -fx-font-size: 20px;"/>
+                    <TextField fx:id="dateDe" styleClass="styleTextFieldCarte"/>
                     <HBox alignment="CENTER" spacing="25">
-                        <Label text="À" style="-fx-text-fill: white"/>
-                        <TextField styleClass="txtFieldCarteStyle"/>
+                        <Label text="À" style="-fx-text-fill: white; -fx-font-size: 20px;"/>
+                        <TextField fx:id="dateA" styleClass="styleTextFieldCarte"/>
                     </HBox>
                 </HBox>
                 <HBox spacing="10">
@@ -59,8 +59,8 @@
                     </ImageView>
                     <Label text="RÉGION" styleClass="txtCategory"/>
                 </HBox>
-                <HBox styleClass="styleChampDate" spacing="25" alignment="CENTER">
-                    <TextField/>
+                <HBox styleClass="styleChamp" spacing="25" alignment="CENTER" prefHeight="40">
+                    <TextField fx:id="region" styleClass="styleTextFieldCarte" prefWidth="480"/>
                 </HBox>
                 <HBox spacing="10">
                     <padding>
@@ -71,10 +71,10 @@
                     </ImageView>
                     <Label text="RAYON DE RECHERCHE" styleClass="txtCategory"/>
                 </HBox>
-                <HBox styleClass="styleChampDate" spacing="25" alignment="CENTER">
-                    <TextField/>
-                    <TextField/>
-                    <TextField styleClass="styleTextFieldCarte"/>
+                <HBox styleClass="styleChamp" spacing="25" alignment="CENTER" prefHeight="40">
+                    <TextField fx:id="latitude" styleClass="styleTextFieldCarte"/>
+                    <TextField fx:id="longitude" styleClass="styleTextFieldCarte"/>
+                    <TextField fx:id="rayon" styleClass="styleTextFieldCarte"/>
                 </HBox>
                 <HBox spacing="10">
                     <padding>
@@ -85,7 +85,7 @@
                     </ImageView>
                     <Label text="MAGNITUDE" styleClass="txtCategory"/>
                 </HBox>
-                <Slider />
+                <Slider fx:id="magnitude"/>
             </VBox>
             <MapView fx:id="mapView" prefWidth="600" />
         </HBox>

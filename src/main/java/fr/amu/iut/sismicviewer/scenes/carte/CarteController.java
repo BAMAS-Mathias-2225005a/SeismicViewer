@@ -20,10 +20,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 
@@ -45,31 +42,28 @@ public class CarteController implements Initializable {
     @FXML
     private TableView tableView;
     @FXML
-    private TableColumn lieu;
+    private TextField dateDe;
     @FXML
-    private TableColumn intensite;
+    private TextField dateA;
     @FXML
-    private TableColumn latitude;
+    private TextField region;
     @FXML
-    private TableColumn longitude;
+    private TextField latitude;
     @FXML
-    private TableColumn annee;
+    private TextField longitude;
     @FXML
-    private Label msgErreur;
-
-    private File csvFile;
-
+    private TextField rayon;
+    @FXML
+    private Slider magnitude;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         TopBarController topBarController = new TopBarController();
-        SeismeDataManager seismeDataManager = new SeismeDataManager();
         topBarController.initTopBar(carte, dashboard, stats);
         initMap();
-        // initTableView();
-
-
-
+        latitude.setPromptText("LATITUDE");
+        longitude.setPromptText("LONGITUDE");
+        rayon.setPromptText("RAYON");
         System.out.println("Initialisation du contrôleur de carte..");
     }
 
@@ -82,10 +76,4 @@ public class CarteController implements Initializable {
         mapView.flyTo(0, mapPoint, 0.1);
     }
 
-    public void initTableView() {
-        tableView.getSelectionModel().setCellSelectionEnabled(true);
-        CSVManager csvManager = new CSVManager();
-        csvManager.loadCsv(SismicViewerApp.getCsvFile());
-        tableView.setItems(FXCollections.observableList(csvManager.getListeSeisme()));
-    }
 }

@@ -13,10 +13,6 @@
     -fx-cursor: hand;
 }
 
-.txtFieldCarteStyle{
-    -fx-background-color: green;
-}
-
 #importCSVButton{
     -fx-background-size: 0;
     -fx-pref-width: 280;
@@ -88,13 +84,17 @@
     -fx-font-size: 18.5;
 }
 
-.styleChampDate{
+.styleChamp{
     -fx-background-color: #1f2941;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
 }
 .styleTextFieldCarte{
-    -fx-background-color: -fx-text-box-border, -fx-background ;
-    -fx-background-insets: 0, 0 0 1 0 ;
-    -fx-background-radius: 0 ;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-background-color: rgb(31, 41, 65);
 }
 
 .titreCarte{
