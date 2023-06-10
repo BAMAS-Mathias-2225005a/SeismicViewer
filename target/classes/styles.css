@@ -94,8 +94,9 @@
     -fx-background-radius: 10 10 10 10;
     -fx-text-fill: white;
     -fx-font-size: 15px;
+    -fx-alignment: center ;
     -fx-background-color: rgb(31, 41, 65);
-    -fx-prompt-text-fill: rgba(255, 255, 255)
+    -fx-prompt-text-fill: white;
 }
 
 .titreCarte{

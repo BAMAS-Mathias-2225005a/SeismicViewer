@@ -5,6 +5,7 @@ import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
 import fr.amu.iut.sismicviewer.CSV.CSVManager;
 import fr.amu.iut.sismicviewer.CSV.SeismeDataManager;
+import fr.amu.iut.sismicviewer.Gluon.MainMapLayer;
 import fr.amu.iut.sismicviewer.Seisme;
 import fr.amu.iut.sismicviewer.SismicViewerApp;
 import fr.amu.iut.sismicviewer.controllers.TopBarController;
@@ -40,42 +41,59 @@ public class CarteController implements Initializable {
     @FXML
     private MapView mapView;
     @FXML
-    private TableView tableView;
+    private ComboBox<Integer> dateDe;
     @FXML
-    private TextField dateDe;
-    @FXML
-    private TextField dateA;
-    @FXML
-    private TextField region;
-    @FXML
-    private TextField latitude;
-    @FXML
-    private TextField longitude;
-    @FXML
-    private TextField rayon;
+    private ComboBox<Integer> dateA;
     @FXML
     private Slider magnitude;
+
+    private MainMapLayer mapLayer;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         TopBarController topBarController = new TopBarController();
         topBarController.initTopBar(carte, dashboard, stats);
         initMap();
-        dateDe.setPromptText("________________________");
-        dateA.setPromptText("________________________");
-        latitude.setPromptText("LATITUDE");
-        longitude.setPromptText("LONGITUDE");
-        rayon.setPromptText("RAYON");
+        initComboBox();
         System.out.println("Initialisation du contrôleur de carte..");
+
+        mapLayer = new MainMapLayer();
+        mapView.addLayer(mapLayer);
+
+        dateDe.setOnAction((event) -> {
+            updateMap();
+        });
+        dateA.setOnAction((event) -> {
+            updateMap();
+        });
     }
 
     /* Initialise la map */
     public void initMap(){
-        // mapView.addEventFilter(MouseEvent.ANY, event -> event.consume());
-        // mapView.addEventFilter(ScrollEvent.ANY, event -> event.consume());
         MapPoint mapPoint = new MapPoint(46.727638, 2.213749);
         mapView.setZoom(5.8);
         mapView.flyTo(0, mapPoint, 0.1);
+    }
+
+    public void initComboBox(){
+        for(int i = 1800; i < 2030; i += 10 ){
+            dateDe.getItems().add(i);
+            dateA.getItems().add(i);
+        }
+    }
+
+    public void updateMap(){
+        ArrayList<Seisme> listeSeismeTries = (ArrayList<Seisme>) CSVManager.getListeSeisme().clone();
+        SeismeDataManager seismeDataManager = new SeismeDataManager();
+
+        if(dateDe.getValue() != null && dateA.getValue() != null) {
+            listeSeismeTries = seismeDataManager.getAnneeFromTo(listeSeismeTries, dateDe.getValue(), dateA.getValue());
+            System.out.println(listeSeismeTries.size());
+        }
+
+
+        mapLayer.updateLayer(listeSeismeTries);
+
     }
 
 }
