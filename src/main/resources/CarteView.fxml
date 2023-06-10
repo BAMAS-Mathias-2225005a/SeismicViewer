@@ -27,7 +27,7 @@
     </top>
     <center>
         <HBox alignment="TOP_CENTER" spacing="80">
-            <VBox prefWidth="760" spacing="40">
+            <VBox prefWidth="760" minWidth="760" spacing="40">
 
                 <VBox spacing="10">
                     <HBox alignment="CENTER">
@@ -91,7 +91,7 @@
                     <Slider fx:id="magnitude"/>
                 </VBox>
             </VBox>
-            <MapView fx:id="mapView" prefWidth="800" />
+            <MapView fx:id="mapView" HBox.hgrow="ALWAYS" />
         </HBox>
     </center>
 
