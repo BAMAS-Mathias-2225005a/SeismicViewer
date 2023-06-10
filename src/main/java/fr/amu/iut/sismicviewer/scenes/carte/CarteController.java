@@ -61,6 +61,8 @@ public class CarteController implements Initializable {
         TopBarController topBarController = new TopBarController();
         topBarController.initTopBar(carte, dashboard, stats);
         initMap();
+        dateDe.setPromptText("________________________");
+        dateA.setPromptText("________________________");
         latitude.setPromptText("LATITUDE");
         longitude.setPromptText("LONGITUDE");
         rayon.setPromptText("RAYON");
@@ -69,8 +71,8 @@ public class CarteController implements Initializable {
 
     /* Initialise la map */
     public void initMap(){
-        mapView.addEventFilter(MouseEvent.ANY, event -> event.consume());
-        mapView.addEventFilter(ScrollEvent.ANY, event -> event.consume());
+        // mapView.addEventFilter(MouseEvent.ANY, event -> event.consume());
+        // mapView.addEventFilter(ScrollEvent.ANY, event -> event.consume());
         MapPoint mapPoint = new MapPoint(46.727638, 2.213749);
         mapView.setZoom(5.8);
         mapView.flyTo(0, mapPoint, 0.1);
