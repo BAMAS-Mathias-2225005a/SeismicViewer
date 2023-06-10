@@ -13,6 +13,10 @@
     -fx-cursor: hand;
 }
 
+.txtFieldCarteStyle{
+    -fx-background-color: green;
+}
+
 #importCSVButton{
     -fx-background-size: 0;
     -fx-pref-width: 280;
@@ -86,6 +90,11 @@
 
 .styleChampDate{
     -fx-background-color: #1f2941;
+}
+.styleTextFieldCarte{
+    -fx-background-color: -fx-text-box-border, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
 }
 
 .titreCarte{

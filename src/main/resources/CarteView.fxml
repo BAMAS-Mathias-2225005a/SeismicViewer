@@ -33,9 +33,9 @@
                 <HBox alignment="CENTER">
                     <Label text="Recherche de séisme" styleClass="titleRecherheCarte"/>
                 </HBox>
-                <HBox>
+                <HBox spacing="10">
                     <padding>
-                        <Insets top="20"/>
+                        <Insets top="40"/>
                     </padding>
                     <ImageView fitHeight="30" fitWidth="30">
                         <Image url="iconDate.png"/>
@@ -47,12 +47,12 @@
                     <TextField/>
                     <HBox alignment="CENTER" spacing="25">
                         <Label text="À" style="-fx-text-fill: white"/>
-                        <TextField/>
+                        <TextField styleClass="txtFieldCarteStyle"/>
                     </HBox>
                 </HBox>
-                <HBox>
+                <HBox spacing="10">
                     <padding>
-                        <Insets top="20"/>
+                        <Insets top="40"/>
                     </padding>
                     <ImageView fitHeight="30" fitWidth="30">
                         <Image url="iconRegion.png"/>
@@ -62,6 +62,30 @@
                 <HBox styleClass="styleChampDate" spacing="25" alignment="CENTER">
                     <TextField/>
                 </HBox>
+                <HBox spacing="10">
+                    <padding>
+                        <Insets top="40"/>
+                    </padding>
+                    <ImageView fitHeight="30" fitWidth="30">
+                        <Image url="iconRayonRecherche.png"/>
+                    </ImageView>
+                    <Label text="RAYON DE RECHERCHE" styleClass="txtCategory"/>
+                </HBox>
+                <HBox styleClass="styleChampDate" spacing="25" alignment="CENTER">
+                    <TextField/>
+                    <TextField/>
+                    <TextField styleClass="styleTextFieldCarte"/>
+                </HBox>
+                <HBox spacing="10">
+                    <padding>
+                        <Insets top="40"/>
+                    </padding>
+                    <ImageView fitHeight="30" fitWidth="30">
+                        <Image url="iconMagnitude.png"/>
+                    </ImageView>
+                    <Label text="MAGNITUDE" styleClass="txtCategory"/>
+                </HBox>
+                <Slider />
             </VBox>
             <MapView fx:id="mapView" prefWidth="600" />
         </HBox>
