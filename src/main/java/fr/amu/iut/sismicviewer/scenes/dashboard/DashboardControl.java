@@ -133,7 +133,6 @@ public class DashboardControl implements Initializable {
             CSVErrorBox.setVisible(true);
         else {
             CSVErrorBox.setVisible(false);
-            SismicViewerApp.setCsvFile(file);
             CSVManager.loadCsv(file);
             mainMapLayer.updateLayer(CSVManager.getListeSeisme());
             totalSeismeLabel.setText(String.valueOf(CSVManager.getNombreDeSeisme()));
