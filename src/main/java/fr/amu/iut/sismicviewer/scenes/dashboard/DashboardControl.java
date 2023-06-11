@@ -1,4 +1,5 @@
 package fr.amu.iut.sismicviewer.scenes.dashboard;
+
 import java.io.File;
 
 
@@ -29,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
-public class DashboardControl implements Initializable{
+public class DashboardControl implements Initializable {
 
     @FXML
     private Button carte;
@@ -94,7 +95,7 @@ public class DashboardControl implements Initializable{
     }
 
     /* Initialise la map */
-    public void initMap(){
+    public void initMap() {
         mapView.addEventFilter(MouseEvent.ANY, event -> event.consume());
         mapView.addEventFilter(ScrollEvent.ANY, event -> event.consume());
         MapPoint mapPoint = new MapPoint(46.727638, 2.213749);
@@ -104,7 +105,6 @@ public class DashboardControl implements Initializable{
     }
 
     public void initListeners() {
-
         sliderChangeListener = new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
@@ -119,25 +119,25 @@ public class DashboardControl implements Initializable{
 
     }
 
-    public void initButton(){
+    public void initButton() {
         importCSVButton.setOnMouseClicked(event -> openCSVFileChooser());
     }
 
-    public void openCSVFileChooser(){
+    public void openCSVFileChooser() {
 
 
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(null);
 
-        if(file == null || !file.getName().contains(".csv"))
+        if (file == null || !file.getName().contains(".csv"))
             CSVErrorBox.setVisible(true);
-        else{
+        else {
             CSVErrorBox.setVisible(false);
             SismicViewerApp.setCsvFile(file);
             CSVManager.loadCsv(file);
             mainMapLayer.updateLayer(CSVManager.getListeSeisme());
             totalSeismeLabel.setText(String.valueOf(CSVManager.getNombreDeSeisme()));
-            moyenneMagnitudeLabel.setText(String.valueOf((CSVManager.getMagnitudeMoyenne())).substring(0,4));
+            moyenneMagnitudeLabel.setText(String.valueOf((CSVManager.getMagnitudeMoyenne())).substring(0, 4));
             villePlusGrosSeismeLabel.setText(CSVManager.getPlusGrosSeismeVille());
             magnitudePlusGrosSeismeLabel.setText(String.valueOf(CSVManager.getPlusGrosSeismeValeur()));
             villePlusPetitSeismeLabel.setText(CSVManager.getPlusPetitSeismeVille());
@@ -146,23 +146,24 @@ public class DashboardControl implements Initializable{
         }
     }
 
-    public void topSeisme10ans(){
+    public void topSeisme10ans() {
         CSVManager csvManager = new CSVManager();
         TopSeismeControl topSeismeControl = new TopSeismeControl();
         seismeTop.setItems(topSeismeControl.loadData(CSVManager.getListeSeisme(), 2013));
     }
-    public void topSeisme40ans(){
+
+    public void topSeisme40ans() {
         CSVManager csvManager = new CSVManager();
         TopSeismeControl topSeismeControl = new TopSeismeControl();
         seismeTop.setItems(topSeismeControl.loadData(CSVManager.getListeSeisme(), 1983));
 
     }
-    public void topSeisme100ans(){
+
+    public void topSeisme100ans() {
         CSVManager csvManager = new CSVManager();
         TopSeismeControl topSeismeControl = new TopSeismeControl();
         seismeTop.setItems(topSeismeControl.loadData(CSVManager.getListeSeisme(), 1923));
     }
-
 
 
 }

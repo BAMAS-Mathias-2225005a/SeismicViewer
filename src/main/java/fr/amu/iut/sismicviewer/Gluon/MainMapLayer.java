@@ -11,11 +11,11 @@ import java.util.ArrayList;
 
 public class MainMapLayer extends MapLayer {
 
-    public void updateLayer(ArrayList<Seisme> listeSeismes){
+    public void updateLayer(ArrayList<Seisme> listeSeismes) {
         clearLayer();
-        for(Seisme seisme : listeSeismes){
+        for (Seisme seisme : listeSeismes) {
             MapPoint point = new MapPoint(seisme.getLatitude(), seisme.getLongitude());
-            Point2D point2D = getMapPoint(point.getLatitude(),point.getLongitude());
+            Point2D point2D = getMapPoint(point.getLatitude(), point.getLongitude());
             Circle circle = new Circle(3, Color.RED);
             circle.setCenterX(point2D.getX());
             circle.setCenterY(point2D.getY());
@@ -23,7 +23,7 @@ public class MainMapLayer extends MapLayer {
         }
     }
 
-    public void clearLayer(){
+    public void clearLayer() {
         this.getChildren().clear();
     }
 }

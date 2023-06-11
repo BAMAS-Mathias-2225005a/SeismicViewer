@@ -5,12 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.File;
-
 public class SismicViewerApp extends Application {
 
     private static Scene scene;
-    private static File csvFile;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -21,17 +18,5 @@ public class SismicViewerApp extends Application {
         stage.setTitle("Sismic Viewer");
         stage.setScene(scene);
         stage.show();
-    }
-
-    public static void setScene(String sceneName){
-        FXMLLoader loader = new FXMLLoader(SismicViewerApp.class.getClassLoader().getResource(sceneName));
-    }
-
-    public static File getCsvFile() {
-        return csvFile;
-    }
-
-    public static void setCsvFile(File csvFile) {
-        SismicViewerApp.csvFile = csvFile;
     }
 }
