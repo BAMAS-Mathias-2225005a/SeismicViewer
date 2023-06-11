@@ -2,16 +2,13 @@
 
 <?import com.gluonhq.maps.*?>
 <?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.control.*?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
 <BorderPane fx:id="mainBP" prefHeight="1000" prefWidth="1900" style="-fx-background-color: #141b2d" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.sismicviewer.scenes.dashboard.DashboardControl">
     <top>
         <VBox>
@@ -35,56 +32,74 @@
             <padding>
                 <Insets top="30" />
             </padding>
-            <HBox prefHeight="420" prefWidth="420"  style="-fx-background-color: #1f2941; -fx-background-radius: 10"></HBox>
+            <HBox prefHeight="420" prefWidth="420" style="-fx-background-color: #1f2941; -fx-background-radius: 10" />
 
-            <GridPane vgap="20" hgap="20" GridPane.columnIndex="2" GridPane.rowSpan="2">
-                <VBox prefWidth="200" prefHeight="200" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="0" GridPane.rowIndex="0" alignment="CENTER" spacing="5">
-                    <ImageView fitWidth="65" fitHeight="65">
-                        <Image url="@img/TopSeisme.png"/>
+            <GridPane hgap="20" vgap="20" GridPane.columnIndex="2" GridPane.rowSpan="2">
+                <VBox alignment="CENTER" prefHeight="200" prefWidth="200" spacing="5" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <ImageView fitHeight="65" fitWidth="65">
+                        <Image url="@img/TopSeisme.png" />
                     </ImageView>
                     <Label fx:id="villePlusGrosSeismeLabel" styleClass="statsTitle">VILLE</Label>
                     <Label fx:id="magnitudePlusGrosSeismeLabel" styleClass="statsNumber">0.0</Label>
                 </VBox>
-                <VBox prefWidth="200" prefHeight="200" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="0" GridPane.rowIndex="1" alignment="CENTER" spacing="5">
-                    <ImageView fitWidth="65" fitHeight="65">
-                        <Image url="@img/bottomSeisme.png"/>
+                <VBox alignment="CENTER" prefHeight="200" prefWidth="200" spacing="5" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <ImageView fitHeight="65" fitWidth="65">
+                        <Image url="@img/bottomSeisme.png" />
                     </ImageView>
                     <Label fx:id="villePlusPetitSeismeLabel" styleClass="statsTitle">VILLE</Label>
                     <Label fx:id="magnitudePlusPetitSeismeLabel" styleClass="statsNumber">0.0</Label>
                 </VBox>
-                <VBox prefWidth="200" prefHeight="200" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="1" GridPane.rowIndex="0" alignment="CENTER" spacing="5">
-                    <ImageView fitWidth="65" fitHeight="65">
-                        <Image url="@img/total.png"/>
+                <VBox alignment="CENTER" prefHeight="200" prefWidth="200" spacing="5" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <ImageView fitHeight="65" fitWidth="65">
+                        <Image url="@img/total.png" />
                     </ImageView>
                     <Label styleClass="statsTitle">TOTAL DE SEISMES</Label>
                     <Label fx:id="totalSeismeLabel" styleClass="statsNumber">0.0</Label>
                 </VBox>
-                <VBox prefWidth="200" prefHeight="200" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="CENTER" spacing="5">
-                    <ImageView fitWidth="65" fitHeight="65">
-                        <Image url="@img/moyenne.png"/>
+                <VBox alignment="CENTER" prefHeight="200" prefWidth="200" spacing="5" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <ImageView fitHeight="65" fitWidth="65">
+                        <Image url="@img/moyenne.png" />
                     </ImageView>
                     <Label styleClass="statsTitle">MOYENNE</Label>
                     <Label fx:id="moyenneMagnitudeLabel" styleClass="statsNumber">0.0</Label>
                 </VBox>
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
             </GridPane>
 
 
-            <VBox GridPane.columnIndex="3" GridPane.rowSpan="1" alignment="TOP_CENTER" prefHeight="40" style="-fx-background-color: #1f2941; -fx-background-radius: 10" spacing="20">
+            <VBox alignment="TOP_CENTER" prefHeight="40" spacing="20" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="3" GridPane.rowSpan="1">
                 <MapView fx:id="mapView" prefHeight="350" prefWidth="600" BorderPane.alignment="TOP_CENTER" />
-                <RangeSlider fx:id="mainRangeSlider" min="1900" max="2023" lowValue="1700" highValue="2023" maxWidth="500"  showTickLabels="true" styleClass="range-slider" />
+                <RangeSlider fx:id="mainRangeSlider" highValue="2023" lowValue="1700" max="2023" maxWidth="500" min="1900" showTickLabels="true" styleClass="range-slider" />
             </VBox>
 
-            <VBox GridPane.rowIndex="1" GridPane.columnSpan="4" style="-fx-background-color: #1f2941; -fx-background-radius: 10" prefWidth="1450" prefHeight="300" alignment="CENTER">
-                <Label text="Puissance des séismes récents" styleClass="textLabel"/>
-                <BarChart fx:id="dashboardBarchart" prefWidth="1500" maxHeight="275">
+            <VBox alignment="CENTER" prefHeight="300" prefWidth="1450" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnSpan="4" GridPane.rowIndex="1">
+                <Label styleClass="textLabel" text="Quantité de séisme par année" />
+                <BarChart fx:id="dashboardBarchart" categoryGap="0.0" legendVisible="false" maxHeight="275" prefWidth="1500" styleClass="barChartDashBoard">
                     <xAxis>
-                        <CategoryAxis label="ANNEE"/>
+                        <CategoryAxis animated="false" label="ANNEE" tickLabelFill="#fac748" tickLabelGap="5.0" />
                     </xAxis>
                     <yAxis>
-                        <NumberAxis label="MAGNITUDE"/>
+                        <NumberAxis label="NB DE SEISME" tickLabelFill="#fac748" />
                     </yAxis>
                 </BarChart>
             </VBox>
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
 
         </GridPane>
     </center>

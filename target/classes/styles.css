@@ -114,8 +114,8 @@
     -fx-background-color: #1f2941;
 }
 
-#dashboardBarchart{
-    -fx-bar-fill: #A9DEF9;
+#barChatDashBoard{
+    -fx-bar-fill: #FAC748FF;
 }
 
 #dashboardBarchart .axis{
