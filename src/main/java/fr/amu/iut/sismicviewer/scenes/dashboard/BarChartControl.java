@@ -5,10 +5,7 @@ import fr.amu.iut.sismicviewer.Seisme;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class BarChartControl {
@@ -18,9 +15,10 @@ public class BarChartControl {
         for(Seisme seisme : data){
             dicoPourGraph.merge(String.valueOf(seisme.getAnnee()),1,(a,b) -> a+b); // si il n'y a pas la clé année, l'a créer et là met a 1, sinon ça fait une incrémentation
         }
-        HashMap<String,Integer> dicoPourGraphSorted = dicoPourGraph.entrySet().stream().sorted((i1,i2) -> i1.getKey().compareTo(i2.getKey())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new)); // tah le ouf
+        HashMap<String,Integer> dicoPourGraphSorted = dicoPourGraph.entrySet().stream().sorted(Map.Entry.comparingByKey()).
+                collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new)); // trie dans l'ordre naturel les clés du Hashmap (par date)
         XYChart.Series series = new XYChart.Series<String,Integer>();
-        for (Map.Entry<String,Integer> entry : dicoPourGraphSorted.entrySet()){
+        for (Map.Entry<String,Integer> entry : dicoPourGraphSorted.entrySet()){ // met les données dans le barchart
             series.getData().add(new XYChart.Data<>(entry.getKey(),entry.getValue()));
         }
         graphique.getData().add(series);
