@@ -13,6 +13,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
@@ -81,6 +82,9 @@ public class DashboardControl implements Initializable {
     @FXML
     private Label villePlusPetitSeismeLabel;
 
+    @FXML
+    private BarChart dashboardBarchart;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Initialisation du controlleur..");
@@ -89,6 +93,7 @@ public class DashboardControl implements Initializable {
         initListeners();
         initMap();
         initButton();
+        initStat();
 
         mainMapLayer = new MainMapLayer();
         mapView.addLayer(mainMapLayer);
@@ -109,7 +114,7 @@ public class DashboardControl implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 SeismeDataManager seismeDataManager = new SeismeDataManager();
-                ArrayList<Seisme> dataAnnee = seismeDataManager.getAnneeFromTo(CSVManager.getListeSeisme(), mainRangeSlider.getLowValue(), mainRangeSlider.getHighValue());
+                ArrayList<Seisme> dataAnnee = seismeDataManager.getAnneeFromTo(CSVManager.getListeSeisme(), (int) mainRangeSlider.getLowValue(), (int) mainRangeSlider.getHighValue());
                 mainMapLayer.updateLayer(dataAnnee);
             }
         };
@@ -135,13 +140,21 @@ public class DashboardControl implements Initializable {
             CSVErrorBox.setVisible(false);
             CSVManager.loadCsv(file);
             mainMapLayer.updateLayer(CSVManager.getListeSeisme());
+            initStat();
+        }
+    }
+
+    public void initStat(){
+        try {
             totalSeismeLabel.setText(String.valueOf(CSVManager.getNombreDeSeisme()));
             moyenneMagnitudeLabel.setText(String.valueOf((CSVManager.getMagnitudeMoyenne())).substring(0, 4));
             villePlusGrosSeismeLabel.setText(CSVManager.getPlusGrosSeismeVille());
             magnitudePlusGrosSeismeLabel.setText(String.valueOf(CSVManager.getPlusGrosSeismeValeur()));
             villePlusPetitSeismeLabel.setText(CSVManager.getPlusPetitSeismeVille());
             magnitudePlusPetitSeismeLabel.setText(String.valueOf(CSVManager.getPlusPetitSeismeValeur()));
-
+            BarChartControl barChartControl = new BarChartControl(dashboardBarchart);
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 

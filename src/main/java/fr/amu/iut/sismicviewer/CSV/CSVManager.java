@@ -3,6 +3,7 @@ package fr.amu.iut.sismicviewer.CSV;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import com.opencsv.CSVReader;
@@ -17,6 +18,7 @@ public class CSVManager {
 
     private static int nombreDeSeisme = 0;
     private static int nombreDeSeismeAvecMagnitudeConnue = 0;
+
     private static String plusGrosSeismeVille;
     private static double plusGrosSeismeValeur;
     private static String plusPetitSeismeVille;
@@ -84,5 +86,16 @@ public class CSVManager {
 
     public static double getPlusPetitSeismeValeur() {
         return plusPetitSeismeValeur;
+    }
+
+    public static ArrayList<String> getAllRegion(){
+        ArrayList<String> regions = new ArrayList<String>();
+        for(Seisme seisme : listeSeisme){
+            if(!regions.contains(seisme.getRegion())){
+                regions.add(seisme.getRegion());
+            }
+        }
+        Collections.sort(regions);
+        return regions;
     }
 }

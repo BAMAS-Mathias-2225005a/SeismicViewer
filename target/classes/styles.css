@@ -15,8 +15,8 @@
 
 #importCSVButton{
     -fx-background-size: 0;
-    -fx-pref-width: 300;
-    -fx-pref-height: 65;
+    -fx-pref-width: 280;
+    -fx-pref-height: 50;
     -fx-cursor: hand;
     -fx-background-color: #FAC748FF;
     -fx-font-size: 18;
@@ -86,6 +86,17 @@
     -fx-font-weight: bold;
 }
 
+.titleRecherheCarte{
+    -fx-text-fill: white;
+    -fx-font-size: 25px;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+
+.txtCategory{
+    -fx-text-fill: white;
+    -fx-font-size: 18.5;
+}
 .statsNumber{
     -fx-text-fill: white;
     -fx-font-size: 32;
@@ -103,8 +114,8 @@
     -fx-background-color: #1f2941;
 }
 
-#dashboardBarchart{
-    -fx-bar-fill: #A9DEF9;
+#barChatDashBoard{
+    -fx-bar-fill: #FAC748FF;
 }
 
 #dashboardBarchart .axis{
@@ -124,3 +135,26 @@
 
 }
 
+.styleChamp{
+    -fx-background-color: #1f2941;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+}
+.styleTextFieldCarte{
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-alignment: center ;
+    -fx-background-color: rgb(31, 41, 65);
+    -fx-prompt-text-fill: white;
+}
+
+.titreCarte{
+    -fx-font-size: 30;
+    -fx-text-fill: white;
+}
+
+.paneCarte{
+    -fx-padding: 20px;
+}
