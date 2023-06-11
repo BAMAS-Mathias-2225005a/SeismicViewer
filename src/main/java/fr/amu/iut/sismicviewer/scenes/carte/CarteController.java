@@ -1,34 +1,23 @@
 package fr.amu.iut.sismicviewer.scenes.carte;
 
-import com.gluonhq.maps.MapLayer;
 import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
 import fr.amu.iut.sismicviewer.CSV.CSVManager;
 import fr.amu.iut.sismicviewer.CSV.SeismeDataManager;
 import fr.amu.iut.sismicviewer.Gluon.MainMapLayer;
 import fr.amu.iut.sismicviewer.Seisme;
-import fr.amu.iut.sismicviewer.SismicViewerApp;
 import fr.amu.iut.sismicviewer.controllers.TopBarController;
-import fr.amu.iut.sismicviewer.scenes.dashboard.TopSeismeControl;
-import javafx.beans.InvalidationListener;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.shape.Circle;
+import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.RangeSlider;
 import org.controlsfx.control.textfield.TextFields;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -56,7 +45,8 @@ public class CarteController implements Initializable {
     @FXML
     private RangeSlider magnitude;
 
-    @FXML TextField region;
+    @FXML
+    private CheckComboBox<String> region;
 
     private MainMapLayer mapLayer;
 
@@ -74,14 +64,22 @@ public class CarteController implements Initializable {
         mapLayer = new MainMapLayer();
         mapView.addLayer(mapLayer);
 
+        region.getItems().add("TOUTES LES REGIONS");
+        region.getItems().addAll(CSVManager.getAllRegion());
+
+        region.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
+            @Override
+            public void onChanged(Change<? extends String> change) {
+                updateMap();
+            }
+        });
+
         dateDe.setOnAction((event) -> {
             updateMap();
         });
         dateA.setOnAction((event) -> {
             updateMap();
         });
-
-        TextFields.bindAutoCompletion(region, CSVManager.getAllRegion());
 
         initListener();
     }
@@ -111,6 +109,10 @@ public class CarteController implements Initializable {
 
         if(!latitude.getText().isEmpty() && !longitude.getText().isEmpty() && !rayon.getText().isEmpty()){
             listeSeismeTries = seismeDataManager.getSeismeDansRayon(listeSeismeTries, Double.parseDouble(latitude.getText()), Double.parseDouble(longitude.getText()), Double.parseDouble(rayon.getText()));
+        }
+
+        if(!region.getCheckModel().getCheckedItems().isEmpty() && !region.getCheckModel().getCheckedItems().contains("TOUTES LES REGIONS")){
+            listeSeismeTries = seismeDataManager.getSeismeParRegion(listeSeismeTries, region.getCheckModel().getCheckedItems());
         }
 
         listeSeismeTries = seismeDataManager.getSeismeParMagnitude(listeSeismeTries, magnitude.getLowValue(), magnitude.getHighValue());

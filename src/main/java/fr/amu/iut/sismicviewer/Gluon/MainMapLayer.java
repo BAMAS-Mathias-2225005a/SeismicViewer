@@ -23,19 +23,21 @@ public class MainMapLayer extends MapLayer {
 
             if(seisme.getMagnitude() < 3.5) {
                 circle.setFill(Color.GREEN);
-                circle.setRadius(2);
+                circle.setRadius(seisme.getMagnitude());
             }else if(seisme.getMagnitude() < 5.5) {
+                circle.setRadius(seisme.getMagnitude() * 1.115);
                 circle.setFill(Color.YELLOW);
-                circle.setRadius(4);
             }
             else if(seisme.getMagnitude() < 7.5) {
                 circle.setFill(Color.ORANGE);
-                circle.setRadius(6);
+                circle.setRadius(seisme.getMagnitude() * 1.25);
             }
             else {
                 circle.setFill(Color.RED);
-                circle.setRadius(8);
+                circle.setRadius(seisme.getMagnitude() * 2);
             }
+
+            circle.setOpacity(0.5);
 
             this.getChildren().add(circle);
         }

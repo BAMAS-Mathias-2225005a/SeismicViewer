@@ -7,6 +7,8 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import org.controlsfx.control.RangeSlider?>
+<?import org.controlsfx.control.CheckComboBox?>
 <BorderPane prefHeight="900" prefWidth="1600.0" style="-fx-background-color: #141b2d" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.sismicviewer.scenes.carte.CarteController">
     <top>
         <VBox>
@@ -57,7 +59,7 @@
                         <Label text="RÉGION" styleClass="txtCategory"/>
                     </HBox>
                     <HBox styleClass="styleChamp" spacing="25" alignment="CENTER" prefHeight="40">
-                        <TextField fx:id="region" styleClass="styleTextFieldCarte" prefWidth="480"/>
+                        <CheckComboBox fx:id="region" styleClass="styleTextFieldCarte" prefWidth="480"/>
                     </HBox>
                 </VBox>
 
@@ -88,7 +90,7 @@
                         </ImageView>
                         <Label text="MAGNITUDE" styleClass="txtCategory"/>
                     </HBox>
-                    <Slider fx:id="magnitude"/>
+                    <RangeSlider fx:id="magnitude" min="0" max="9" lowValue="0" highValue="9"/>
                 </VBox>
             </VBox>
             <MapView fx:id="mapView" HBox.hgrow="ALWAYS" style="cursor: target"/>

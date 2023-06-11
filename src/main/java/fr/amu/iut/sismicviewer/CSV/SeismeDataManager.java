@@ -1,6 +1,7 @@
 package fr.amu.iut.sismicviewer.CSV;
 
 import fr.amu.iut.sismicviewer.Seisme;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,16 @@ public class SeismeDataManager {
         ArrayList<Seisme> seismeTries = new ArrayList<Seisme>();
         for(Seisme seisme : data){
             if(seisme.getMagnitude() >= magnitudeMin && seisme.getMagnitude() <= magnitudeMax){
+                seismeTries.add(seisme);
+            }
+        }
+        return seismeTries;
+    }
+
+    public ArrayList<Seisme> getSeismeParRegion(ArrayList<Seisme> data, ObservableList<String> region){
+        ArrayList<Seisme> seismeTries = new ArrayList<Seisme>();
+        for(Seisme seisme : data){
+            if(region.contains(seisme.getRegion())){
                 seismeTries.add(seisme);
             }
         }

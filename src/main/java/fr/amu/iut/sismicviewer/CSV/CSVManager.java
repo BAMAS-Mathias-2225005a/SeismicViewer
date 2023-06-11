@@ -3,6 +3,7 @@ package fr.amu.iut.sismicviewer.CSV;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import com.opencsv.CSVReader;
@@ -94,6 +95,7 @@ public class CSVManager {
                 regions.add(seisme.getRegion());
             }
         }
+        Collections.sort(regions);
         return regions;
     }
 }
