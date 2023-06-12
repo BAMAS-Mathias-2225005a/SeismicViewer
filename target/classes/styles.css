@@ -1,8 +1,10 @@
 .topButton{
-    -fx-background-color: #040F16;
+    -fx-background-color: #141b2d;
     -fx-border-width: 0;
     -fx-text-fill: white;
     -fx-font-size: 20;
+    -fx-font-family: "cubik";
+    -fx-font-weight: bold;
 }
 
 .topButton:hover{
@@ -28,3 +30,131 @@
     -fx-background-color: #C14953;
 }
 
+.textLabel {
+    -fx-text-fill: white;
+    -fx-font-size: 18;
+    -fx-font-family: "cubik";
+    -fx-font-weight: 700;
+}
+
+#seismeTop{
+    -fx-background-color: transparent;
+}
+
+#seismeTop .placeholder .label{
+    -fx-text-fill: #F02D3A;
+    -fx-font-family: "cubik";
+    -fx-font-weight: 700;
+}
+
+#mainRangeSlider .axis {
+    -fx-tick-label-fill: white;
+    -fx-tick-label-font-size: 16;
+    -fx-tick-label-font-weight: 700;
+
+
+}
+
+#seismeTop .column-header {
+     -fx-background-color: #FAC748FF;
+}
+
+#seismeTop .column-header-background .label{
+    -fx-text-fill: black;
+}
+
+#seismeTop .scroll-bar:horizontal {
+        -fx-pref-width: 0;
+        -fx-pref-height: 0;
+}
+
+#seismeTop .scroll-bar:vertical .thumb {
+      -fx-background-color: #FAC748FF;
+}
+
+#seismeTop .virtual-flow .scroll-bar .increment-button,
+#seismeTop .virtual-flow .scroll-bar .decrement-button {
+        -fx-opacity: 0;
+        -fx-padding: 2;
+}
+
+.tableViewButton{
+    -fx-background-color: #FAC748FF;
+    -fx-border-width: 0;
+    -fx-font-size: 20;
+    -fx-font-family: "cubik";
+    -fx-font-weight: bold;
+}
+
+.titleRecherheCarte{
+    -fx-text-fill: white;
+    -fx-font-size: 25px;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+
+.txtCategory{
+    -fx-text-fill: white;
+    -fx-font-size: 18.5;
+}
+.statsNumber{
+    -fx-text-fill: white;
+    -fx-font-size: 32;
+    -fx-font-family: "cubik";
+    -fx-font-weight: 700;
+}
+
+.statsTitle{
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-font-family: "cubik";
+}
+
+#dashboardBarchart .chart-content .chart-plot-background {
+    -fx-background-color: #1f2941;
+}
+
+#barChatDashBoard{
+    -fx-bar-fill: #FAC748FF;
+}
+
+#dashboardBarchart .axis{
+     -fx-font-size: 23;
+    -fx-tick-label-fill: white;
+    -fx-tick-label-font-size: 14;
+    -fx-tick-label-font-family: 'cubik';
+    -fx-font-family: 'cubik';
+    -fx-font-weight: 700;
+
+}
+
+#dashboardBarchart .axis-label {
+       -fx-text-fill: white;
+       -fx-font-family: 'cubik';
+       -fx-font-weight: 700;
+
+}
+
+.styleChamp{
+    -fx-background-color: #1f2941;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+}
+.styleTextFieldCarte{
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-alignment: center ;
+    -fx-background-color: rgb(31, 41, 65);
+    -fx-prompt-text-fill: white;
+}
+
+.titreCarte{
+    -fx-font-size: 30;
+    -fx-text-fill: white;
+}
+
+.paneCarte{
+    -fx-padding: 20px;
+}
