@@ -72,7 +72,7 @@ public class CSVManager {
         return getData(1, nombre_de_donnees);
     }
 
-    public int getNombre_de_donnees() {
+    public int GetNombre_de_donnees() {
         return nombre_de_donnees - 1;
     }
 

@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
 
-<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             prefHeight="700.0" prefWidth="1200.0"
@@ -29,8 +26,12 @@
             </Separator>
         </VBox>
     </top>
-    <center>
-        <Label  text="Si tu vois ceci c'est que la fenêtre de carte fonctionne !" minHeight="20" minWidth="150" style="-fx-text-fill: green"/>
-    </center>
-
+    <left>
+        <VBox spacing="95" alignment="CENTER_LEFT" style="-fx-padding: 20;">
+            <Label fx:id="lieuLabel" text="Lieu du séisme :" minHeight="20" minWidth="150" style="-fx-font-size: 18px; -fx-font-weight: bold;-fx-text-fill: #d58521"/>
+            <Label fx:id="chocLabel" text="Choc du séisme :" minHeight="20" minWidth="150" style="-fx-font-size: 18px; -fx-font-weight: bold;-fx-text-fill: #d58521"/>
+            <Label fx:id="dateLabel" text="Date du séisme :" minHeight="20" minWidth="150" style="-fx-font-size: 18px; -fx-font-weight: bold;-fx-text-fill: #d58521"/>
+            <Label  fx:id="regionLabel" text="Région du séisme :" minHeight="20" minWidth="150" style="-fx-font-size: 18px; -fx-font-weight: bold;-fx-text-fill: #d58521"/>
+        </VBox>
+    </left>
 </BorderPane>
