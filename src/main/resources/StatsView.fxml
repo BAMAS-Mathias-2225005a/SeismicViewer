@@ -51,7 +51,7 @@
         </GridPane>
     </center>
     <bottom>
-        <LineChart legendVisible="false" title="Magnitude moyenne par an" BorderPane.alignment="CENTER">
+        <LineChart fx:id="lineChartStats" styleClass="styleLineChart" legendVisible="false" title="Magnitude moyenne par an" BorderPane.alignment="CENTER" horizontalGridLinesVisible="false" verticalGridLinesVisible="false">
             <xAxis>
                 <CategoryAxis animated="false" label="ANNEE" side="BOTTOM" startMargin="2.0"/>
             </xAxis>

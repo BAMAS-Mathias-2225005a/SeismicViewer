@@ -194,7 +194,6 @@ public class DashboardControl implements Initializable {
             BarChartControl barChartControl = new BarChartControl(dashboardBarchart);
             PieChartControl pieChartControl = new PieChartControl();
             pieChartControl.loadPieChartData(seismeDataManager.getSeismeParMagnitude(listeSeisme,6,9), pieChartDashBoard);
-            System.out.println("test");
             carte.setDisable(false);
             stats.setDisable(false);
             mainRangeSlider.setDisable(false);

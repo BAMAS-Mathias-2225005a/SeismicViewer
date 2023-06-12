@@ -6,7 +6,8 @@ import javafx.collections.ObservableList;
 import java.util.ArrayList;
 
 /**
- *Cette classe permet de manipuler les données des objets de type Seisme
+ * Cette classe permet de manipuler les données des objets de type Seisme
+ *
  * @author BAMAS Mathias
  * @author BEDDIAF Miloud
  * @author BENDJEDDOU Rayan
@@ -18,15 +19,16 @@ public class SeismeDataManager {
 
     /**
      * Permet d'obtenir une ArrayList de Seisme en fonction d'une intervalle d'année
+     *
      * @param data ArrayList de Seisme à trier
      * @param from Intervalle de départ, valeur de type Int
-     * @param to Intervalle de fin, valeur de type Int
+     * @param to   Intervalle de fin, valeur de type Int
      * @return Nouvelle ArrayList triée, de valeurs de type Seisme
      */
-    public ArrayList<Seisme> getAnneeFromTo(ArrayList<Seisme> data, int from, int to){
+    public ArrayList<Seisme> getAnneeFromTo(ArrayList<Seisme> data, int from, int to) {
         ArrayList<Seisme> seismeTries = new ArrayList<Seisme>();
-        for(Seisme seisme : data){
-            if(seisme.getAnnee() >= from && seisme.getAnnee() <= to){
+        for (Seisme seisme : data) {
+            if (seisme.getAnnee() >= from && seisme.getAnnee() <= to) {
                 seismeTries.add(seisme);
             }
         }
@@ -35,16 +37,17 @@ public class SeismeDataManager {
 
     /**
      * Permet d'obtenir des Seisme proche dans le rayon d'un autre Seisme
-     * @param data ArrayList de Seisme à traiter
-     * @param latitude Latitude du Seisme choisit (valeur de type Double)
+     *
+     * @param data      ArrayList de Seisme à traiter
+     * @param latitude  Latitude du Seisme choisit (valeur de type Double)
      * @param longitude Longitude du Seisme choisit (valeur de type Double)
-     * @param rayon Rayon autour du Seisme choisit (valeur de type Double)
+     * @param rayon     Rayon autour du Seisme choisit (valeur de type Double)
      * @return Nouvelle ArrayList triée, de valeurs de type Seisme
      */
-    public ArrayList<Seisme> getSeismeDansRayon(ArrayList<Seisme> data, double latitude, double longitude, double rayon){
+    public ArrayList<Seisme> getSeismeDansRayon(ArrayList<Seisme> data, double latitude, double longitude, double rayon) {
         ArrayList<Seisme> seismeTries = new ArrayList<Seisme>();
-        for(Seisme seisme : data){
-            if(Math.sqrt(Math.pow(seisme.getLatitude() - latitude, 2) + Math.pow(seisme.getLongitude() - longitude, 2)) <= rayon){
+        for (Seisme seisme : data) {
+            if (Math.sqrt(Math.pow(seisme.getLatitude() - latitude, 2) + Math.pow(seisme.getLongitude() - longitude, 2)) <= rayon) {
                 seismeTries.add(seisme);
             }
         }
@@ -53,15 +56,16 @@ public class SeismeDataManager {
 
     /**
      * Permet d'obtenir une ArrayList de Seisme en fonction d'une intervalle de magnitude
-     * @param data ArrayList de Seisme à traiter
+     *
+     * @param data         ArrayList de Seisme à traiter
      * @param magnitudeMin Intervalle de départ, valeur de type Double
      * @param magnitudeMax Intervalle de fin, valeur de type Double
      * @return Nouvelle ArrayList triée, de valeurs de type Seisme
      */
-    public ArrayList<Seisme> getSeismeParMagnitude(ArrayList<Seisme> data, double magnitudeMin, double magnitudeMax){
+    public ArrayList<Seisme> getSeismeParMagnitude(ArrayList<Seisme> data, double magnitudeMin, double magnitudeMax) {
         ArrayList<Seisme> seismeTries = new ArrayList<Seisme>();
-        for(Seisme seisme : data){
-            if(seisme.getMagnitude() >= magnitudeMin && seisme.getMagnitude() <= magnitudeMax){
+        for (Seisme seisme : data) {
+            if (seisme.getMagnitude() >= magnitudeMin && seisme.getMagnitude() <= magnitudeMax) {
                 seismeTries.add(seisme);
             }
         }
@@ -70,11 +74,12 @@ public class SeismeDataManager {
 
     /**
      * Permet d'obtenir une ArrayList de Seisme en fonction des regions
-     * @param data ArrayList de Seisme à trater
+     *
+     * @param data   ArrayList de Seisme à trater
      * @param region ObservableList de String,
      * @return Nouvelle ArrayList triée, de valeurs de type Seisme
      */
-    public ArrayList<Seisme> getSeismeParRegion(ArrayList<Seisme> data, ObservableList<String> region){
+    public ArrayList<Seisme> getSeismeParRegion(ArrayList<Seisme> data, ObservableList<String> region) {
         ArrayList<Seisme> seismeTries = new ArrayList<Seisme>();
         for (Seisme seisme : data) {
             if (region.contains(seisme.getRegion())) {
@@ -130,5 +135,25 @@ public class SeismeDataManager {
             magnitudeTotale = magnitudeTotale + seisme.getMagnitude();
         }
         return magnitudeTotale / getNombreSeismeAvecMagnitudeConnue(data);
+    }
+
+    public Seisme getSeismeLePlusVieux(ArrayList<Seisme> data) {
+        Seisme seismeLePlusVieux = data.get(1);
+        for (Seisme seisme : data) {
+            if (seisme.getAnnee() < seismeLePlusVieux.getAnnee() && seisme.getAnnee() > 1) {
+                seismeLePlusVieux = seisme;
+            }
+        }
+        return seismeLePlusVieux;
+    }
+
+    public Seisme getSeismeLePlusRecent(ArrayList<Seisme> data) {
+        Seisme seismeLePlusRecent = data.get(0);
+        for (Seisme seisme : data) {
+            if (seisme.getAnnee() > seismeLePlusRecent.getAnnee() && seisme.getAnnee() > 1) {
+                seismeLePlusRecent = seisme;
+            }
+        }
+        return seismeLePlusRecent;
     }
 }
