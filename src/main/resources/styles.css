@@ -106,7 +106,7 @@
 
 .statsTitle{
     -fx-text-fill: white;
-    -fx-font-size: 20;
+    -fx-font-size: 16;
     -fx-font-family: "cubik";
 }
 
@@ -182,4 +182,17 @@
 
 .styleMapViewCarte:hover{
     -fx-cursor: crosshair;
+}
+
+#pieChartDashBoard .chart-legend {
+    -fx-background-color: #1f2941;
+}
+
+#pieChartDashBoard .chart-legend .label{
+    -fx-text-fill: white;
+    -fx-font-family: 'cubik';
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+
+
 }

@@ -1,4 +1,4 @@
-package fr.amu.iut.sismicviewer.scenes.dashboard;
+package fr.amu.iut.sismicviewer.controllers;
 
 import java.io.File;
 
@@ -9,6 +9,7 @@ import fr.amu.iut.sismicviewer.Gluon.MainMapLayer;
 import fr.amu.iut.sismicviewer.Seisme;
 import fr.amu.iut.sismicviewer.SismicViewerApp;
 import fr.amu.iut.sismicviewer.controllers.TopBarController;
+import fr.amu.iut.sismicviewer.scenes.dashboard.BarChartControl;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -30,9 +31,7 @@ import javafx.stage.FileChooser;
 import org.controlsfx.control.RangeSlider;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * Classe qui contrôle les nodes de la fenêtre DashBoard
@@ -97,6 +96,9 @@ public class DashboardControl implements Initializable {
     @FXML
     private BarChart dashboardBarchart;
 
+    @FXML
+    private PieChart pieChartDashBoard;
+
     /**
      * Méthode qui initialise la classe et charges les paramètres de base
      * @param url
@@ -104,16 +106,14 @@ public class DashboardControl implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("Initialisation du controlleur..");
         TopBarController topBarController = new TopBarController();
         topBarController.initTopBar(carte, dashboard, stats);
-        mainRangeSlider.setLowValue(mainRangeSlider.getMin());
-        mainRangeSlider.setHighValue(mainRangeSlider.getMax());
+
         initListeners();
         initMap();
-        initButton();
         initStat();
 
+        importCSVButton.setOnMouseClicked(event -> openCSVFileChooser());
         mainMapLayer = new MainMapLayer();
         mapView.addLayer(mainMapLayer);
     }
@@ -123,17 +123,17 @@ public class DashboardControl implements Initializable {
      */
     public void initMap() {
         mapView.addEventFilter(MouseEvent.ANY, event -> event.consume());
-        mapView.addEventFilter(ScrollEvent.ANY, event -> event.consume());
+        mapView.addEventFilter(ScrollEvent.ANY, event -> event.consume()); // Annule les events sur la map
         MapPoint mapPoint = new MapPoint(46.727638, 2.213749);
         mapView.setZoom(5.1);
         mapView.flyTo(0, mapPoint, 0.1);
-
     }
 
     /**
      * Initialise le listener associé au Slider situé en dessous de la carte
      */
     public void initListeners() {
+        // Declaration du listener
         sliderChangeListener = new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
@@ -145,15 +145,11 @@ public class DashboardControl implements Initializable {
 
         mainRangeSlider.lowValueProperty().addListener(sliderChangeListener);
         mainRangeSlider.highValueProperty().addListener(sliderChangeListener);
-
     }
 
     /**
      * Permet au bouton "Choisir fichier CSV" d'importer et charger un fichier CSV
      */
-    public void initButton() {
-        importCSVButton.setOnMouseClicked(event -> openCSVFileChooser());
-    }
 
     /**
      * Petite fenêtre de recherche de fichier CSV, affiche un message d'erreur en cas de problème
@@ -173,21 +169,40 @@ public class DashboardControl implements Initializable {
         }
     }
 
+    public void createPieChart(){
+        TreeMap<String, Integer> seismeParRegion = new TreeMap<>();
+        for(Seisme seisme : CSVManager.getListeSeisme()){
+            if(seismeParRegion.containsKey(seisme.getRegion())){
+                seismeParRegion.put(seisme.getRegion(), seismeParRegion.get(seisme.getRegion()) + 1);
+            }else{
+                seismeParRegion.put(seisme.getRegion(), 1);
+            }
+        }
+
+        for (String keys : seismeParRegion.keySet()) {
+            if(pieChartDashBoard.getData().size() < 5 ){
+                pieChartDashBoard.getData().add(new PieChart.Data(keys, seismeParRegion.get(keys)));
+            }
+        }
+
+
+    }
+
     /**
      * Met à jour les 4 statistiques affichées (Moyenne, Total des Seismes, Ville Plus puissant/moins puissant séisme)
      */
     public void initStat(){
-        System.out.println("Initialisation des stats");
         try {
             SeismeDataManager seismeDataManager = new SeismeDataManager();
             ArrayList<Seisme> listeSeisme = CSVManager.getListeSeisme();
             totalSeismeLabel.setText(String.valueOf(seismeDataManager.getNombreSeisme(listeSeisme)));
-            moyenneMagnitudeLabel.setText(String.valueOf((seismeDataManager.getMagnitudeMoyenne(listeSeisme))).substring(0, 4));
-            villePlusGrosSeismeLabel.setText(seismeDataManager.getSeismeMax(listeSeisme)[0]);
-            magnitudePlusGrosSeismeLabel.setText(seismeDataManager.getSeismeMax(listeSeisme)[1]);
-            villePlusPetitSeismeLabel.setText(seismeDataManager.getSeismeMin(listeSeisme)[0]);
-            magnitudePlusPetitSeismeLabel.setText(seismeDataManager.getSeismeMin(listeSeisme)[1]);
+            moyenneMagnitudeLabel.setText(String.valueOf((seismeDataManager.getMagnitudeMoyenne(listeSeisme))).substring(0, 3));
+            villePlusGrosSeismeLabel.setText(seismeDataManager.getSeismeMax(listeSeisme).getVille());
+            magnitudePlusGrosSeismeLabel.setText(String.valueOf(seismeDataManager.getSeismeMax(listeSeisme).getMagnitude()));
+            villePlusPetitSeismeLabel.setText(seismeDataManager.getSeismeMin(listeSeisme).getVille());
+            magnitudePlusPetitSeismeLabel.setText(String.valueOf(seismeDataManager.getSeismeMin(listeSeisme).getMagnitude()));
             BarChartControl barChartControl = new BarChartControl(dashboardBarchart);
+            createPieChart();
             carte.setDisable(false);
             stats.setDisable(false);
             mainRangeSlider.setDisable(false);

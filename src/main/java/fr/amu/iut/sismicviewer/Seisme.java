@@ -12,6 +12,7 @@ package fr.amu.iut.sismicviewer;
 public class Seisme {
     private int annee;
     private String region;
+    private String ville;
     private double latitude;
     private double longitude;
     private double magnitude;
@@ -27,6 +28,12 @@ public class Seisme {
             annee = Integer.parseInt(values[1].substring(0, 4));
         } catch (NumberFormatException e) {
             annee = 0;
+        }
+
+        try {
+            ville = values[3];
+        } catch (NumberFormatException e) {
+            ville = "";
         }
 
         try {
@@ -86,5 +93,13 @@ public class Seisme {
      */
     public double getMagnitude() {
         return magnitude;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setMagnitude(int i) {
+        this.magnitude = i;
     }
 }

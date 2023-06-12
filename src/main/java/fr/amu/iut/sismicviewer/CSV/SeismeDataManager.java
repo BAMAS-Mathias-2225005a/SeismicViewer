@@ -84,30 +84,25 @@ public class SeismeDataManager {
         return seismeTries;
     }
 
-    public String[] getSeismeMax(ArrayList<Seisme> data) {
-        String[] resultat = new String[2];
-        double magnitudeMax = data.get(0).getMagnitude();
+    public Seisme getSeismeMax(ArrayList<Seisme> data) {
+        Seisme seismeMax = data.get(0);
         for (Seisme seisme : data) {
-            if (seisme.getMagnitude() > magnitudeMax) {
-                magnitudeMax = seisme.getMagnitude();
-                resultat[0] = seisme.getRegion();
-                resultat[1] = String.valueOf(seisme.getMagnitude());
+            if (seisme.getMagnitude() > seismeMax.getMagnitude()) {
+                seismeMax = seisme;
             }
         }
-        return resultat;
+        return seismeMax;
     }
 
-    public String[] getSeismeMin(ArrayList<Seisme> data) {
-        String[] resultat = new String[2];
-        double magnitudeMin = 10;
+    public Seisme getSeismeMin(ArrayList<Seisme> data) {
+        Seisme seismeMin = data.get(0);
+        seismeMin.setMagnitude(10);
         for (Seisme seisme : data) {
-            if (seisme.getMagnitude() < magnitudeMin && seisme.getMagnitude() > 0) {
-                magnitudeMin = seisme.getMagnitude();
-                resultat[0] = seisme.getRegion();
-                resultat[1] = String.valueOf(seisme.getMagnitude());
+            if (seisme.getMagnitude() < seismeMin.getMagnitude() && seisme.getMagnitude() > 0) {
+                seismeMin = seisme;
             }
         }
-        return resultat;
+        return seismeMin;
     }
 
     public int getNombreSeisme(ArrayList<Seisme> data) {

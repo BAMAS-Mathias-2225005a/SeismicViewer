@@ -25,13 +25,13 @@ public class TopBarController {
      */
     public void initTopBar(Button carte, Button dashboard, Button stats) {
         carte.setOnMouseClicked(event -> {
-            changeScene("CarteView.fxml", carte);
+            changeScene("views/CarteView.fxml", carte);
         });
         dashboard.setOnMouseClicked(actionEvent -> {
-            changeScene("Dashboard.fxml", dashboard);
+            changeScene("views/Dashboard.fxml", dashboard);
         });
         stats.setOnMouseClicked(actionEvent -> {
-            changeScene("StatsView.fxml", stats);
+            changeScene("views/StatsView.fxml", stats);
         });
     }
 

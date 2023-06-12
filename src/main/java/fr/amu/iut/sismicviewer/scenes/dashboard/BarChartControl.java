@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  */
 public class BarChartControl {
     private ArrayList<Seisme> data = new ArrayList<>(CSVManager.getListeSeisme());
-    private HashMap<String,Integer> dicoPourGraph = new HashMap<>();
+    private TreeMap<String,Integer> dicoPourGraph = new TreeMap<>(Collections.reverseOrder());
 
     /**
      * Constructeur de classe BarChart
@@ -29,12 +29,20 @@ public class BarChartControl {
         for(Seisme seisme : data){
             dicoPourGraph.merge(String.valueOf(seisme.getAnnee()),1,(a,b) -> a+b); // si il n'y a pas la clé année, l'a créer et là met a 1, sinon ça fait une incrémentation
         }
-        HashMap<String,Integer> dicoPourGraphSorted = dicoPourGraph.entrySet().stream().sorted(Map.Entry.comparingByKey()).
-                collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new)); // trie dans l'ordre naturel les clés du Hashmap (par date)
+
         XYChart.Series series = new XYChart.Series<String,Integer>();
-        for (Map.Entry<String,Integer> entry : dicoPourGraphSorted.entrySet()){ // met les données dans le barchart
-            series.getData().add(new XYChart.Data<>(entry.getKey(),entry.getValue()));
+        TreeMap<String, Integer> last50 = new TreeMap<>();
+        for(Map.Entry<String,Integer> entry : dicoPourGraph.entrySet()){
+            if(last50.size() < 50)
+                last50.put(entry.getKey(),entry.getValue());
+            else
+                break;
         }
+
+        for (String key : last50.keySet()){ // met les données dans le barchart
+            series.getData().add(new XYChart.Data<>(key, last50.get(key)));
+        }
+
         graphique.getData().add(series);
 
     }

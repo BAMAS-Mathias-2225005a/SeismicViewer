@@ -9,7 +9,7 @@
 <?import javafx.scene.image.Image?>
 <?import org.controlsfx.control.RangeSlider?>
 <?import org.controlsfx.control.CheckComboBox?>
-<BorderPane prefHeight="900" prefWidth="1600.0" style="-fx-background-color: #141b2d" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.sismicviewer.scenes.carte.CarteController">
+<BorderPane prefHeight="900" prefWidth="1600.0" style="-fx-background-color: #141b2d" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.sismicviewer.controllers.CarteController">
     <top>
         <VBox>
             <padding>
@@ -39,7 +39,7 @@
                     </HBox>
                     <HBox spacing="10">
                         <ImageView fitHeight="30" fitWidth="30">
-                            <Image url="iconDate.png"/>
+                            <Image url="../iconDate.png"/>
                         </ImageView>
                         <Label text="DATE" styleClass="txtCategory"/>
                     </HBox>
@@ -56,7 +56,7 @@
                 <VBox spacing="10">
                     <HBox spacing="10">
                         <ImageView fitHeight="30" fitWidth="30">
-                            <Image url="iconRegion.png"/>
+                            <Image url="../iconRegion.png"/>
                         </ImageView>
                         <Label text="RÉGION" styleClass="txtCategory"/>
                     </HBox>
@@ -68,7 +68,7 @@
                 <VBox spacing="10">
                     <HBox spacing="10">
                         <ImageView fitHeight="30" fitWidth="30">
-                            <Image url="iconRayonRecherche.png"/>
+                            <Image url="../iconRayonRecherche.png"/>
                         </ImageView>
                         <Label text="RAYON DE RECHERCHE" styleClass="txtCategory"/>
                     </HBox>
@@ -88,7 +88,7 @@
                 <VBox spacing="10">
                     <HBox>
                         <ImageView fitHeight="30" fitWidth="30">
-                            <Image url="iconMagnitude.png"/>
+                            <Image url="../iconMagnitude.png"/>
                         </ImageView>
                         <Label text="MAGNITUDE" styleClass="txtCategory"/>
                     </HBox>

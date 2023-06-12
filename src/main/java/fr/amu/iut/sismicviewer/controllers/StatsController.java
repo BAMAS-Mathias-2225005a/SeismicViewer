@@ -1,6 +1,7 @@
-package fr.amu.iut.sismicviewer.scenes.stats;
+package fr.amu.iut.sismicviewer.controllers;
 
 import fr.amu.iut.sismicviewer.controllers.TopBarController;
+import fr.amu.iut.sismicviewer.scenes.stats.BarChartControl;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;

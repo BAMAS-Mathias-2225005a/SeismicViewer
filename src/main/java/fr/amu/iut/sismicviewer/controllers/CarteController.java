@@ -1,4 +1,4 @@
-package fr.amu.iut.sismicviewer.scenes.carte;
+package fr.amu.iut.sismicviewer.controllers;
 
 import com.gluonhq.maps.MapPoint;
 import com.gluonhq.maps.MapView;
@@ -6,17 +6,14 @@ import fr.amu.iut.sismicviewer.CSV.CSVManager;
 import fr.amu.iut.sismicviewer.CSV.SeismeDataManager;
 import fr.amu.iut.sismicviewer.Gluon.MainMapLayer;
 import fr.amu.iut.sismicviewer.Seisme;
-import fr.amu.iut.sismicviewer.controllers.TopBarController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.shape.Circle;
 import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.RangeSlider;
-import org.controlsfx.control.textfield.TextFields;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -56,7 +53,6 @@ public class CarteController implements Initializable {
     private TextField rayon;
     @FXML
     private RangeSlider magnitude;
-
     @FXML
     private CheckComboBox<String> region;
 
@@ -64,40 +60,20 @@ public class CarteController implements Initializable {
 
     private ChangeListener<Number> magnitudeSliderChange;
 
-    /**
-     * Initialise le contrôleur de la fenêtre Carte
-     *
-     * @param url
-     * @param resourceBundle
-     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         TopBarController topBarController = new TopBarController();
         topBarController.initTopBar(carte, dashboard, stats);
+
         initMap();
         initComboBox();
-        System.out.println("Initialisation du contrôleur de carte..");
 
         mapLayer = new MainMapLayer();
         mapView.addLayer(mapLayer);
 
+        //Ajout des régions dans la ComboBox
         region.getItems().add("TOUTES LES REGIONS");
         region.getItems().addAll(CSVManager.getAllRegion());
-
-        region.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
-            @Override
-            public void onChanged(Change<? extends String> change) {
-                updateMap();
-            }
-        });
-
-        dateDe.setOnAction((event) -> {
-            updateMap();
-        });
-        dateA.setOnAction((event) -> {
-            updateMap();
-        });
-
         initListener();
     }
 
@@ -109,7 +85,6 @@ public class CarteController implements Initializable {
         MapPoint mapPoint = new MapPoint(46.727638, 2.213749);
         mapView.setZoom(5.8);
         mapView.flyTo(0, mapPoint, 0.1);
-
     }
 
     /**
@@ -123,7 +98,7 @@ public class CarteController implements Initializable {
     }
 
     /**
-     * Permet de mettre à jour la carte avec des nouvelles données
+     * Permet de mettre à jour la carte avec des nouvelles données en prenant en compte les différents filtres
      */
     public void updateMap(){
         ArrayList<Seisme> listeSeismeTries = (ArrayList<Seisme>) CSVManager.getListeSeisme().clone();
@@ -147,7 +122,7 @@ public class CarteController implements Initializable {
     }
 
     /**
-     * Permet d'enregistrer les coordonnées (latitude et longitude) d'un point lors d'un clique sur la carte
+     * Initialise les listeners de la fenêtre
      */
     public void initListener(){
         mapView.setOnMouseClicked(mouseEvent -> {
@@ -162,6 +137,20 @@ public class CarteController implements Initializable {
                 updateMap();
             }
         };
+
+        region.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
+            @Override
+            public void onChanged(Change<? extends String> change) {
+                updateMap();
+            }
+        });
+
+        dateDe.setOnAction((event) -> {
+            updateMap();
+        });
+        dateA.setOnAction((event) -> {
+            updateMap();
+        });
 
         magnitude.lowValueProperty().addListener(magnitudeSliderChange);
         magnitude.highValueProperty().addListener(magnitudeSliderChange);
