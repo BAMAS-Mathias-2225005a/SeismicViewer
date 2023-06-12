@@ -1,22 +1,22 @@
-.topButton{
-    -fx-background-color: #040F16;
-    -fx-border-width: 0;
-    -fx-text-fill: white;
-    -fx-font-size: 20;
+n {
+    -fx-background-color: #040F16; /* Couleur de fond bleu foncé */
+    -fx-border-width: 0; /* Pas de bordure */
+    -fx-text-fill: white; /* Texte en blanc */
+    -fx-font-size: 20; /* Taille de police 20 */
 }
 
-.topButton:hover{
-    -fx-background-color: #FAC748;
-    -fx-text-fill: #000000;
-    -fx-cursor: hand;
+.topButton:hover {
+    -fx-background-color: #FAC748; /* Sélectionne les éléments avec la classe "topButton" lorsqu'ils sont survolés par la souris */
+    -fx-text-fill: #000000; /* Définit la couleur de fond des éléments survolés  */
+    -fx-cursor: hand; /* Curseur de la souris en forme de main */
 }
 
-#importCSVButton{
-    -fx-background-size: 0;
+#importCSVButton {
+    -fx-background-size: 0; /* Pas de taille d'image de fond */
     -fx-pref-width: 280;
     -fx-pref-height: 50;
     -fx-cursor: hand;
-    -fx-background-color: #FAC748FF;
+    -fx-background-color:
     -fx-font-size: 18;
 }
 
@@ -27,4 +27,3 @@
 .range-slider .track {
     -fx-background-color: #C14953;
 }
-
