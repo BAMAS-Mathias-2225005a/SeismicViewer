@@ -44,7 +44,7 @@
                     <children>
                         <BarChart fx:id="barChartStats" animated="false" categoryGap="0.0" legendVisible="false"
                                   prefHeight="403.0" prefWidth="513.0" rotate="90"
-                                  title="Nombre de séisme par magnitude" verticalGridLinesVisible="false">
+                                  title="Nombre de séisme par magnitude" verticalGridLinesVisible="false" styleClass="styleBarChartStats1">
                             <xAxis>
                                 <CategoryAxis animated="false" prefHeight="27.0" prefWidth="302.0" tickLabelGap="10.0"
                                               tickLabelRotation="-90.0"/>

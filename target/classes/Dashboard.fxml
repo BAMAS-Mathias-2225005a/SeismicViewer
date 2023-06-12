@@ -81,12 +81,14 @@
 
             <VBox alignment="CENTER" prefHeight="300" prefWidth="1450" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnSpan="4" GridPane.rowIndex="1">
                 <Label styleClass="textLabel" text="Quantité de séisme par année" />
-                <BarChart fx:id="dashboardBarchart" categoryGap="0.0" legendVisible="false" maxHeight="275" prefWidth="1500" styleClass="barChartDashBoard" horizontalGridLinesVisible="false" verticalGridLinesVisible="false">
+                <BarChart fx:id="dashboardBarchart" categoryGap="0.0" legendVisible="false" maxHeight="275"
+                          prefWidth="1500" horizontalGridLinesVisible="false" styleClass="styleBarChart"
+                          verticalGridLinesVisible="false">
                     <xAxis>
-                        <CategoryAxis animated="false" label="ANNEE" tickLabelFill="#fac748" tickLabelGap="5.0" />
+                        <CategoryAxis animated="false" label="ANNEE" tickLabelFill="#fac748" tickLabelGap="5.0"/>
                     </xAxis>
                     <yAxis>
-                        <NumberAxis label="NB DE SEISME" tickLabelFill="#fac748" />
+                        <NumberAxis label="NB DE SEISME" tickLabelFill="#fac748"/>
                     </yAxis>
                 </BarChart>
             </VBox>

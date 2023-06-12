@@ -15,6 +15,7 @@ public class CSVManager {
     private static ArrayList<Seisme> listeSeisme = new ArrayList<Seisme>();
 
     public static void loadCsv(File file) {
+        listeSeisme.clear();
         try {
             FileReader filereader = new FileReader(file);
             CSVReader csvReader = new CSVReader(filereader);

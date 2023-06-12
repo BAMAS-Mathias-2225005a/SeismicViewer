@@ -12,6 +12,7 @@ public class BarChartControl {
     private ArrayList<Seisme> data = new ArrayList<>(CSVManager.getListeSeisme());
     private HashMap<String,Integer> dicoPourGraph = new HashMap<>();
     public BarChartControl(BarChart graphique){
+        graphique.getData().clear();
         for(Seisme seisme : data){
             dicoPourGraph.merge(String.valueOf(seisme.getAnnee()),1,(a,b) -> a+b); // si il n'y a pas la clé année, l'a créer et là met a 1, sinon ça fait une incrémentation
         }

@@ -114,10 +114,6 @@
     -fx-background-color: #1f2941;
 }
 
-#barChatDashBoard{
-    -fx-bar-fill: #FAC748FF;
-}
-
 #dashboardBarchart .axis{
      -fx-font-size: 23;
     -fx-tick-label-fill: white;
@@ -157,4 +153,12 @@
 
 .paneCarte{
     -fx-padding: 20px;
+}
+
+.styleBarChart .chart-bar {
+    -fx-bar-fill: #FAC748FF;
+}
+
+.styleBarChartStats1{
+    -fx-background-color: #1f2941;
 }
