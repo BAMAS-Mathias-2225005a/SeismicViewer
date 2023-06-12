@@ -28,7 +28,7 @@
     <right>
         <VBox prefHeight="617.0" prefWidth="344.0" BorderPane.alignment="CENTER">
             <children>
-                <TableView prefHeight="609.0" prefWidth="344.0">
+                <TableView prefHeight="871.0" prefWidth="344.0">
                     <columns>
                         <TableColumn prefWidth="75.0" text="C1"/>
                         <TableColumn prefWidth="75.0" text="C2"/>
@@ -40,15 +40,21 @@
     <center>
         <VBox prefHeight="617.0" prefWidth="898.0" BorderPane.alignment="CENTER">
             <children>
-                <HBox prefHeight="382.0" prefWidth="641.0">
+                <HBox prefHeight="666.0" prefWidth="856.0">
                     <children>
-                        <BarChart prefHeight="408.0" prefWidth="328.0">
+                        <BarChart fx:id="barChartStats" animated="false" categoryGap="0.0" legendVisible="false"
+                                  prefHeight="403.0" prefWidth="513.0" rotate="90"
+                                  title="Nombre de séisme par magnitude" verticalGridLinesVisible="false">
                             <xAxis>
-                                <CategoryAxis side="BOTTOM"/>
+                                <CategoryAxis animated="false" prefHeight="27.0" prefWidth="302.0" tickLabelGap="10.0"
+                                              tickLabelRotation="-90.0"/>
                             </xAxis>
                             <yAxis>
-                                <NumberAxis side="LEFT"/>
+                                <NumberAxis animated="false" side="RIGHT" tickLabelRotation="-90.0"/>
                             </yAxis>
+                            <HBox.margin>
+                                <Insets left="10.0"/>
+                            </HBox.margin>
                         </BarChart>
                         <GridPane prefHeight="369.0" prefWidth="546.0">
                             <columnConstraints>
@@ -63,7 +69,7 @@
                         </GridPane>
                     </children>
                 </HBox>
-                <LineChart prefHeight="261.0" prefWidth="735.0">
+                <LineChart prefHeight="477.0" prefWidth="856.0">
                     <xAxis>
                         <CategoryAxis side="BOTTOM"/>
                     </xAxis>
