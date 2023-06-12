@@ -174,13 +174,16 @@ public class DashboardControl implements Initializable {
      * Met à jour les 4 statistiques affichées (Moyenne, Total des Seismes, Ville Plus puissant/moins puissant séisme)
      */
     public void initStat(){
+        System.out.println("Initialisation des stats");
         try {
-            totalSeismeLabel.setText(String.valueOf(CSVManager.getNombreDeSeisme()));
-            moyenneMagnitudeLabel.setText(String.valueOf((CSVManager.getMagnitudeMoyenne())).substring(0, 4));
-            villePlusGrosSeismeLabel.setText(CSVManager.getPlusGrosSeismeVille());
-            magnitudePlusGrosSeismeLabel.setText(String.valueOf(CSVManager.getPlusGrosSeismeValeur()));
-            villePlusPetitSeismeLabel.setText(CSVManager.getPlusPetitSeismeVille());
-            magnitudePlusPetitSeismeLabel.setText(String.valueOf(CSVManager.getPlusPetitSeismeValeur()));
+            SeismeDataManager seismeDataManager = new SeismeDataManager();
+            ArrayList<Seisme> listeSeisme = CSVManager.getListeSeisme();
+            totalSeismeLabel.setText(String.valueOf(seismeDataManager.getNombreSeisme(listeSeisme)));
+            moyenneMagnitudeLabel.setText(String.valueOf((seismeDataManager.getMagnitudeMoyenne(listeSeisme))).substring(0, 4));
+            villePlusGrosSeismeLabel.setText(seismeDataManager.getSeismeMax(listeSeisme)[0]);
+            magnitudePlusGrosSeismeLabel.setText(seismeDataManager.getSeismeMax(listeSeisme)[1]);
+            villePlusPetitSeismeLabel.setText(seismeDataManager.getSeismeMin(listeSeisme)[0]);
+            magnitudePlusPetitSeismeLabel.setText(seismeDataManager.getSeismeMin(listeSeisme)[1]);
             BarChartControl barChartControl = new BarChartControl(dashboardBarchart);
             carte.setDisable(false);
             stats.setDisable(false);

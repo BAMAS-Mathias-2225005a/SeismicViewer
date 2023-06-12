@@ -44,7 +44,7 @@ public class Seisme {
         try {
             magnitude = Double.parseDouble(values[10]);
         } catch (NumberFormatException e) {
-            magnitude = 0;
+            magnitude = -1;
         }
     }
 
