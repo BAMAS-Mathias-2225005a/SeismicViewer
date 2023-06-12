@@ -95,7 +95,7 @@
                     <RangeSlider fx:id="magnitude" min="0" max="9" lowValue="0" highValue="9"/>
                 </VBox>
             </VBox>
-            <MapView fx:id="mapView" HBox.hgrow="ALWAYS" style="cursor: target"/>
+            <MapView fx:id="mapView" HBox.hgrow="ALWAYS" styleClass="styleMapViewCarte"/>
         </HBox>
     </center>
 

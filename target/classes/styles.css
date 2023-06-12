@@ -131,6 +131,8 @@
 
 }
 
+
+
 .styleChamp{
     -fx-background-color: #1f2941;
     -fx-border-radius: 10 10 10 10;
@@ -176,6 +178,12 @@
     -fx-bar-fill: #FAC748FF;
 }
 
+/*.stylePieChart .la*/
+
 .styleBarChartStats1{
     -fx-background-color: #1f2941;
+}
+
+.styleMapViewCarte:hover{
+    -fx-cursor: crosshair;
 }

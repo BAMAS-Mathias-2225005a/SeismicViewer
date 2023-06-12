@@ -97,6 +97,9 @@ public class DashboardControl implements Initializable {
     @FXML
     private BarChart dashboardBarchart;
 
+    @FXML
+    private PieChart pieChartDashBoard;
+
     /**
      * Méthode qui initialise la classe et charges les paramètres de base
      * @param url
@@ -175,6 +178,7 @@ public class DashboardControl implements Initializable {
 
     /**
      * Met à jour les 4 statistiques affichées (Moyenne, Total des Seismes, Ville Plus puissant/moins puissant séisme)
+     * initialise le PieChart et le BarChart
      */
     public void initStat(){
         System.out.println("Initialisation des stats");
@@ -188,6 +192,9 @@ public class DashboardControl implements Initializable {
             villePlusPetitSeismeLabel.setText(seismeDataManager.getSeismeMin(listeSeisme)[0]);
             magnitudePlusPetitSeismeLabel.setText(seismeDataManager.getSeismeMin(listeSeisme)[1]);
             BarChartControl barChartControl = new BarChartControl(dashboardBarchart);
+            PieChartControl pieChartControl = new PieChartControl();
+            pieChartControl.loadPieChartData(seismeDataManager.getSeismeParMagnitude(listeSeisme,6,9), pieChartDashBoard);
+            System.out.println("test");
             carte.setDisable(false);
             stats.setDisable(false);
             mainRangeSlider.setDisable(false);
@@ -195,7 +202,7 @@ public class DashboardControl implements Initializable {
             carte.setDisable(true);
             stats.setDisable(true);
             mainRangeSlider.setDisable(true);
-            e.printStackTrace();
+            System.out.println("Echec de l'initialisation des statistiques");
         }
     }
 }

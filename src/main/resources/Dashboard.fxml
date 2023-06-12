@@ -33,9 +33,10 @@
                 <Insets top="30" />
             </padding>
             <HBox prefHeight="420" prefWidth="420" style="-fx-background-color: #1f2941; -fx-background-radius: 10">
-            <children>
-               <PieChart fx:id="pieChartDashBoard"/>
-            </children></HBox>
+                <children>
+                    <PieChart fx:id="pieChartDashBoard" styleClass="stylePieChart"/>
+                </children>
+            </HBox>
             <GridPane hgap="20" vgap="20" GridPane.columnIndex="2" GridPane.rowSpan="2">
                 <VBox alignment="CENTER" prefHeight="200" prefWidth="200" spacing="5" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="0" GridPane.rowIndex="0">
                     <ImageView fitHeight="65" fitWidth="65">
