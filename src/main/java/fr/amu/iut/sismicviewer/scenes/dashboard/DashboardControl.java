@@ -104,6 +104,8 @@ public class DashboardControl implements Initializable {
         System.out.println("Initialisation du controlleur..");
         TopBarController topBarController = new TopBarController();
         topBarController.initTopBar(carte, dashboard, stats);
+        mainRangeSlider.setLowValue(mainRangeSlider.getMin());
+        mainRangeSlider.setHighValue(mainRangeSlider.getMax());
         initListeners();
         initMap();
         initButton();
@@ -155,7 +157,6 @@ public class DashboardControl implements Initializable {
      */
     public void openCSVFileChooser() {
 
-
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(null);
 
@@ -181,7 +182,13 @@ public class DashboardControl implements Initializable {
             villePlusPetitSeismeLabel.setText(CSVManager.getPlusPetitSeismeVille());
             magnitudePlusPetitSeismeLabel.setText(String.valueOf(CSVManager.getPlusPetitSeismeValeur()));
             BarChartControl barChartControl = new BarChartControl(dashboardBarchart);
+            carte.setDisable(false);
+            stats.setDisable(false);
+            mainRangeSlider.setDisable(false);
         }catch (Exception e){
+            carte.setDisable(true);
+            stats.setDisable(true);
+            mainRangeSlider.setDisable(true);
             e.printStackTrace();
         }
     }

@@ -69,10 +69,10 @@ public class SeismeDataManager {
     }
 
     /**
-     *
-     * @param data
-     * @param region
-     * @return
+     * Permet d'obtenir une ArrayList de Seisme en fonction des regions
+     * @param data ArrayList de Seisme à trater
+     * @param region ObservableList de String,
+     * @return Nouvelle ArrayList triée, de valeurs de type Seisme
      */
     public ArrayList<Seisme> getSeismeParRegion(ArrayList<Seisme> data, ObservableList<String> region){
         ArrayList<Seisme> seismeTries = new ArrayList<Seisme>();
