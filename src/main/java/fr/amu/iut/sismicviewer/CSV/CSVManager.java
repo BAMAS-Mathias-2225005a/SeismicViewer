@@ -39,6 +39,7 @@ public class CSVManager {
      */
     public static void loadCsv(File file) {
         try {
+            listeSeisme.clear();
             FileReader filereader = new FileReader(file);
             CSVReader csvReader = new CSVReader(filereader);
             String[] nextRecord;
