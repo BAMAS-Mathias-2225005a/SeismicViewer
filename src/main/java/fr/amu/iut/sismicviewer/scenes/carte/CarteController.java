@@ -22,8 +22,20 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Cette classe est le contrôleur de la fenêtre Carte du logiciel,
+ * elle permet de pouvoir intéragir avec les différents nodes présent sur la fenêtre Carte (boutons, champ de textes, etc..)
+ *
+ * @author BAMAS Mathias
+ * @author BEDDIAF Miloud
+ * @author BENDJEDDOU Rayan
+ * @author LOUARN Mathis
+ * @version 1.0
+ */
+
 public class CarteController implements Initializable {
 
+    /* Déclaration de toutes les variables (connexion entre les nodes FXML) */
     @FXML
     private Button carte;
     @FXML
@@ -52,7 +64,12 @@ public class CarteController implements Initializable {
 
     private ChangeListener<Number> magnitudeSliderChange;
 
-
+    /**
+     * Initialise le contrôleur de la fenêtre Carte
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         TopBarController topBarController = new TopBarController();
@@ -84,7 +101,10 @@ public class CarteController implements Initializable {
         initListener();
     }
 
-    /* Initialise la map */
+    /**
+     * Initialise la carte de la fenêtre
+     *
+     */
     public void initMap(){
         MapPoint mapPoint = new MapPoint(46.727638, 2.213749);
         mapView.setZoom(5.8);
@@ -92,6 +112,9 @@ public class CarteController implements Initializable {
 
     }
 
+    /**
+     * Initialise la ComboBox des dates
+     */
     public void initComboBox(){
         for(int i = 1800; i < 2030; i += 10 ){
             dateDe.getItems().add(i);
@@ -99,6 +122,9 @@ public class CarteController implements Initializable {
         }
     }
 
+    /**
+     * Permet de mettre à jour la carte avec des nouvelles données
+     */
     public void updateMap(){
         ArrayList<Seisme> listeSeismeTries = (ArrayList<Seisme>) CSVManager.getListeSeisme().clone();
         SeismeDataManager seismeDataManager = new SeismeDataManager();
@@ -120,6 +146,9 @@ public class CarteController implements Initializable {
         mapLayer.updateLayer(listeSeismeTries);
     }
 
+    /**
+     * Permet d'enregistrer les coordonnées (latitude et longitude) d'un point lors d'un clique sur la carte
+     */
     public void initListener(){
         mapView.setOnMouseClicked(mouseEvent -> {
             MapPoint x = mapView.getMapPosition(mouseEvent.getX(), mouseEvent.getY());

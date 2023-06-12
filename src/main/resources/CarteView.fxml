@@ -30,7 +30,9 @@
     <center>
         <HBox alignment="TOP_CENTER" spacing="80">
             <VBox prefWidth="760" minWidth="760" spacing="40">
-
+                <padding>
+                    <Insets left="30" />
+                </padding>
                 <VBox spacing="10">
                     <HBox alignment="CENTER">
                         <Label text="Recherche de séisme" styleClass="titleRecherheCarte"/>
@@ -59,7 +61,7 @@
                         <Label text="RÉGION" styleClass="txtCategory"/>
                     </HBox>
                     <HBox styleClass="styleChamp" spacing="25" alignment="CENTER" prefHeight="40">
-                        <CheckComboBox fx:id="region" styleClass="styleTextFieldCarte" prefWidth="480"/>
+                        <CheckComboBox fx:id="region" styleClass="styleCheckComboBox" prefWidth="480"/>
                     </HBox>
                 </VBox>
 

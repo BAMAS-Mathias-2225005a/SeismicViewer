@@ -31,6 +31,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
+/**
+ * Classe qui contrôle les nodes de la fenêtre DashBoard
+ * @author BAMAS Mathias
+ * @author BEDDIAF Miloud
+ * @author BENDJEDDOU Rayan
+ * @author LOUARN Mathis
+ * @version 1.0
+ */
+
 public class DashboardControl implements Initializable {
 
     @FXML
@@ -85,11 +94,18 @@ public class DashboardControl implements Initializable {
     @FXML
     private BarChart dashboardBarchart;
 
+    /**
+     * Méthode qui initialise la classe et charges les paramètres de base
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Initialisation du controlleur..");
         TopBarController topBarController = new TopBarController();
         topBarController.initTopBar(carte, dashboard, stats);
+        mainRangeSlider.setLowValue(mainRangeSlider.getMin());
+        mainRangeSlider.setHighValue(mainRangeSlider.getMax());
         initListeners();
         initMap();
         initButton();
@@ -99,7 +115,9 @@ public class DashboardControl implements Initializable {
         mapView.addLayer(mainMapLayer);
     }
 
-    /* Initialise la map */
+    /**
+     * Initialise la map
+     */
     public void initMap() {
         mapView.addEventFilter(MouseEvent.ANY, event -> event.consume());
         mapView.addEventFilter(ScrollEvent.ANY, event -> event.consume());
@@ -109,6 +127,9 @@ public class DashboardControl implements Initializable {
 
     }
 
+    /**
+     * Initialise le listener associé au Slider situé en dessous de la carte
+     */
     public void initListeners() {
         sliderChangeListener = new ChangeListener<Number>() {
             @Override
@@ -124,12 +145,17 @@ public class DashboardControl implements Initializable {
 
     }
 
+    /**
+     * Permet au bouton "Choisir fichier CSV" d'importer et charger un fichier CSV
+     */
     public void initButton() {
         importCSVButton.setOnMouseClicked(event -> openCSVFileChooser());
     }
 
+    /**
+     * Petite fenêtre de recherche de fichier CSV, affiche un message d'erreur en cas de problème
+     */
     public void openCSVFileChooser() {
-
 
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(null);
@@ -144,6 +170,9 @@ public class DashboardControl implements Initializable {
         }
     }
 
+    /**
+     * Met à jour les 4 statistiques affichées (Moyenne, Total des Seismes, Ville Plus puissant/moins puissant séisme)
+     */
     public void initStat(){
         try {
             totalSeismeLabel.setText(String.valueOf(CSVManager.getNombreDeSeisme()));
@@ -153,29 +182,14 @@ public class DashboardControl implements Initializable {
             villePlusPetitSeismeLabel.setText(CSVManager.getPlusPetitSeismeVille());
             magnitudePlusPetitSeismeLabel.setText(String.valueOf(CSVManager.getPlusPetitSeismeValeur()));
             BarChartControl barChartControl = new BarChartControl(dashboardBarchart);
+            carte.setDisable(false);
+            stats.setDisable(false);
+            mainRangeSlider.setDisable(false);
         }catch (Exception e){
+            carte.setDisable(true);
+            stats.setDisable(true);
+            mainRangeSlider.setDisable(true);
             e.printStackTrace();
         }
     }
-
-    public void topSeisme10ans() {
-        CSVManager csvManager = new CSVManager();
-        TopSeismeControl topSeismeControl = new TopSeismeControl();
-        seismeTop.setItems(topSeismeControl.loadData(CSVManager.getListeSeisme(), 2013));
-    }
-
-    public void topSeisme40ans() {
-        CSVManager csvManager = new CSVManager();
-        TopSeismeControl topSeismeControl = new TopSeismeControl();
-        seismeTop.setItems(topSeismeControl.loadData(CSVManager.getListeSeisme(), 1983));
-
-    }
-
-    public void topSeisme100ans() {
-        CSVManager csvManager = new CSVManager();
-        TopSeismeControl topSeismeControl = new TopSeismeControl();
-        seismeTop.setItems(topSeismeControl.loadData(CSVManager.getListeSeisme(), 1923));
-    }
-
-
 }
