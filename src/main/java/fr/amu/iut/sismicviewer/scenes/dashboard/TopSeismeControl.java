@@ -1,4 +1,4 @@
-package fr.amu.iut.sismicviewer.scenes.dashboard;
+/*package fr.amu.iut.sismicviewer.scenes.dashboard;
 
 import fr.amu.iut.sismicviewer.Seisme;
 import javafx.collections.FXCollections;
@@ -18,4 +18,4 @@ public class TopSeismeControl {
         }
         return FXCollections.observableList(dataSorted);
     }
-}
+}*/

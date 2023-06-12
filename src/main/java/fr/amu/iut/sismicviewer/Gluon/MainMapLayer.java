@@ -10,8 +10,22 @@ import javafx.scene.shape.Circle;
 
 import java.util.ArrayList;
 
+/**
+ * Cette classe définit une couche personnalisée pour les cartes dans le logiciel,
+ * grâce à cela, il est facilement possible de placer des points sur la carte (possibilité de placer des points
+ * de couleur différentes, de tailles différentes etc...)
+ * @author BAMAS Mathias
+ * @author BEDDIAF Miloud
+ * @author BENDJEDDOU Rayan
+ * @author LOUARN Mathis
+ * @version 1.0
+ */
 public class MainMapLayer extends MapLayer {
 
+    /**
+     * Met à jour la couche à chaque appelle de la fonction
+     * @param listeSeismes Liste de séisme à fournir pour placer les points
+     */
     public void updateLayer(ArrayList<Seisme> listeSeismes) {
         clearLayer();
         for (Seisme seisme : listeSeismes) {
@@ -43,6 +57,9 @@ public class MainMapLayer extends MapLayer {
         }
     }
 
+    /**
+     * Supprime tous les points de la couche
+     */
     public void clearLayer() {
         this.getChildren().clear();
     }

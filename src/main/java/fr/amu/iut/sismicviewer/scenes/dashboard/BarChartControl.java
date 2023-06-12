@@ -8,9 +8,22 @@ import javafx.scene.chart.XYChart;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Classe qui contrôle la BarChart présente dans la fenêtre DashBoard
+ * @author BAMAS Mathias
+ * @author BEDDIAF Miloud
+ * @author BENDJEDDOU Rayan
+ * @author LOUARN Mathis
+ * @version 1.0
+ */
 public class BarChartControl {
     private ArrayList<Seisme> data = new ArrayList<>(CSVManager.getListeSeisme());
     private HashMap<String,Integer> dicoPourGraph = new HashMap<>();
+
+    /**
+     * Constructeur de classe BarChart
+     * @param graphique Node de type BarChart
+     */
     public BarChartControl(BarChart graphique){
         for(Seisme seisme : data){
             dicoPourGraph.merge(String.valueOf(seisme.getAnnee()),1,(a,b) -> a+b); // si il n'y a pas la clé année, l'a créer et là met a 1, sinon ça fait une incrémentation

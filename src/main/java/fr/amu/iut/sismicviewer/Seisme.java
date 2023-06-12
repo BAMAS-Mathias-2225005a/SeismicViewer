@@ -1,5 +1,14 @@
 package fr.amu.iut.sismicviewer;
 
+/**
+ * Classe définissant l'objet "Seisme". Cet objet à pour but d'accéder plus facilement aux données du fichier CSV
+ * @author BAMAS Mathias
+ * @author BEDDIAF Miloud
+ * @author BENDJEDDOU Rayan
+ * @author LOUARN Mathis
+ * @version 1.0
+ */
+
 public class Seisme {
     private int annee;
     private String region;
@@ -7,6 +16,10 @@ public class Seisme {
     private double longitude;
     private double magnitude;
 
+    /**
+     * Constructeur de la classe Seisme
+     * @param values Colonne de donnée du fichier CSV que l'on souhaite exploiter
+     */
     public Seisme(String[] values) {
         region = values[4];
 
@@ -35,22 +48,42 @@ public class Seisme {
         }
     }
 
+    /**
+     * Retourne l'année du séisme
+     * @return valeur de type Int
+     */
     public int getAnnee() {
         return annee;
     }
 
+    /**
+     * Retourne la région du séisme
+     * @return String
+     */
     public String getRegion() {
         return region;
     }
 
+    /**
+     * Retourne la latidude du séisme
+     * @return valeur de type Double
+     */
     public double getLatitude() {
         return latitude;
     }
 
+    /**
+     * Retourne la longitude du séisme
+     * @return valeur de type Double
+     */
     public double getLongitude() {
         return longitude;
     }
 
+    /**
+     * Retoune la magnitude du séisme
+     * @return valeur de type Double
+     */
     public double getMagnitude() {
         return magnitude;
     }
