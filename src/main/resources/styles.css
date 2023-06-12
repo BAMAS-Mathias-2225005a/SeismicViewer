@@ -179,3 +179,7 @@
 .styleBarChartStats1{
     -fx-background-color: #1f2941;
 }
+
+.styleMapViewCarte:hover{
+    -fx-cursor: crosshair;
+}
