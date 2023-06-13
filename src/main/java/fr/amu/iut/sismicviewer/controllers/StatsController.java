@@ -1,4 +1,4 @@
-package fr.amu.iut.sismicviewer.scenes.stats;
+package fr.amu.iut.sismicviewer.controllers;
 
 import fr.amu.iut.sismicviewer.CSV.CSVManager;
 import fr.amu.iut.sismicviewer.CSV.SeismeDataManager;
