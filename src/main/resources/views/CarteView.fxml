@@ -38,6 +38,9 @@
                         <Label text="Recherche de séisme" styleClass="titleRecherheCarte"/>
                     </HBox>
                     <HBox spacing="10">
+                        <ImageView fitHeight="30" fitWidth="30">
+                            <Image url="@../img/map/iconDate.png"/>
+                        </ImageView>
                         <Label text="DATE" styleClass="txtCategory"/>
                     </HBox>
                     <HBox styleClass="styleChamp" spacing="25" alignment="CENTER" prefHeight="40">
@@ -53,7 +56,7 @@
                 <VBox spacing="10">
                     <HBox spacing="10">
                         <ImageView fitHeight="30" fitWidth="30">
-                            <Image url="@../img/iconRegion.png"/>
+                            <Image url="@../img/map/iconRegion.png"/>
                         </ImageView>
                         <Label text="RÉGION" styleClass="txtCategory"/>
                     </HBox>
@@ -65,7 +68,7 @@
                 <VBox spacing="10">
                     <HBox spacing="10">
                         <ImageView fitHeight="30" fitWidth="30">
-                            <Image url="@../img/iconRayonRecherche.png"/>
+                            <Image url="@../img/map/iconRayonRecherche.png"/>
                         </ImageView>
                         <Label text="RAYON DE RECHERCHE" styleClass="txtCategory"/>
                     </HBox>
@@ -85,7 +88,7 @@
                 <VBox spacing="10">
                     <HBox>
                         <ImageView fitHeight="30" fitWidth="30">
-                            <Image url="@../img/iconMagnitude.png"/>
+                            <Image url="@../img/map/iconMagnitude.png"/>
                         </ImageView>
                         <Label text="MAGNITUDE" styleClass="txtCategory"/>
                     </HBox>

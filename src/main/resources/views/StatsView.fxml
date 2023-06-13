@@ -10,7 +10,7 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #141B2D;" stylesheets="@../styles.css"
             xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="fr.amu.iut.sismicviewer.scenes.stats.StatsController">
+            fx:controller="fr.amu.iut.sismicviewer.controllers.StatsController">
     <top>
         <VBox>
             <padding>
@@ -50,17 +50,22 @@
 
             <TableView fx:id="tableviewStats" minWidth="500" GridPane.columnIndex="2">
                 <columns>
-                    <TableColumn text="Identifiant" prefWidth="100">
+                    <TableColumn text="Identifiant" prefWidth="50">
                         <cellValueFactory>
                             <PropertyValueFactory property="identifiant"/>
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn text="Region" prefWidth="250">
+                    <TableColumn text="Region" prefWidth="200">
                         <cellValueFactory>
                             <PropertyValueFactory property="region"/>
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn text="Magnitude" prefWidth="150">
+                    <TableColumn text="Ville" prefWidth="200">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="ville"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Magnitude" prefWidth="50">
                         <cellValueFactory>
                             <PropertyValueFactory property="magnitude"/>
                         </cellValueFactory>
@@ -82,7 +87,7 @@
                     <VBox alignment="CENTER" prefHeight="100" prefWidth="100" spacing="5"
                           style="-fx-background-color: #1f2941; -fx-background-radius: 10">
                         <ImageView fitHeight="65" fitWidth="65">
-                            <Image url="@../img/nullSeisme.png"/>
+                            <Image url="@../img/stats/nullSeisme.png"/>
                         </ImageView>
                         <Label styleClass="statsTitle">SEISME SANS MAGNITUDE</Label>
                         <Label fx:id="seismeMagnitudeInconnuValueLabel" styleClass="statsNumber"></Label>
@@ -91,7 +96,7 @@
                     <VBox alignment="CENTER" prefHeight="100" prefWidth="100" spacing="5"
                           style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="1">
                         <ImageView fitHeight="65" fitWidth="65">
-                            <Image url="@../img/maisonCassee.png"></Image>
+                            <Image url="@../img/stats/maisonCassee.png"></Image>
                         </ImageView>
                         <Label styleClass="statsTitle">SEISME QUI ONT CAUSE DES DEGATS</Label>
                         <Label fx:id="seismeQuiOnCauseDesDegats" styleClass="statsNumber"></Label>
@@ -100,7 +105,7 @@
                     <VBox alignment="CENTER" prefHeight="100" prefWidth="100" spacing="5"
                           style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="2">
                         <ImageView fitHeight="65" fitWidth="65">
-                            <Image url="@../img/france.png"></Image>
+                            <Image url="@../img/stats/france.png"></Image>
                         </ImageView>
                         <Label styleClass="statsTitle">SEISME EN FRANCE</Label>
                         <Label fx:id="seismeEnFrance" styleClass="statsNumber"></Label>
@@ -108,7 +113,7 @@
                     <VBox alignment="CENTER" prefHeight="100" prefWidth="100" spacing="5"
                           style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.rowIndex="1">
                         <ImageView fitHeight="65" fitWidth="65">
-                            <Image url="@../img/dataFound.png"></Image>
+                            <Image url="@../img/stats/dataFound.png"></Image>
                         </ImageView>
                         <Label styleClass="statsTitle">SEISME AVEC MAGNITUDE</Label>
                         <Label fx:id="seismeAvecMagnitude" styleClass="statsNumber"></Label>
@@ -117,7 +122,7 @@
                           style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="1"
                           GridPane.rowIndex="1">
                         <ImageView fitHeight="65" fitWidth="65">
-                            <Image url="@../img/maison.png"></Image>
+                            <Image url="@../img/stats/maison.png"></Image>
                         </ImageView>
                         <Label styleClass="statsTitle">SEISME SANS DOMMAGE</Label>
                         <Label fx:id="seismeSansConsequence" styleClass="statsNumber"></Label>
@@ -126,7 +131,7 @@
                           style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="2"
                           GridPane.rowIndex="1">
                         <ImageView fitHeight="65" fitWidth="65">
-                            <Image url="@../img/europe.png"></Image>
+                            <Image url="@../img/stats/europe.png"></Image>
                         </ImageView>
                         <Label styleClass="statsTitle">SEISME HORS FRANCE</Label>
                         <Label fx:id="seismeHorsFrance" styleClass="statsNumber"></Label>

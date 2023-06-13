@@ -16,6 +16,7 @@ public class Seisme {
     private double latitude;
     private double longitude;
     private double magnitude;
+    private int identifiant;
 
     public Seisme(){
         annee = 0;
@@ -34,6 +35,11 @@ public class Seisme {
     public Seisme(String[] values) {
         region = values[4];
 
+        try {
+            identifiant = Integer.parseInt(values[0]);
+        } catch (NumberFormatException e) {
+            identifiant = -1;
+        }
         try {
             annee = Integer.parseInt(values[1].substring(0, 4));
         } catch (NumberFormatException e) {
@@ -139,5 +145,9 @@ public class Seisme {
 
     public void setMagnitude(double magnitude) {
         this.magnitude = magnitude;
+    }
+
+    public int getIdentifiant() {
+        return identifiant;
     }
 }

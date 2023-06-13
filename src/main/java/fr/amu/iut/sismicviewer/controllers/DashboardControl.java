@@ -7,13 +7,9 @@ import fr.amu.iut.sismicviewer.CSV.CSVManager;
 import fr.amu.iut.sismicviewer.CSV.SeismeDataManager;
 import fr.amu.iut.sismicviewer.Gluon.MainMapLayer;
 import fr.amu.iut.sismicviewer.Seisme;
-import fr.amu.iut.sismicviewer.SismicViewerApp;
-import fr.amu.iut.sismicviewer.controllers.TopBarController;
-import fr.amu.iut.sismicviewer.scenes.dashboard.BarChartControl;
+import fr.amu.iut.sismicviewer.controllers.dashboard.BarCharManager;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
@@ -32,7 +28,6 @@ import org.controlsfx.control.RangeSlider;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
@@ -207,7 +202,7 @@ public class DashboardControl implements Initializable {
             magnitudePlusGrosSeismeLabel.setText(String.valueOf(seismeDataManager.getSeismeMax(listeSeisme).getMagnitude()));
             villePlusPetitSeismeLabel.setText(seismeDataManager.getSeismeMin(listeSeisme).getVille());
             magnitudePlusPetitSeismeLabel.setText(String.valueOf(seismeDataManager.getSeismeMin(listeSeisme).getMagnitude()));
-            BarChartControl barChartControl = new BarChartControl(dashboardBarchart);
+            BarCharManager barChartControl = new BarCharManager(dashboardBarchart);
             createPieChart();
             carte.setDisable(false);
             stats.setDisable(false);

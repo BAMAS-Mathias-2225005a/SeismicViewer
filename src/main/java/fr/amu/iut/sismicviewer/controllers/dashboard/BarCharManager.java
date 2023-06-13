@@ -1,22 +1,17 @@
-package fr.amu.iut.sismicviewer.scenes.dashboard;
+package fr.amu.iut.sismicviewer.controllers.dashboard;
 
 import fr.amu.iut.sismicviewer.CSV.CSVManager;
 import fr.amu.iut.sismicviewer.Seisme;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Map;
+import java.util.TreeMap;
 
-/**
- * Classe qui contrôle la BarChart présente dans la fenêtre DashBoard
- * @author BAMAS Mathias
- * @author BEDDIAF Miloud
- * @author BENDJEDDOU Rayan
- * @author LOUARN Mathis
- * @version 1.0
- */
-public class BarChartControl {
+public class BarCharManager {
+
     private ArrayList<Seisme> data = new ArrayList<>(CSVManager.getListeSeisme());
     private TreeMap<String,Integer> dicoPourGraph = new TreeMap<>(Collections.reverseOrder());
 
@@ -24,7 +19,7 @@ public class BarChartControl {
      * Constructeur de classe BarChart
      * @param graphique Node de type BarChart
      */
-    public BarChartControl(BarChart graphique){
+    public BarCharManager(BarChart graphique){
         graphique.getData().clear();
         for(Seisme seisme : data){
             dicoPourGraph.merge(String.valueOf(seisme.getAnnee()),1,(a,b) -> a+b); // si il n'y a pas la clé année, l'a créer et là met a 1, sinon ça fait une incrémentation
