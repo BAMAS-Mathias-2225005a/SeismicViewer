@@ -98,8 +98,13 @@ public class StatsController implements Initializable {
         SeismeDataManager seismeDataManager = new SeismeDataManager();
         System.out.println(seismeDataManager.getSeismeLePlusVieux(data).getAnnee());
         XYChart.Series series = new XYChart.Series<String, Double>();
-        for (int i = seismeDataManager.getSeismeLePlusVieux(data).getAnnee(); i < seismeDataManager.getSeismeLePlusRecent(data).getAnnee() + 1; ++i) {
-            series.getData().add(new XYChart.Data<>(String.valueOf(i), seismeDataManager.getMagnitudeMoyenne(seismeDataManager.getAnneeFromTo(data, i, i))));
+        int derniereAnnee = seismeDataManager.getSeismeLePlusVieux(data).getAnnee();
+        if(derniereAnnee < 1900){
+            derniereAnnee = 1900;
+        }
+        for (int i = derniereAnnee; i < seismeDataManager.getSeismeLePlusRecent(data).getAnnee() + 1; ++i) {
+            double moyenne = seismeDataManager.getMagnitudeMoyenne(seismeDataManager.getAnneeFromTo(data, i, i));
+            series.getData().add(new XYChart.Data<>(String.valueOf(i), moyenne));
         }
         graphique.getData().add(series);
     }

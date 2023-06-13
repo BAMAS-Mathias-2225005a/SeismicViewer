@@ -37,16 +37,6 @@
     -fx-font-weight: 700;
 }
 
-#seismeTop {
-    -fx-background-color: transparent;
-}
-
-#seismeTop .placeholder .label {
-    -fx-text-fill: #F02D3A;
-    -fx-font-family: "cubik";
-    -fx-font-weight: 700;
-}
-
 #mainRangeSlider .axis, #magnitude .axis {
     -fx-tick-label-fill: white;
     -fx-tick-label-font-size: 16;
@@ -93,7 +83,7 @@
 
 .txtCategory {
     -fx-text-fill: white;
-    -fx-font-size: 18.5;
+    -fx-font-size: 24;
 }
 
 .statsNumber {
@@ -130,7 +120,6 @@
 
 }
 
-
 .styleChamp {
     -fx-background-color: #1f2941;
     -fx-border-radius: 10 10 10 10;
@@ -138,7 +127,7 @@
 }
 
 .styleTextFieldCarte {
-    -fx-border-radius: 10 10 10 10;
+    -fx-border-radius: 15 15 15 15;
     -fx-background-radius: 10 10 10 10;
     -fx-text-fill: #FAC748FF;
     -fx-font-weight: bold;
@@ -229,8 +218,27 @@
 #pieChartDashBoard .chart-legend .label{
     -fx-text-fill: white;
     -fx-font-family: 'cubik';
-    -fx-font-size: 12px;
+    -fx-font-size: 12;
     -fx-font-weight: bold;
+}
 
+#lineChartStats .axis{
+    -fx-tick-label-fill: white;
+}
 
+#lineChartStats .axis-label {
+    -fx-text-fill: white;
+    -fx-font-family: 'cubik';
+    -fx-font-weight: 700;
+    -fx-font-size: 20;
+}
+
+#tableviewStats .table-row-cell{
+    -fx-background-color: #1f2941;
+    -fx-text-fill: white;
+}
+
+#tableviewStats .table-row-cell:filled .table-cell{
+    -fx-text-fill: white;
+    -fx-font-family: "cubik";
 }
