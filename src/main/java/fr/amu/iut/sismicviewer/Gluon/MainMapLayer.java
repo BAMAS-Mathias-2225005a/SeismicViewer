@@ -33,7 +33,6 @@ public class MainMapLayer extends MapLayer {
         clearLayer();
         for (Seisme seisme : listeSeismes) {
             MapPoint point = new MapPoint(seisme.getLatitude(), seisme.getLongitude());
-            System.out.println(point.getLatitude() + " " + point.getLongitude());
             Point2D point2D = getMapPoint(point.getLatitude(), point.getLongitude());
 
             if(point2D == null) continue;

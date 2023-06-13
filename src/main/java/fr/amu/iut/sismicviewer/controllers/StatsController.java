@@ -96,7 +96,6 @@ public class StatsController implements Initializable {
     public void initLineChart(LineChart graphique) {
         ArrayList<Seisme> data = new ArrayList<>(CSVManager.getListeSeisme());
         SeismeDataManager seismeDataManager = new SeismeDataManager();
-        System.out.println(seismeDataManager.getSeismeLePlusVieux(data).getAnnee());
         XYChart.Series series = new XYChart.Series<String, Double>();
         int derniereAnnee = seismeDataManager.getSeismeLePlusVieux(data).getAnnee();
         if(derniereAnnee < 1900){

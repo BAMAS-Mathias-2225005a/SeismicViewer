@@ -112,7 +112,7 @@
                         <CategoryAxis animated="false" label="ANNEE" tickLabelFill="#fac748" tickLabelGap="5.0"/>
                     </xAxis>
                     <yAxis>
-                        <NumberAxis label="NB DE SEISME" tickLabelFill="#fac748"/>
+                        <NumberAxis label="SEISMES" tickLabelFill="#fac748"/>
                     </yAxis>
                 </BarChart>
             </VBox>
@@ -135,11 +135,17 @@
                 <padding>
                     <Insets left="50"/>
                 </padding>
-                <Button fx:id="importCSVButton" text="Choisir fichier CSV">
-                    <font>
-                        <Font name="Amiri" size="13.0"/>
-                    </font>
-                </Button>
+                <VBox>
+                    <padding>
+                        <Insets top="25"/>
+                    </padding>
+                    <Button fx:id="importCSVButton" text="Choisir fichier CSV">
+
+                        <font>
+                            <Font name="Amiri" size="13.0"/>
+                        </font>
+                    </Button>
+                </VBox>
                 <HBox fx:id="CSVErrorBox" alignment="CENTER" spacing="5" visible="false">
                     <ImageView fitHeight="20" fitWidth="20">
                         <Image url="@../img/dashboard/csvError.png"/>
