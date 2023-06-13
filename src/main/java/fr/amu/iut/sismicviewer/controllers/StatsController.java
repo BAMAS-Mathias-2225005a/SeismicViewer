@@ -19,14 +19,13 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class StatsController implements Initializable {
-
+    // Chargement des éléments FXML
     @FXML
     private Button carte;
     @FXML
     private Button dashboard;
     @FXML
     private Button stats;
-
     @FXML
     private BarChart barChartStats;
     @FXML
@@ -46,7 +45,12 @@ public class StatsController implements Initializable {
     @FXML
     private TableView tableviewStats;
 
-
+    /**
+     * Initialise la page StatsController
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         TopBarController topBarController = new TopBarController();
@@ -57,28 +61,47 @@ public class StatsController implements Initializable {
         initTableView(tableviewStats);
     }
 
+    /**
+     * Charge les données dans le barchart dans la fenêtre statisitique
+     *
+     * @param graphique
+     */
     public void initBarChart(BarChart graphique) {
         BarChartControl barChartControl = new BarChartControl(graphique);
     }
 
-    public void initLineChart(LineChart graphique){
+    /**
+     * charge les données dans le linechart dans la fenêtre statisitique
+     *
+     * @param graphique
+     */
+    public void initLineChart(LineChart graphique) {
         LineChartControl lineChartControl = new LineChartControl(graphique);
     }
-    public void initStats(){
+
+    /**
+     * initialise les statisitique dans les petit carré au centre de la fenêtre statisitique
+     */
+    public void initStats() {
         SeismeDataManager seismeDataManager = new SeismeDataManager();
         ArrayList<Seisme> data = CSVManager.getListeSeisme();
         seismeMagnitudeInconnuValueLabel.setText(String.valueOf(seismeDataManager.getNombreSeisme(data) - seismeDataManager.getNombreSeismeAvecMagnitudeConnue(data)));
-        seismeQuiOnCauseDesDegats.setText(String.valueOf(seismeDataManager.getSeismeParMagnitude(data,6,10).size()));
+        seismeQuiOnCauseDesDegats.setText(String.valueOf(seismeDataManager.getSeismeParMagnitude(data, 6, 10).size()));
         seismeEnFrance.setText(String.valueOf(seismeDataManager.getSeismeEnFrance(data).size()));
         seismeHorsFrance.setText(String.valueOf(seismeDataManager.getNombreSeisme(data) - seismeDataManager.getSeismeEnFrance(data).size()));
         seismeAvecMagnitude.setText(String.valueOf(seismeDataManager.getNombreSeismeAvecMagnitudeConnue(data)));
-        seismeSansConsequence.setText(String.valueOf(seismeDataManager.getSeismeParMagnitude(data,2,5.5).size()));
+        seismeSansConsequence.setText(String.valueOf(seismeDataManager.getSeismeParMagnitude(data, 2, 5.5).size()));
     }
 
-    public void initTableView(TableView tableau){
+    /**
+     * charge les données dans la tableview dans la fenêtre statistique
+     *
+     * @param tableau
+     */
+    public void initTableView(TableView tableau) {
         SeismeDataManager seismeDataManager = new SeismeDataManager();
         ArrayList<Seisme> data = CSVManager.getListeSeisme();
-        ObservableList<Seisme> listeSeisme = FXCollections.observableArrayList(seismeDataManager.getSeismeParMagnitude(data,2,10));
+        ObservableList<Seisme> listeSeisme = FXCollections.observableArrayList(seismeDataManager.getSeismeParMagnitude(data, 2, 10));
         tableau.setItems(listeSeisme);
     }
 }
