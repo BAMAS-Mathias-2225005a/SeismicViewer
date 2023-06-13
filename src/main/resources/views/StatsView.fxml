@@ -5,9 +5,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #141B2D;" stylesheets="@../styles.css"
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<BorderPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #141B2D;" stylesheets="@styles.css"
             xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="fr.amu.iut.sismicviewer.controllers.StatsController">
+            fx:controller="fr.amu.iut.sismicviewer.scenes.stats.StatsController">
     <top>
         <VBox>
             <padding>
@@ -25,60 +28,128 @@
             </Separator>
         </VBox>
     </top>
-    <right>
-        <VBox prefHeight="617.0" prefWidth="344.0" BorderPane.alignment="CENTER">
-            <children>
-                <TableView prefHeight="871.0" prefWidth="344.0">
-                    <columns>
-                        <TableColumn prefWidth="75.0" text="C1"/>
-                        <TableColumn prefWidth="75.0" text="C2"/>
-                    </columns>
-                </TableView>
-            </children>
-        </VBox>
-    </right>
     <center>
-        <VBox prefHeight="617.0" prefWidth="898.0" BorderPane.alignment="CENTER">
-            <children>
-                <HBox prefHeight="666.0" prefWidth="856.0">
-                    <children>
-                        <BarChart fx:id="barChartStats" animated="false" categoryGap="0.0" legendVisible="false"
-                                  prefHeight="403.0" prefWidth="513.0" rotate="90"
-                                  title="Nombre de séisme par magnitude" verticalGridLinesVisible="false" styleClass="styleBarChartStats1">
-                            <xAxis>
-                                <CategoryAxis animated="false" prefHeight="27.0" prefWidth="302.0" tickLabelGap="10.0"
-                                              tickLabelRotation="-90.0"/>
-                            </xAxis>
-                            <yAxis>
-                                <NumberAxis animated="false" side="RIGHT" tickLabelRotation="-90.0"/>
-                            </yAxis>
-                            <HBox.margin>
-                                <Insets left="10.0"/>
-                            </HBox.margin>
-                        </BarChart>
-                        <GridPane prefHeight="369.0" prefWidth="546.0">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                            </rowConstraints>
-                        </GridPane>
-                    </children>
-                </HBox>
-                <LineChart prefHeight="477.0" prefWidth="856.0">
-                    <xAxis>
-                        <CategoryAxis side="BOTTOM"/>
-                    </xAxis>
-                    <yAxis>
-                        <NumberAxis side="LEFT"/>
-                    </yAxis>
-                </LineChart>
-            </children>
-        </VBox>
+        <GridPane prefWidth="1700" hgap="50" prefHeight="550" alignment="CENTER">
+            <BarChart fx:id="barChartStats" animated="false" categoryGap="0.0" legendVisible="false" rotate="90"
+                      styleClass="styleBarChartStats1" title="Nombre de séisme par magnitude"
+                      verticalGridLinesVisible="false" BorderPane.alignment="CENTER" prefHeight="475">
+                <xAxis>
+                    <CategoryAxis animated="false" prefHeight="27.0" prefWidth="302.0" tickLabelGap="10.0"
+                                  tickLabelRotation="-90.0"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis animated="false" side="RIGHT" tickLabelRotation="-90.0"/>
+                </yAxis>
+                <opaqueInsets>
+                    <Insets bottom="15.0"/>
+                </opaqueInsets>
+                <padding>
+                    <Insets bottom="15.0"/>
+                </padding>
+            </BarChart>
+
+            <TableView fx:id="tableviewStats" minWidth="500" GridPane.columnIndex="2">
+                <columns>
+                    <TableColumn text="Identifiant" prefWidth="100">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="identifiant"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Region" prefWidth="250">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="region"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Magnitude" prefWidth="150">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="magnitude"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+
+            <GridPane hgap="10.0" vgap="10.0"  GridPane.columnIndex="1">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+                <children>
+                    <VBox alignment="CENTER" prefHeight="100" prefWidth="100" spacing="5"
+                          style="-fx-background-color: #1f2941; -fx-background-radius: 10">
+                        <ImageView fitHeight="65" fitWidth="65">
+                            <Image url="@img/nullSeisme.png"/>
+                        </ImageView>
+                        <Label styleClass="statsTitle">SEISME SANS MAGNITUDE</Label>
+                        <Label fx:id="seismeMagnitudeInconnuValueLabel" styleClass="statsNumber"></Label>
+                    </VBox>
+
+                    <VBox alignment="CENTER" prefHeight="100" prefWidth="100" spacing="5"
+                          style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="1">
+                        <ImageView fitHeight="65" fitWidth="65">
+                            <Image url="@img/maisonCassee.png"></Image>
+                        </ImageView>
+                        <Label styleClass="statsTitle">SEISME QUI ONT CAUSE DES DEGATS</Label>
+                        <Label fx:id="seismeQuiOnCauseDesDegats" styleClass="statsNumber"></Label>
+                    </VBox>
+
+                    <VBox alignment="CENTER" prefHeight="100" prefWidth="100" spacing="5"
+                          style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="2">
+                        <ImageView fitHeight="65" fitWidth="65">
+                            <Image url="@img/france.png"></Image>
+                        </ImageView>
+                        <Label styleClass="statsTitle">SEISME EN FRANCE</Label>
+                        <Label fx:id="seismeEnFrance" styleClass="statsNumber"></Label>
+                    </VBox>
+                    <VBox alignment="CENTER" prefHeight="100" prefWidth="100" spacing="5"
+                          style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.rowIndex="1">
+                        <ImageView fitHeight="65" fitWidth="65">
+                            <Image url="@img/dataFound.png"></Image>
+                        </ImageView>
+                        <Label styleClass="statsTitle">SEISME AVEC MAGNITUDE</Label>
+                        <Label fx:id="seismeAvecMagnitude" styleClass="statsNumber"></Label>
+                    </VBox>
+                    <VBox alignment="CENTER" prefHeight="100" prefWidth="100" spacing="5"
+                          style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="1"
+                          GridPane.rowIndex="1">
+                        <ImageView fitHeight="65" fitWidth="65">
+                            <Image url="@img/maison.png"></Image>
+                        </ImageView>
+                        <Label styleClass="statsTitle">SEISME SANS DOMMAGE</Label>
+                        <Label fx:id="seismeSansConsequence" styleClass="statsNumber"></Label>
+                    </VBox>
+                    <VBox alignment="CENTER" prefHeight="100" prefWidth="100" spacing="5"
+                          style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="2"
+                          GridPane.rowIndex="1">
+                        <ImageView fitHeight="65" fitWidth="65">
+                            <Image url="@img/europe.png"></Image>
+                        </ImageView>
+                        <Label styleClass="statsTitle">SEISME HORS FRANCE</Label>
+                        <Label fx:id="seismeHorsFrance" styleClass="statsNumber"></Label>
+                    </VBox>
+                </children>
+                <padding>
+                    <Insets left="10.0" right="10.0"/>
+                </padding>
+            </GridPane>
+
+        </GridPane>
     </center>
+    <bottom>
+        <LineChart fx:id="lineChartStats" horizontalGridLinesVisible="false" legendVisible="false"
+                   styleClass="styleLineChart" title="Magnitude moyenne par an" verticalGridLinesVisible="false"
+                   BorderPane.alignment="CENTER">
+            <xAxis>
+                <CategoryAxis animated="false" label="ANNEE" side="BOTTOM" startMargin="2.0"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis label="NB DE DEISME" side="LEFT"/>
+            </yAxis>
+        </LineChart>
+    </bottom>
 
 </BorderPane>

@@ -1,4 +1,4 @@
-package fr.amu.iut.sismicviewer.controllers;
+package fr.amu.iut.sismicviewer.scenes.dashboard;
 
 import java.io.File;
 
@@ -9,7 +9,6 @@ import fr.amu.iut.sismicviewer.Gluon.MainMapLayer;
 import fr.amu.iut.sismicviewer.Seisme;
 import fr.amu.iut.sismicviewer.SismicViewerApp;
 import fr.amu.iut.sismicviewer.controllers.TopBarController;
-import fr.amu.iut.sismicviewer.scenes.dashboard.BarChartControl;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -31,7 +30,9 @@ import javafx.stage.FileChooser;
 import org.controlsfx.control.RangeSlider;
 
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.ResourceBundle;
 
 /**
  * Classe qui contrôle les nodes de la fenêtre DashBoard
@@ -106,11 +107,12 @@ public class DashboardControl implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("Initialisation du controlleur..");
         TopBarController topBarController = new TopBarController();
         topBarController.initTopBar(carte, dashboard, stats);
-
         initListeners();
         initMap();
+        initButton();
         initStat();
 
         importCSVButton.setOnMouseClicked(event -> openCSVFileChooser());
@@ -123,10 +125,11 @@ public class DashboardControl implements Initializable {
      */
     public void initMap() {
         mapView.addEventFilter(MouseEvent.ANY, event -> event.consume());
-        mapView.addEventFilter(ScrollEvent.ANY, event -> event.consume()); // Annule les events sur la map
+        mapView.addEventFilter(ScrollEvent.ANY, event -> event.consume());
         MapPoint mapPoint = new MapPoint(46.727638, 2.213749);
         mapView.setZoom(5.1);
         mapView.flyTo(0, mapPoint, 0.1);
+
     }
 
     /**
@@ -190,17 +193,19 @@ public class DashboardControl implements Initializable {
 
     /**
      * Met à jour les 4 statistiques affichées (Moyenne, Total des Seismes, Ville Plus puissant/moins puissant séisme)
+     * initialise le PieChart et le BarChart
      */
     public void initStat(){
+        System.out.println("Initialisation des stats");
         try {
             SeismeDataManager seismeDataManager = new SeismeDataManager();
             ArrayList<Seisme> listeSeisme = CSVManager.getListeSeisme();
             totalSeismeLabel.setText(String.valueOf(seismeDataManager.getNombreSeisme(listeSeisme)));
-            moyenneMagnitudeLabel.setText(String.valueOf((seismeDataManager.getMagnitudeMoyenne(listeSeisme))).substring(0, 3));
-            villePlusGrosSeismeLabel.setText(seismeDataManager.getSeismeMax(listeSeisme).getVille());
-            magnitudePlusGrosSeismeLabel.setText(String.valueOf(seismeDataManager.getSeismeMax(listeSeisme).getMagnitude()));
-            villePlusPetitSeismeLabel.setText(seismeDataManager.getSeismeMin(listeSeisme).getVille());
-            magnitudePlusPetitSeismeLabel.setText(String.valueOf(seismeDataManager.getSeismeMin(listeSeisme).getMagnitude()));
+            moyenneMagnitudeLabel.setText(String.valueOf((seismeDataManager.getMagnitudeMoyenne(listeSeisme))).substring(0, 4));
+            villePlusGrosSeismeLabel.setText(seismeDataManager.getSeismeMax(listeSeisme)[0]);
+            magnitudePlusGrosSeismeLabel.setText(seismeDataManager.getSeismeMax(listeSeisme)[1]);
+            villePlusPetitSeismeLabel.setText(seismeDataManager.getSeismeMin(listeSeisme)[0]);
+            magnitudePlusPetitSeismeLabel.setText(seismeDataManager.getSeismeMin(listeSeisme)[1]);
             BarChartControl barChartControl = new BarChartControl(dashboardBarchart);
             createPieChart();
             carte.setDisable(false);
@@ -210,7 +215,7 @@ public class DashboardControl implements Initializable {
             carte.setDisable(true);
             stats.setDisable(true);
             mainRangeSlider.setDisable(true);
-            e.printStackTrace();
+            System.out.println("Echec de l'initialisation des statistiques");
         }
     }
 }
