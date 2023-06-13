@@ -89,7 +89,7 @@
                         <ImageView fitHeight="65" fitWidth="65">
                             <Image url="@../img/stats/nullSeisme.png"/>
                         </ImageView>
-                        <Label styleClass="statsTitle">SEISME SANS MAGNITUDE</Label>
+                        <Label styleClass="statsTitle" wrapText="true" textAlignment="CENTER">SEISME SANS MAGNITUDE</Label>
                         <Label fx:id="seismeMagnitudeInconnuValueLabel" styleClass="statsNumber"></Label>
                     </VBox>
 
@@ -98,7 +98,7 @@
                         <ImageView fitHeight="65" fitWidth="65">
                             <Image url="@../img/stats/maisonCassee.png"></Image>
                         </ImageView>
-                        <Label styleClass="statsTitle">SEISME QUI ONT CAUSE DES DEGATS</Label>
+                        <Label styleClass="statsTitle" wrapText="true" textAlignment="CENTER">SEISME QUI ONT CAUSE DES DEGATS</Label>
                         <Label fx:id="seismeQuiOnCauseDesDegats" styleClass="statsNumber"></Label>
                     </VBox>
 
@@ -115,7 +115,7 @@
                         <ImageView fitHeight="65" fitWidth="65">
                             <Image url="@../img/stats/dataFound.png"></Image>
                         </ImageView>
-                        <Label styleClass="statsTitle">SEISME AVEC MAGNITUDE</Label>
+                        <Label styleClass="statsTitle" wrapText="true" textAlignment="CENTER">SEISME AVEC MAGNITUDE</Label>
                         <Label fx:id="seismeAvecMagnitude" styleClass="statsNumber"></Label>
                     </VBox>
                     <VBox alignment="CENTER" prefHeight="100" prefWidth="100" spacing="5"
@@ -124,7 +124,7 @@
                         <ImageView fitHeight="65" fitWidth="65">
                             <Image url="@../img/stats/maison.png"></Image>
                         </ImageView>
-                        <Label styleClass="statsTitle">SEISME SANS DOMMAGE</Label>
+                        <Label styleClass="statsTitle" wrapText="true" textAlignment="CENTER">SEISME SANS DOMMAGE</Label>
                         <Label fx:id="seismeSansConsequence" styleClass="statsNumber"></Label>
                     </VBox>
                     <VBox alignment="CENTER" prefHeight="100" prefWidth="100" spacing="5"
