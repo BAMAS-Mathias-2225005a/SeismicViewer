@@ -1,6 +1,11 @@
 package fr.amu.iut.sismicviewer.scenes.stats;
 
+import fr.amu.iut.sismicviewer.CSV.CSVManager;
+import fr.amu.iut.sismicviewer.CSV.SeismeDataManager;
+import fr.amu.iut.sismicviewer.Seisme;
 import fr.amu.iut.sismicviewer.controllers.TopBarController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;

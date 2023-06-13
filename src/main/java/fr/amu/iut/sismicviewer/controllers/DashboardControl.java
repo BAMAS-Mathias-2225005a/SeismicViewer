@@ -1,4 +1,4 @@
-package fr.amu.iut.sismicviewer.scenes.dashboard;
+package fr.amu.iut.sismicviewer.controllers;
 
 import java.io.File;
 
@@ -9,6 +9,7 @@ import fr.amu.iut.sismicviewer.Gluon.MainMapLayer;
 import fr.amu.iut.sismicviewer.Seisme;
 import fr.amu.iut.sismicviewer.SismicViewerApp;
 import fr.amu.iut.sismicviewer.controllers.TopBarController;
+import fr.amu.iut.sismicviewer.scenes.dashboard.BarChartControl;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -33,6 +34,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 /**
  * Classe qui contrôle les nodes de la fenêtre DashBoard
@@ -112,7 +114,6 @@ public class DashboardControl implements Initializable {
         topBarController.initTopBar(carte, dashboard, stats);
         initListeners();
         initMap();
-        initButton();
         initStat();
 
         importCSVButton.setOnMouseClicked(event -> openCSVFileChooser());
@@ -202,10 +203,10 @@ public class DashboardControl implements Initializable {
             ArrayList<Seisme> listeSeisme = CSVManager.getListeSeisme();
             totalSeismeLabel.setText(String.valueOf(seismeDataManager.getNombreSeisme(listeSeisme)));
             moyenneMagnitudeLabel.setText(String.valueOf((seismeDataManager.getMagnitudeMoyenne(listeSeisme))).substring(0, 4));
-            villePlusGrosSeismeLabel.setText(seismeDataManager.getSeismeMax(listeSeisme)[0]);
-            magnitudePlusGrosSeismeLabel.setText(seismeDataManager.getSeismeMax(listeSeisme)[1]);
-            villePlusPetitSeismeLabel.setText(seismeDataManager.getSeismeMin(listeSeisme)[0]);
-            magnitudePlusPetitSeismeLabel.setText(seismeDataManager.getSeismeMin(listeSeisme)[1]);
+            villePlusGrosSeismeLabel.setText(seismeDataManager.getSeismeMax(listeSeisme).getVille());
+            magnitudePlusGrosSeismeLabel.setText(String.valueOf(seismeDataManager.getSeismeMax(listeSeisme).getMagnitude()));
+            villePlusPetitSeismeLabel.setText(seismeDataManager.getSeismeMin(listeSeisme).getVille());
+            magnitudePlusPetitSeismeLabel.setText(String.valueOf(seismeDataManager.getSeismeMin(listeSeisme).getMagnitude()));
             BarChartControl barChartControl = new BarChartControl(dashboardBarchart);
             createPieChart();
             carte.setDisable(false);

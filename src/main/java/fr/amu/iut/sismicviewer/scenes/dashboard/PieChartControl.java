@@ -15,17 +15,8 @@ import java.util.Map;
 public class PieChartControl {
     HashMap<String, Integer> seismeParRegion = new HashMap<>();
     ObservableList<PieChart.Data> seismeParRegionList = FXCollections.observableArrayList();
-    public void loadPieChartData(ArrayList<Seisme> data, PieChart graphique){
-        for(Seisme seisme : data){
-            seismeParRegion.merge(String.valueOf(seisme.getRegion()),1,(a,b) -> a+b); // si il n'y a pas la clé année, l'a créer et là met a 1, sinon ça fait une incrémentation
 
-    /**
-     * méthode pour charger les données dans le PierChart
-     *
-     * @param data
-     * @param graphique
-     */
-    public void loadPieChartData(ArrayList<Seisme> data, PieChart graphique) {
+    public void loadPieChartData (ArrayList < Seisme > data, PieChart graphique){
         for (Seisme seisme : data) {
             System.out.println(seisme.getRegion());
             seismeParRegion.merge(String.valueOf(seisme.getRegion()), 1, (a, b) -> a + b); // si il n'y a pas la clé année, l'a créer et là met a 1, sinon ça fait une incrémentation
@@ -37,3 +28,4 @@ public class PieChartControl {
         graphique.setData(seismeParRegionList);
     }
 }
+
