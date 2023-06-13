@@ -95,7 +95,7 @@ public class SeismeDataManager {
     }
 
     public Seisme getSeismeMin(ArrayList<Seisme> data) {
-        Seisme seismeMin = data.get(0);
+        Seisme seismeMin = new Seisme();
         seismeMin.setMagnitude(10);
         for (Seisme seisme : data) {
             if (seisme.getMagnitude() < seismeMin.getMagnitude() && seisme.getMagnitude() > 0) {
