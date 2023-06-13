@@ -89,6 +89,12 @@ public class SeismeDataManager {
         return seismeTries;
     }
 
+    /**
+     * Permet de récupérer le séisme avec la plus grosse magnitude, pas de gestion de doublon
+     *
+     * @param data Arraylist de Seisme
+     * @return Seisme
+     */
     public Seisme getSeismeMax(ArrayList<Seisme> data) {
         Seisme seismeMax = data.get(0);
         for (Seisme seisme : data) {
@@ -99,6 +105,12 @@ public class SeismeDataManager {
         return seismeMax;
     }
 
+    /**
+     * Permet de récupérer le séisme avec la plus petit magnitude, pas de gestion de doublon
+     *
+     * @param data Arraylist de Seisme
+     * @return Seisme
+     */
     public Seisme getSeismeMin(ArrayList<Seisme> data) {
         Seisme seismeMin = new Seisme();
         seismeMin.setMagnitude(10);
@@ -110,10 +122,22 @@ public class SeismeDataManager {
         return seismeMin;
     }
 
+    /**
+     * Renvoi le nombre d'entré dans la liste de séisme
+     *
+     * @param data Arraylist de Seisme
+     * @return int
+     */
     public int getNombreSeisme(ArrayList<Seisme> data) {
         return data.size();
     }
 
+    /**
+     * Renvoi le nombre de séisme avec une magnitude non null (initialisé a -1 si c'est null)
+     *
+     * @param data Arraylist de Seisme
+     * @return int
+     */
     public int getNombreSeismeAvecMagnitudeConnue(ArrayList<Seisme> data) {
         int nombreSeisme = 0;
         for (Seisme seisme : data) {
@@ -124,6 +148,12 @@ public class SeismeDataManager {
         return nombreSeisme;
     }
 
+    /**
+     * Permet d'avoir la magnitude moyenne des séisme, utilise la fonction getNombreSeismeAvecMagnitudeConnue pour ne pas compter les séismes avec une magnitude non connue
+     *
+     * @param data Arraylist de Seisme
+     * @return double
+     */
     public double getMagnitudeMoyenne(ArrayList<Seisme> data) {
         double magnitudeTotale = 0;
         for (Seisme seisme : data) {
@@ -132,6 +162,12 @@ public class SeismeDataManager {
         return magnitudeTotale / getNombreSeismeAvecMagnitudeConnue(data);
     }
 
+    /**
+     * Permet d'avoir la date du séisme le plus vieux
+     *
+     * @param data Arraylist de Seisme
+     * @return Seisme
+     */
     public Seisme getSeismeLePlusVieux(ArrayList<Seisme> data) {
         Seisme seismeLePlusVieux = data.get(1);
         for (Seisme seisme : data) {
@@ -142,6 +178,12 @@ public class SeismeDataManager {
         return seismeLePlusVieux;
     }
 
+    /**
+     * Permet d'avoir la date du séisme le plus récent
+     *
+     * @param data Arraylist de Seisme
+     * @return Seisme
+     */
     public Seisme getSeismeLePlusRecent(ArrayList<Seisme> data) {
         Seisme seismeLePlusRecent = data.get(0);
         for (Seisme seisme : data) {
@@ -152,17 +194,23 @@ public class SeismeDataManager {
         return seismeLePlusRecent;
     }
 
-    public ArrayList<Seisme> getSeismeEnFrance(ArrayList<Seisme> data){
+    /**
+     * Permet d'avoir la liste des séisme se trouvant sur le territoire Français
+     *
+     * @param data Arraylist de Seisme
+     * @return Arraylist de Seisme
+     */
+    public ArrayList<Seisme> getSeismeEnFrance(ArrayList<Seisme> data) {
         ArrayList<Seisme> listeSeismeEnFrance = new ArrayList<>();
-        for (Seisme seisme : data){
+        for (Seisme seisme : data) {
             if (
                     !seisme.getRegion().contains("ALLEMAGNE") &&
-                    !seisme.getRegion().contains("AUTRICHE") &&
-                    !seisme.getRegion().contains("BELGIQUE") &&
-                    !seisme.getRegion().contains("ESPAGNE") &&
-                    !seisme.getRegion().contains("HOLLANDE") &&
-                    !seisme.getRegion().contains("ITALIE") &&
-                    !seisme.getRegion().contains("SUISSE")){
+                            !seisme.getRegion().contains("AUTRICHE") &&
+                            !seisme.getRegion().contains("BELGIQUE") &&
+                            !seisme.getRegion().contains("ESPAGNE") &&
+                            !seisme.getRegion().contains("HOLLANDE") &&
+                            !seisme.getRegion().contains("ITALIE") &&
+                            !seisme.getRegion().contains("SUISSE")) {
                 listeSeismeEnFrance.add(seisme);
             }
         }
