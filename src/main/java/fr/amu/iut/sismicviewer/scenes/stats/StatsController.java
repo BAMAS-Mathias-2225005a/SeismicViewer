@@ -34,7 +34,12 @@ public class StatsController implements Initializable {
     private Label seismeQuiOnCauseDesDegats;
     @FXML
     private Label seismeEnFrance;
-
+    @FXML
+    private Label seismeHorsFrance;
+    @FXML
+    private Label seismeAvecMagnitude;
+    @FXML
+    private Label seismeSansConsequence;
 
 
     @Override
@@ -59,5 +64,9 @@ public class StatsController implements Initializable {
         seismeMagnitudeInconnuValueLabel.setText(String.valueOf(seismeDataManager.getNombreSeisme(data) - seismeDataManager.getNombreSeismeAvecMagnitudeConnue(data)));
         seismeQuiOnCauseDesDegats.setText(String.valueOf(seismeDataManager.getSeismeParMagnitude(data,6,10).size()));
         seismeEnFrance.setText(String.valueOf(seismeDataManager.getSeismeEnFrance(data).size()));
+        seismeHorsFrance.setText(String.valueOf(seismeDataManager.getNombreSeisme(data) - seismeDataManager.getSeismeEnFrance(data).size()));
+        seismeAvecMagnitude.setText(String.valueOf(seismeDataManager.getNombreSeismeAvecMagnitudeConnue(data)));
+        seismeSansConsequence.setText(String.valueOf(seismeDataManager.getSeismeParMagnitude(data,2,5.5).size()));
+
     }
 }
