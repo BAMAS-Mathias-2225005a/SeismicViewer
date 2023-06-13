@@ -6,14 +6,12 @@ import fr.amu.iut.sismicviewer.CSV.CSVManager;
 import fr.amu.iut.sismicviewer.CSV.SeismeDataManager;
 import fr.amu.iut.sismicviewer.Gluon.MainMapLayer;
 import fr.amu.iut.sismicviewer.Seisme;
-import javafx.beans.binding.DoubleBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.shape.Circle;
 import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.RangeSlider;
 
@@ -57,9 +55,7 @@ public class CarteController implements Initializable {
     private RangeSlider magnitude;
     @FXML
     private CheckComboBox<String> region;
-
     private MainMapLayer mapLayer;
-
     private ChangeListener<Number> magnitudeSliderChange;
 
     @Override
@@ -80,9 +76,8 @@ public class CarteController implements Initializable {
 
     /**
      * Initialise la carte de la fenêtre Carte
-     *
      */
-    public void initMap(){
+    public void initMap() {
         MapPoint mapPoint = new MapPoint(46.727638, 2.213749);
         mapView.setZoom(5.8);
         mapView.flyTo(0, mapPoint, 0.1);
@@ -91,8 +86,8 @@ public class CarteController implements Initializable {
     /**
      * Initialise la ComboBox des dates
      */
-    public void initComboBox(){
-        for(int i = 1800; i < 2030; i += 10 ){
+    public void initComboBox() {
+        for (int i = 1800; i < 2030; i += 10) {
             dateDe.getItems().add(i);
             dateA.getItems().add(i);
         }
@@ -101,19 +96,19 @@ public class CarteController implements Initializable {
     /**
      * Permet de mettre à jour la carte avec des nouvelles données en prenant en compte les différents filtres
      */
-    public void updateMap(){
+    public void updateMap() {
         ArrayList<Seisme> listeSeismeTries = (ArrayList<Seisme>) CSVManager.getListeSeisme().clone();
         SeismeDataManager seismeDataManager = new SeismeDataManager();
 
-        if(dateDe.getValue() != null && dateA.getValue() != null) {
+        if (dateDe.getValue() != null && dateA.getValue() != null) {
             listeSeismeTries = seismeDataManager.getAnneeFromTo(listeSeismeTries, dateDe.getValue(), dateA.getValue());
         }
 
-        if(!latitude.getText().isEmpty() && !longitude.getText().isEmpty() && !rayon.getText().isEmpty()){
+        if (!latitude.getText().isEmpty() && !longitude.getText().isEmpty() && !rayon.getText().isEmpty()) {
             listeSeismeTries = seismeDataManager.getSeismeDansRayon(listeSeismeTries, Double.parseDouble(latitude.getText()), Double.parseDouble(longitude.getText()), Double.parseDouble(rayon.getText()));
         }
 
-        if(!region.getCheckModel().getCheckedItems().isEmpty() && !region.getCheckModel().getCheckedItems().contains("TOUTES LES REGIONS")){
+        if (!region.getCheckModel().getCheckedItems().isEmpty() && !region.getCheckModel().getCheckedItems().contains("TOUTES LES REGIONS")) {
             listeSeismeTries = seismeDataManager.getSeismeParRegion(listeSeismeTries, region.getCheckModel().getCheckedItems());
         }
 
@@ -125,10 +120,10 @@ public class CarteController implements Initializable {
     /**
      * Initialise les listeners de la fenêtre
      */
-    public void initListener(){
+    public void initListener() {
         mapView.setOnMouseClicked(mouseEvent -> {
             MapPoint x = mapView.getMapPosition(mouseEvent.getX(), mouseEvent.getY());
-            latitude.setText(String.format("%.5f",(x.getLatitude())).replace(',', '.'));
+            latitude.setText(String.format("%.5f", (x.getLatitude())).replace(',', '.'));
             longitude.setText(String.format("%.5f", (x.getLongitude())).replace(',', '.'));
         });
 

@@ -2,6 +2,7 @@ package fr.amu.iut.sismicviewer;
 
 /**
  * Classe définissant l'objet "Seisme". Cet objet à pour but d'accéder plus facilement aux données du fichier CSV
+ *
  * @author BAMAS Mathias
  * @author BEDDIAF Miloud
  * @author BENDJEDDOU Rayan
@@ -18,7 +19,7 @@ public class Seisme {
     private double magnitude;
     private int identifiant;
 
-    public Seisme(){
+    public Seisme() {
         annee = 0;
         region = "";
         ville = "";
@@ -29,6 +30,7 @@ public class Seisme {
 
     /**
      * Constructeur de la classe Seisme
+     *
      * @param values Colonne de donnée du fichier CSV que l'on souhaite exploiter
      */
 
@@ -65,7 +67,7 @@ public class Seisme {
         }
 
         try {
-            if(Double.parseDouble(values[10]) > 10){
+            if (Double.parseDouble(values[10]) > 10) {
                 throw new NumberFormatException("La magnitude ne peut pas etre supérieure a 10");
             }
             magnitude = Double.parseDouble(values[10]);
@@ -76,75 +78,80 @@ public class Seisme {
 
     /**
      * Retourne l'année du séisme
+     *
      * @return valeur de type Int
      */
     public int getAnnee() {
         return annee;
     }
 
+    public void setAnnee(int annee) {
+        this.annee = annee;
+    }
+
     /**
      * Retourne la région du séisme
+     *
      * @return String
      */
     public String getRegion() {
         return region;
     }
 
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
     /**
      * Retourne la latidude du séisme
+     *
      * @return valeur de type Double
      */
     public double getLatitude() {
         return latitude;
     }
 
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
     /**
      * Retourne la longitude du séisme
+     *
      * @return valeur de type Double
      */
     public double getLongitude() {
         return longitude;
     }
 
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
     /**
      * Retoune la magnitude du séisme
+     *
      * @return valeur de type Double
      */
     public double getMagnitude() {
         return magnitude;
     }
 
-    public String getVille() {
-        return ville;
-    }
-
     public void setMagnitude(int i) {
-        if(i >= 0 && i <= 10)
+        if (i >= 0 && i <= 10)
             this.magnitude = i;
-    }
-
-    public void setAnnee(int annee) {
-        this.annee = annee;
-    }
-
-    public void setRegion(String region) {
-        this.region = region;
-    }
-
-    public void setVille(String ville) {
-        this.ville = ville;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
     }
 
     public void setMagnitude(double magnitude) {
         this.magnitude = magnitude;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
     }
 
     public int getIdentifiant() {

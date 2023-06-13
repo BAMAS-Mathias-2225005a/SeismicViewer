@@ -19,6 +19,15 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Classe qui contrôle la fenêtre Statistique en l'initialisant et on chargeant toute les données dans tout les objets graphs etc...
+ *
+ * @author BAMAS Mathias
+ * @author BEDDIAF Miloud
+ * @author BENDJEDDOU Rayan
+ * @author LOUARN Mathis
+ * @version 1.0
+ */
 public class StatsController implements Initializable {
 
     @FXML
@@ -27,7 +36,6 @@ public class StatsController implements Initializable {
     private Button dashboard;
     @FXML
     private Button stats;
-
     @FXML
     private BarChart barChartStats;
     @FXML
@@ -84,12 +92,12 @@ public class StatsController implements Initializable {
      * @param graphique
      */
 
-    public void initLineChart(LineChart graphique){
+    public void initLineChart(LineChart graphique) {
         ArrayList<Seisme> data = new ArrayList<>(CSVManager.getListeSeisme());
         SeismeDataManager seismeDataManager = new SeismeDataManager();
         System.out.println(seismeDataManager.getSeismeLePlusVieux(data).getAnnee());
         XYChart.Series series = new XYChart.Series<String, Double>();
-        for (int i = seismeDataManager.getSeismeLePlusVieux(data).getAnnee(); i < seismeDataManager.getSeismeLePlusRecent(data).getAnnee()+1; ++i) {
+        for (int i = seismeDataManager.getSeismeLePlusVieux(data).getAnnee(); i < seismeDataManager.getSeismeLePlusRecent(data).getAnnee() + 1; ++i) {
             series.getData().add(new XYChart.Data<>(String.valueOf(i), seismeDataManager.getMagnitudeMoyenne(seismeDataManager.getAnneeFromTo(data, i, i))));
         }
         graphique.getData().add(series);

@@ -14,6 +14,7 @@ import java.util.ArrayList;
  * Cette classe définit une couche personnalisée pour les cartes dans le logiciel,
  * grâce à cela, il est facilement possible de placer des points sur la carte (possibilité de placer des points
  * de couleur différentes, de tailles différentes etc...)
+ *
  * @author BAMAS Mathias
  * @author BEDDIAF Miloud
  * @author BENDJEDDOU Rayan
@@ -24,29 +25,28 @@ public class MainMapLayer extends MapLayer {
 
     /**
      * Met à jour la couche à chaque appelle de la fonction
+     *
      * @param listeSeismes Liste de séisme à fournir pour placer les points
      */
     public void updateLayer(ArrayList<Seisme> listeSeismes) {
         clearLayer();
         for (Seisme seisme : listeSeismes) {
             MapPoint point = new MapPoint(seisme.getLatitude(), seisme.getLongitude());
-            Point2D point2D = getMapPoint(point.getLatitude(),point.getLongitude());
+            Point2D point2D = getMapPoint(point.getLatitude(), point.getLongitude());
             Circle circle = new Circle(5);
             circle.setCenterX(point2D.getX());
             circle.setCenterY(point2D.getY());
 
-            if(seisme.getMagnitude() < 3.5) {
+            if (seisme.getMagnitude() < 3.5) {
                 circle.setFill(Color.GREEN);
                 circle.setRadius(seisme.getMagnitude());
-            }else if(seisme.getMagnitude() < 5.5) {
+            } else if (seisme.getMagnitude() < 5.5) {
                 circle.setRadius(seisme.getMagnitude() * 1.115);
                 circle.setFill(Color.YELLOW);
-            }
-            else if(seisme.getMagnitude() < 7.5) {
+            } else if (seisme.getMagnitude() < 7.5) {
                 circle.setFill(Color.ORANGE);
                 circle.setRadius(seisme.getMagnitude() * 1.25);
-            }
-            else {
+            } else {
                 circle.setFill(Color.RED);
                 circle.setRadius(seisme.getMagnitude() * 2);
             }
