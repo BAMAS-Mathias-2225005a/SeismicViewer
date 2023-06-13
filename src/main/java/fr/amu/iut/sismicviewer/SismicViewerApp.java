@@ -3,6 +3,7 @@ package fr.amu.iut.sismicviewer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -30,6 +31,7 @@ public class SismicViewerApp extends Application {
         scene = new Scene(loader.load());
         stage.setMaximized(true);
         stage.setTitle("Sismic Viewer");
+        stage.getIcons().add(new Image("/img/iconSismicViewer.png"));
         stage.setScene(scene);
         stage.show();
     }
