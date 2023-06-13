@@ -4,12 +4,15 @@ import fr.amu.iut.sismicviewer.CSV.CSVManager;
 import fr.amu.iut.sismicviewer.CSV.SeismeDataManager;
 import fr.amu.iut.sismicviewer.Seisme;
 import fr.amu.iut.sismicviewer.controllers.TopBarController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -40,6 +43,8 @@ public class StatsController implements Initializable {
     private Label seismeAvecMagnitude;
     @FXML
     private Label seismeSansConsequence;
+    @FXML
+    private TableView tableviewStats;
 
 
     @Override
@@ -49,6 +54,7 @@ public class StatsController implements Initializable {
         initBarChart(barChartStats);
         initLineChart(lineChartStats);
         initStats();
+        initTableView(tableviewStats);
     }
 
     public void initBarChart(BarChart graphique) {
@@ -67,6 +73,9 @@ public class StatsController implements Initializable {
         seismeHorsFrance.setText(String.valueOf(seismeDataManager.getNombreSeisme(data) - seismeDataManager.getSeismeEnFrance(data).size()));
         seismeAvecMagnitude.setText(String.valueOf(seismeDataManager.getNombreSeismeAvecMagnitudeConnue(data)));
         seismeSansConsequence.setText(String.valueOf(seismeDataManager.getSeismeParMagnitude(data,2,5.5).size()));
+    }
 
+    public void initTableView(TableView tableau){
+        TableviewController tableviewController = new TableviewController(tableau, CSVManager.getListeSeisme());
     }
 }

@@ -15,6 +15,7 @@ public class Seisme {
     private double latitude;
     private double longitude;
     private double magnitude;
+    private int identifiant;
 
     /**
      * Constructeur de la classe Seisme
@@ -45,6 +46,11 @@ public class Seisme {
             magnitude = Double.parseDouble(values[10]);
         } catch (NumberFormatException e) {
             magnitude = -1;
+        }
+        try {
+            identifiant = Integer.parseInt(values[0]);
+        } catch (NumberFormatException e) {
+            identifiant = -1;
         }
     }
 
@@ -86,5 +92,12 @@ public class Seisme {
      */
     public double getMagnitude() {
         return magnitude;
+    }
+    /**
+     * Retoune l'identifiant du séisme
+     * @return valeur de type Int
+     */
+    public double getIdentifiant() {
+        return identifiant;
     }
 }
