@@ -57,6 +57,7 @@ public class CarteController implements Initializable {
     private CheckComboBox<String> region;
     private MainMapLayer mapLayer;
     private ChangeListener<Number> magnitudeSliderChange;
+    private ChangeListener<String> magnitudeLongitudeRayonChange;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -127,13 +128,23 @@ public class CarteController implements Initializable {
             longitude.setText(String.format("%.5f", (x.getLongitude())).replace(',', '.'));
         });
 
-
         magnitudeSliderChange = new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 updateMap();
             }
         };
+
+        magnitudeLongitudeRayonChange = new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                updateMap();
+            }
+        };
+
+        mapView.setOnScroll(event -> { event.consume();});
+        mapView.setOnMouseDragged(event -> { event.consume();});
+
 
         region.getCheckModel().getCheckedItems().addListener(new ListChangeListener<String>() {
             @Override
@@ -149,6 +160,9 @@ public class CarteController implements Initializable {
             updateMap();
         });
 
+        latitude.textProperty().addListener(magnitudeLongitudeRayonChange);
+        longitude.textProperty().addListener(magnitudeLongitudeRayonChange);
+        rayon.textProperty().addListener(magnitudeLongitudeRayonChange);
         magnitude.lowValueProperty().addListener(magnitudeSliderChange);
         magnitude.highValueProperty().addListener(magnitudeSliderChange);
     }
