@@ -3,6 +3,7 @@ package fr.amu.iut.sismicviewer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -14,7 +15,7 @@ import javafx.stage.Stage;
  * @version 1.0
  */
 
-public class SismicViewerApp extends Application {
+public class SeismicViewerApp extends Application {
 
     private static Scene scene;
 
@@ -29,7 +30,8 @@ public class SismicViewerApp extends Application {
         System.setProperty("http.agent", "Gluon Mobile/1.0.3");
         scene = new Scene(loader.load());
         stage.setMaximized(true);
-        stage.setTitle("Sismic Viewer");
+        stage.setTitle("Seismic Viewer");
+        stage.getIcons().add(new Image("img/dashboard/TopSeisme.png"));
         stage.setScene(scene);
         stage.show();
     }
