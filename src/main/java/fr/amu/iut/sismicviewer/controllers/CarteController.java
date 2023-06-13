@@ -79,7 +79,7 @@ public class CarteController implements Initializable {
     }
 
     /**
-     * Initialise la carte de la fenêtre
+     * Initialise la carte de la fenêtre Carte
      *
      */
     public void initMap(){

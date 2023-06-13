@@ -12,18 +12,35 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Cette classe est le contrôleur du PieChart de la fenêtre DashBoard
+ * Elle permet de charger des données depuis un Arraylist dans le Piechart.
+ *
+ * @author BAMAS Mathias
+ * @author BEDDIAF Miloud
+ * @author BENDJEDDOU Rayan
+ * @author LOUARN Mathis
+ * @version 1.0
+ */
 public class PieChartControl {
-    HashMap<String,Integer> seismeParRegion = new HashMap<>();
+    HashMap<String, Integer> seismeParRegion = new HashMap<>();
     ObservableList<PieChart.Data> seismeParRegionList = FXCollections.observableArrayList();
-    public void loadPieChartData(ArrayList<Seisme> data, PieChart graphique){
-        for(Seisme seisme : data){
+
+    /**
+     * méthode pour charger les données dans le PierChart
+     *
+     * @param data
+     * @param graphique
+     */
+    public void loadPieChartData(ArrayList<Seisme> data, PieChart graphique) {
+        for (Seisme seisme : data) {
             System.out.println(seisme.getRegion());
-            seismeParRegion.merge(String.valueOf(seisme.getRegion()),1,(a,b) -> a+b); // si il n'y a pas la clé année, l'a créer et là met a 1, sinon ça fait une incrémentation
+            seismeParRegion.merge(String.valueOf(seisme.getRegion()), 1, (a, b) -> a + b); // si il n'y a pas la clé année, l'a créer et là met a 1, sinon ça fait une incrémentation
         }
-        for (Map.Entry<String,Integer> entry : seismeParRegion.entrySet()){ // met les données dans la obervablelist qui va ensuite être mise dans le piechart
+        for (Map.Entry<String, Integer> entry : seismeParRegion.entrySet()) { // met les données dans la obervablelist qui va ensuite être mise dans le piechart
             seismeParRegionList.add(new PieChart.Data(entry.getKey(), entry.getValue()));
         }
-        graphique.resize(300,300);
+        graphique.resize(300, 300);
         graphique.setData(seismeParRegionList);
     }
 }
