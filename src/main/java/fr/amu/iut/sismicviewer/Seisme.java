@@ -17,10 +17,20 @@ public class Seisme {
     private double longitude;
     private double magnitude;
 
+    public Seisme(){
+        annee = 0;
+        region = "";
+        ville = "";
+        latitude = 0;
+        longitude = 0;
+        magnitude = -1;
+    }
+
     /**
      * Constructeur de la classe Seisme
      * @param values Colonne de donnée du fichier CSV que l'on souhaite exploiter
      */
+
     public Seisme(String[] values) {
         region = values[4];
 
@@ -49,6 +59,9 @@ public class Seisme {
         }
 
         try {
+            if(Double.parseDouble(values[10]) > 10){
+                throw new NumberFormatException("La magnitude ne peut pas etre supérieure a 10");
+            }
             magnitude = Double.parseDouble(values[10]);
         } catch (NumberFormatException e) {
             magnitude = -1;
@@ -100,6 +113,31 @@ public class Seisme {
     }
 
     public void setMagnitude(int i) {
-        this.magnitude = i;
+        if(i >= 0 && i <= 10)
+            this.magnitude = i;
+    }
+
+    public void setAnnee(int annee) {
+        this.annee = annee;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setMagnitude(double magnitude) {
+        this.magnitude = magnitude;
     }
 }
