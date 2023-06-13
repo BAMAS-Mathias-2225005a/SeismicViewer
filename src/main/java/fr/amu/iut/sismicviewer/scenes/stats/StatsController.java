@@ -76,6 +76,9 @@ public class StatsController implements Initializable {
     }
 
     public void initTableView(TableView tableau){
-        TableviewController tableviewController = new TableviewController(tableau, CSVManager.getListeSeisme());
+        SeismeDataManager seismeDataManager = new SeismeDataManager();
+        ArrayList<Seisme> data = CSVManager.getListeSeisme();
+        ObservableList<Seisme> listeSeisme = FXCollections.observableArrayList(seismeDataManager.getSeismeParMagnitude(data,2,10));
+        tableau.setItems(listeSeisme);
     }
 }
