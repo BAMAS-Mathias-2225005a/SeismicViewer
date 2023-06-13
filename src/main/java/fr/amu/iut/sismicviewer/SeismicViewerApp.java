@@ -31,7 +31,7 @@ public class SeismicViewerApp extends Application {
         scene = new Scene(loader.load());
         stage.setMaximized(true);
         stage.setTitle("Seismic Viewer");
-        stage.getIcons().add(new Image("img/dashboard/TopSeisme.png"));
+        stage.getIcons().add(new Image("img/dashboard/iconSismicViewer.png"));
         stage.setScene(scene);
         stage.show();
     }
