@@ -127,6 +127,7 @@ public class CarteController implements Initializable {
             longitude.setText(String.format("%.5f", (x.getLongitude())).replace(',', '.'));
         });
 
+
         magnitudeSliderChange = new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
