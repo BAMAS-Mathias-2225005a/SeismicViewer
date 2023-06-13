@@ -9,7 +9,7 @@
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.control.*?>
 
-<BorderPane fx:id="mainBP" prefHeight="1000" prefWidth="1900" style="-fx-background-color: #141b2d"
+<BorderPane fx:id="mainBP" prefHeight="900" prefWidth="1600" style="-fx-background-color: #141b2d"
             stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="fr.amu.iut.sismicviewer.controllers.DashboardControl">
     <top>

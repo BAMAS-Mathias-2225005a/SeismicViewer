@@ -76,11 +76,11 @@
                     </HBox>
                     <HBox spacing="25" alignment="CENTER">
                         <HBox>
-                            <TextField fx:id="latitude" styleClass="styleTextFieldCarte" prefHeight="40"
+                            <TextField fx:id="latitude" text="0" styleClass="styleTextFieldCarte" prefHeight="40"
                                        promptText="LATITUDE"/>
                         </HBox>
                         <HBox>
-                            <TextField fx:id="longitude" styleClass="styleTextFieldCarte" prefHeight="40"
+                            <TextField fx:id="longitude" text="0" styleClass="styleTextFieldCarte" prefHeight="40"
                                        promptText="LONGITUDE"/>
                         </HBox>
                         <HBox>

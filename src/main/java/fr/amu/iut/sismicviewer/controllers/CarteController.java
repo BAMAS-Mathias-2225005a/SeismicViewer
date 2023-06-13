@@ -21,7 +21,8 @@ import java.util.ResourceBundle;
 
 /**
  * Cette classe est le contrôleur de la fenêtre Carte du logiciel,
- * elle permet de pouvoir intéragir avec les différents nodes présent sur la fenêtre Carte (boutons, champ de textes, etc..)
+ * elle permet de pouvoir intéragir avec les différents nodes présent sur la fenêtre Carte (boutons, champ de textes, slider, etc..)
+ * et d'afficher des données sur la map
  *
  * @author BAMAS Mathias
  * @author BEDDIAF Miloud
@@ -63,8 +64,8 @@ public class CarteController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         TopBarController topBarController = new TopBarController();
         topBarController.initTopBar(carte, dashboard, stats);
-        initMap();
         initComboBox();
+        initMap();
 
         mapLayer = new MainMapLayer();
         mapView.addLayer(mapLayer);
@@ -73,6 +74,7 @@ public class CarteController implements Initializable {
         region.getItems().add("TOUTES LES REGIONS");
         region.getItems().addAll(CSVManager.getAllRegion());
         initListener();
+
     }
 
     /**
@@ -98,7 +100,7 @@ public class CarteController implements Initializable {
      * Permet de mettre à jour la carte avec des nouvelles données en prenant en compte les différents filtres
      */
     public void updateMap() {
-        ArrayList<Seisme> listeSeismeTries = (ArrayList<Seisme>) CSVManager.getListeSeisme().clone();
+        ArrayList<Seisme> listeSeismeTries = CSVManager.getListeSeisme();
         SeismeDataManager seismeDataManager = new SeismeDataManager();
 
         if (dateDe.getValue() != null && dateA.getValue() != null) {
@@ -165,6 +167,7 @@ public class CarteController implements Initializable {
         rayon.textProperty().addListener(magnitudeLongitudeRayonChange);
         magnitude.lowValueProperty().addListener(magnitudeSliderChange);
         magnitude.highValueProperty().addListener(magnitudeSliderChange);
+
     }
 
 }

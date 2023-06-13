@@ -29,7 +29,6 @@ public class SeismicViewerApp extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("views/Dashboard.fxml"));
         System.setProperty("http.agent", "Gluon Mobile/1.0.3");
         scene = new Scene(loader.load());
-        stage.setMaximized(true);
         stage.setTitle("Seismic Viewer");
         stage.getIcons().add(new Image("img/iconSismicViewer.png"));
         stage.setScene(scene);
