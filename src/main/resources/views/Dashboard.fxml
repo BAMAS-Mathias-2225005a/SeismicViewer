@@ -91,9 +91,11 @@
             </GridPane>
 
 
-            <VBox alignment="TOP_CENTER" prefHeight="40" spacing="20"
-                  style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="3"
-                  GridPane.rowSpan="1">
+            <VBox alignment="TOP_CENTER" spacing="20" style="-fx-background-color: #1f2941; -fx-background-radius: 10" GridPane.columnIndex="3" GridPane.rowSpan="1">
+                  <padding>
+                    <Insets bottom="30"/>
+                </padding>
+
                 <MapView fx:id="mapView" prefHeight="350" prefWidth="600" BorderPane.alignment="TOP_CENTER"/>
                 <RangeSlider fx:id="mainRangeSlider" maxWidth="500" min="1900" max="2023" highValue="2023"
                              lowValue="1900" showTickLabels="true" styleClass="range-slider"/>

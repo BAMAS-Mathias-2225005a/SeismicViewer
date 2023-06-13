@@ -32,9 +32,9 @@
         <GridPane prefWidth="1700" hgap="50" prefHeight="550" alignment="CENTER">
             <BarChart fx:id="barChartStats" animated="false" categoryGap="0.0" legendVisible="false" rotate="90"
                       styleClass="styleBarChartStats1" title="Nombre de séisme par magnitude"
-                      verticalGridLinesVisible="false" BorderPane.alignment="CENTER" prefHeight="475">
+                      verticalGridLinesVisible="false" BorderPane.alignment="CENTER" prefHeight="450" prefWidth="450">
                 <xAxis>
-                    <CategoryAxis animated="false" prefHeight="27.0" prefWidth="302.0" tickLabelGap="10.0"
+                    <CategoryAxis animated="false" prefHeight="27.0" tickLabelGap="10.0"
                                   tickLabelRotation="-90.0"/>
                 </xAxis>
                 <yAxis>
@@ -48,19 +48,19 @@
                 </padding>
             </BarChart>
 
-            <TableView fx:id="tableviewStats" minWidth="500" GridPane.columnIndex="2">
+            <TableView fx:id="tableviewStats" minWidth="400" GridPane.columnIndex="2">
                 <columns>
                     <TableColumn text="Identifiant" prefWidth="50">
                         <cellValueFactory>
                             <PropertyValueFactory property="identifiant"/>
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn text="Region" prefWidth="200">
+                    <TableColumn text="Region" prefWidth="150">
                         <cellValueFactory>
                             <PropertyValueFactory property="region"/>
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn text="Ville" prefWidth="200">
+                    <TableColumn text="Ville" prefWidth="150">
                         <cellValueFactory>
                             <PropertyValueFactory property="ville"/>
                         </cellValueFactory>
@@ -75,9 +75,9 @@
 
             <GridPane hgap="10.0" vgap="10.0" GridPane.columnIndex="1">
                 <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0"/>
                 </columnConstraints>
                 <rowConstraints>
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
@@ -141,7 +141,6 @@
                     <Insets left="10.0" right="10.0"/>
                 </padding>
             </GridPane>
-
         </GridPane>
     </center>
     <bottom>

@@ -65,6 +65,7 @@ public class StatsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         TopBarController topBarController = new TopBarController();
         topBarController.initTopBar(carte, dashboard, stats);
+        barChartStats.setAnimated(false);
         initBarChart(barChartStats);
         initLineChart(lineChartStats);
         initStats();
