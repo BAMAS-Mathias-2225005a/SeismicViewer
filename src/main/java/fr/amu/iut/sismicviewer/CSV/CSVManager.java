@@ -12,6 +12,7 @@ import fr.amu.iut.sismicviewer.Seisme;
 /**
  * Cette classe permet de lire un fichier CSV puis de créer des objets "Seisme" en tenant compte aux données contenues
  * dans le fichier csv.
+ *
  * @author BAMAS Mathias
  * @author BEDDIAF Miloud
  * @author BENDJEDDOU Rayan
@@ -21,8 +22,13 @@ import fr.amu.iut.sismicviewer.Seisme;
 
 public class CSVManager {
 
-    private static ArrayList<Seisme> listeSeisme = new ArrayList<Seisme>();
+    private static final ArrayList<Seisme> listeSeisme = new ArrayList<Seisme>();
 
+    /**
+     * Lis le ficheir CSV et remplie la listeSeisme d'objet de résisme
+     *
+     * @param file fichier csv
+     */
     public static void loadCsv(File file) {
         listeSeisme.clear();
         try {
@@ -39,16 +45,22 @@ public class CSVManager {
 
     /**
      * Retourne une liste de Seisme
+     *
      * @return ArrayList de valeurs de type Seisme
      */
     public static ArrayList<Seisme> getListeSeisme() {
         return listeSeisme;
     }
 
-    public static ArrayList<String> getAllRegion(){
+    /**
+     * Permet d'avoir toute les régions
+     *
+     * @return Arraylist de String
+     */
+    public static ArrayList<String> getAllRegion() {
         ArrayList<String> regions = new ArrayList<String>();
-        for(Seisme seisme : listeSeisme){
-            if(!regions.contains(seisme.getRegion())){
+        for (Seisme seisme : listeSeisme) {
+            if (!regions.contains(seisme.getRegion())) {
                 regions.add(seisme.getRegion());
             }
         }
