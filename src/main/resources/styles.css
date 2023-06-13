@@ -214,7 +214,7 @@
     -fx-background-color: #28a14c; /* ajouter , white après la couleur pour mettre un cercle blanc au milieu des nodes de la linechart */
 }
 
-.styleLineChart.chart-title { /* applique des style au titre du linehart, fonctionne avec tous les autres charts */
+.styleLineChart .chart-title { /* applique des style au titre du linehart, fonctionne avec tous les autres charts */
     -fx-text-fill: white;
     -fx-tick-label-font-family: 'cubik';
     -fx-font-family: 'cubik';

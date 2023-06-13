@@ -156,4 +156,21 @@ public class SeismeDataManager {
         }
         return seismeLePlusRecent;
     }
+
+    public ArrayList<Seisme> getSeismeEnFrance(ArrayList<Seisme> data){
+        ArrayList<Seisme> listeSeismeEnFrance = new ArrayList<>();
+        for (Seisme seisme : data){
+            if (
+                    !seisme.getRegion().contains("ALLEMAGNE") &&
+                    !seisme.getRegion().contains("AUTRICHE") &&
+                    !seisme.getRegion().contains("BELGIQUE") &&
+                    !seisme.getRegion().contains("ESPAGNE") &&
+                    !seisme.getRegion().contains("HOLLANDE") &&
+                    !seisme.getRegion().contains("ITALIE") &&
+                    !seisme.getRegion().contains("SUISSE")){
+                listeSeismeEnFrance.add(seisme);
+            }
+        }
+        return listeSeismeEnFrance;
+    }
 }
