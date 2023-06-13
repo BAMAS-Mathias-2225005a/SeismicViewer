@@ -1,4 +1,4 @@
-package fr.amu.iut.sismicviewer.controllers;
+package fr.amu.iut.sismicviewer.scenes.stats;
 
 import fr.amu.iut.sismicviewer.CSV.CSVManager;
 import fr.amu.iut.sismicviewer.CSV.SeismeDataManager;
@@ -47,7 +47,12 @@ public class StatsController implements Initializable {
     @FXML
     private TableView tableviewStats;
 
-
+    /**
+     * Initialise la page StatsController
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         TopBarController topBarController = new TopBarController();
@@ -58,6 +63,11 @@ public class StatsController implements Initializable {
         initTableView(tableviewStats);
     }
 
+    /**
+     * Charge les données dans le barchart dans la fenêtre statisitique
+     *
+     * @param graphique
+     */
     public void initBarChart(BarChart graphique) {
         ArrayList<Seisme> data = new ArrayList<>(CSVManager.getListeSeisme());
         SeismeDataManager seismeDataManager = new SeismeDataManager();
@@ -67,6 +77,12 @@ public class StatsController implements Initializable {
         }
         graphique.getData().add(series);
     }
+
+    /**
+     * charge les données dans le linechart dans la fenêtre statisitique
+     *
+     * @param graphique
+     */
 
     public void initLineChart(LineChart graphique){
         ArrayList<Seisme> data = new ArrayList<>(CSVManager.getListeSeisme());
@@ -78,21 +94,30 @@ public class StatsController implements Initializable {
         }
         graphique.getData().add(series);
     }
-    public void initStats(){
+
+    /**
+     * initialise les statisitique dans les petit carré au centre de la fenêtre statisitique
+     */
+    public void initStats() {
         SeismeDataManager seismeDataManager = new SeismeDataManager();
         ArrayList<Seisme> data = CSVManager.getListeSeisme();
         seismeMagnitudeInconnuValueLabel.setText(String.valueOf(seismeDataManager.getNombreSeisme(data) - seismeDataManager.getNombreSeismeAvecMagnitudeConnue(data)));
-        seismeQuiOnCauseDesDegats.setText(String.valueOf(seismeDataManager.getSeismeParMagnitude(data,6,10).size()));
+        seismeQuiOnCauseDesDegats.setText(String.valueOf(seismeDataManager.getSeismeParMagnitude(data, 6, 10).size()));
         seismeEnFrance.setText(String.valueOf(seismeDataManager.getSeismeEnFrance(data).size()));
         seismeHorsFrance.setText(String.valueOf(seismeDataManager.getNombreSeisme(data) - seismeDataManager.getSeismeEnFrance(data).size()));
         seismeAvecMagnitude.setText(String.valueOf(seismeDataManager.getNombreSeismeAvecMagnitudeConnue(data)));
-        seismeSansConsequence.setText(String.valueOf(seismeDataManager.getSeismeParMagnitude(data,2,5.5).size()));
+        seismeSansConsequence.setText(String.valueOf(seismeDataManager.getSeismeParMagnitude(data, 2, 5.5).size()));
     }
 
-    public void initTableView(TableView tableau){
+    /**
+     * charge les données dans la tableview dans la fenêtre statistique
+     *
+     * @param tableau
+     */
+    public void initTableView(TableView tableau) {
         SeismeDataManager seismeDataManager = new SeismeDataManager();
         ArrayList<Seisme> data = CSVManager.getListeSeisme();
-        ObservableList<Seisme> listeSeisme = FXCollections.observableArrayList(seismeDataManager.getSeismeParMagnitude(data,2,10));
+        ObservableList<Seisme> listeSeisme = FXCollections.observableArrayList(seismeDataManager.getSeismeParMagnitude(data, 2, 10));
         tableau.setItems(listeSeisme);
     }
 }
